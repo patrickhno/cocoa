@@ -2,6 +2,14 @@ require_relative 'spec_helper'
 require 'cocoa'
 
 describe 'Cocoa' do
+  it 'should lazy load cocoa classes in cocoa derived classes' do
+    class Derived < Cocoa::NSObject
+      def get_lazy
+        NSMenu.new
+      end
+    end
+    Derived.new.get_lazy.class.name.should == 'Cocoa::NSMenu'
+  end
   it 'should provide correct return types for class methods' do
     Cocoa::NSMutableArray.array.class.name.should == 'Cocoa::NSMutableArray'
   end

@@ -1,3 +1,9 @@
+class Cocoa::NSObject
+  def self.const_missing name
+    Cocoa.const_get name
+  end
+end
+
 class Cocoa::NSString < Cocoa::NSObject
   def to_s
     Cocoa::NSString_to_String(object)
