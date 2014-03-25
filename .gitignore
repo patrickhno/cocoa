@@ -1,18 +1,19 @@
-*.gem
-*.rbc
-.bundle
-.config
+# rcov generated
 coverage
-InstalledFiles
-lib/bundler/man
-pkg
-rdoc
-spec/reports
-test/tmp
-test/version_tmp
-tmp
+coverage.data
 
-# YARD artifacts
+# rdoc generated
+rdoc
+
+# yard generated
+doc
 .yardoc
-_yardoc
-doc/
+
+# bundler
+.bundle
+
+# jeweler generated
+pkg
+
+Gemfile.lock
+tmp
