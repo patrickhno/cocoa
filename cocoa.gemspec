@@ -411,6 +411,7 @@ Gem::Specification.new do |s|
     "lib/cocoa/bindings/NSXPCConnection.rb",
     "lib/cocoa/bindings/NSXPCInterface.rb",
     "lib/cocoa/bindings/NSXPCListener.rb",
+    "lib/cocoa/extensions.rb",
     "lib/cocoa/helpers.rb",
     "spec/cocoa/cocoa_spec.rb",
     "spec/cocoa/spec_helper.rb",

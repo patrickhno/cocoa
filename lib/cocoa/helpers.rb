@@ -300,7 +300,13 @@ params.freeze
       instance = begin
         ("Cocoa::"+klass_name).constantize.new(true)
       rescue
-        klass_name = "FIX_#{klass_name}" if klass_name[0]=='_'
+        klass_name = if klass_name =~ /^__NSCF/
+          "NS#{klass_name[6..-1]}" 
+        elsif klass_name[0]=='_'
+          "FIX_#{klass_name}" 
+        else
+          klass_name
+        end
         klass = begin
           Cocoa.const_get(klass_name)
         rescue => e
@@ -451,7 +457,6 @@ params.freeze
 
     def self.inherited(parent)
       if parent.name
-puts "INHERITED #{parent.name}" if parent.name =~ /Timer/
         klass = ObjC.objc_allocateClassPair(ObjC.objc_getClass(name.split('::').last),parent.name,0)
         ObjC.objc_registerClassPair(klass)
       end
@@ -566,9 +571,6 @@ __params.freeze
         _params = [__params.dup].flatten
 _params.freeze
         define_singleton_method method do |*args|
-# puts method
-# puts args.inspect
-# puts _params.inspect
           par = if _params.size == 1 && _params.first[:variadic]
             _params
           else
@@ -669,7 +671,6 @@ params.freeze
                 ("Cocoa::"+klass_name).constantize.new(true)
               rescue
                 klass_name = "FIX_#{klass_name}" if klass_name[0]=='_'
-# puts "TRYING #{klass_name}"
                 klass = begin
                   Cocoa.const_get(klass_name)
                 rescue => e
@@ -763,8 +764,8 @@ params.freeze
     def self.method_added(name)
       return if caller.first.split('`').last[0..-2] == 'define_method'  # MRI
       return if caller.first.split('`').last[0..-2] == 'attach_method'  # Rubinius
-      method_definition = "#{self.name.underscore}_#{name.to_s.underscore}".to_sym
-      add_method = "add_#{self.name.underscore}_#{name.to_s.underscore}".to_sym
+      method_definition = "#{self.name.gsub('::','__')}_#{name}".to_sym
+      add_method = "add_#{method_definition}".to_sym
 
       @method_callers ||= {}
       raise "allready added" if @method_callers[method_definition]

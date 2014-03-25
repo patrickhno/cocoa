@@ -5,6 +5,7 @@ require 'cocoa/helpers'
 Dir[File.dirname(__FILE__) + '/cocoa/bindings/*'].each do |name|
   require "cocoa/bindings/#{name.split('/').last}"
 end
+require "cocoa/extensions"
 
 class String
   def method_missing meth,*args
