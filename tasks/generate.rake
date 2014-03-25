@@ -120,21 +120,7 @@ task :generate do
 require 'active_support'
 
 require 'cocoa/helpers'
-Dir['lib/cocoa/bindings/*'].each do |name|
-  require "cocoa/bindings/\#{name.split('/').last}"
-end
-
-class String
-  def method_missing meth,*args
-    if Cocoa::NSString.method_defined?(meth)
-      str = Cocoa::NSString.new(true)
-      str.object = Cocoa::String_to_NSString(self)
-      str.send(meth,*args)
-    else
-      super
-    end
-  end
-end
+require "cocoa/bindings/NSString"
 
 module Cocoa
   extend FFI::Library
@@ -145,6 +131,15 @@ module Cocoa
   # Needed to properly set up the Objective-C environment.
   attach_function :NSApplicationLoad, [], :bool
   NSApplicationLoad()
+
+  def const_missing name
+    if File.exists?(File.dirname(__FILE__) + "/cocoa/bindings/\#{name}.rb")
+      require "cocoa/bindings/\#{name}"
+      "Cocoa::\#{name}".constantize
+    else
+      super
+    end
+  end
 
 }
   enums.each do |name,value|
@@ -184,5 +179,6 @@ module Cocoa
     end
   end
   mod.puts "end"
+  mod.puts 'require "cocoa/extensions"'
   mod.close
 end

@@ -2,22 +2,7 @@
 require 'active_support'
 
 require 'cocoa/helpers'
-Dir[File.dirname(__FILE__) + '/cocoa/bindings/*'].each do |name|
-  require "cocoa/bindings/#{name.split('/').last}"
-end
-require "cocoa/extensions"
-
-class String
-  def method_missing meth,*args
-    if Cocoa::NSString.method_defined?(meth)
-      str = Cocoa::NSString.new(true)
-      str.object = Cocoa::String_to_NSString(self)
-      str.send(meth,*args)
-    else
-      super
-    end
-  end
-end
+require "cocoa/bindings/NSString"
 
 module Cocoa
   extend FFI::Library
@@ -28,6 +13,15 @@ module Cocoa
   # Needed to properly set up the Objective-C environment.
   attach_function :NSApplicationLoad, [], :bool
   NSApplicationLoad()
+
+  def const_missing name
+    if File.exists?(File.dirname(__FILE__) + "/cocoa/bindings/#{name}.rb")
+      require "cocoa/bindings/#{name}"
+      "Cocoa::#{name}".constantize
+    else
+      super
+    end
+  end
 
   CA_WARN_DEPRECATED = 1
   CFByteOrderBigEndian = 2
@@ -6721,3 +6715,4 @@ module Cocoa
   attach_method :NSZoneRealloc, :args=>3, :names=>[], :types=>["^{_NSZone=}", "^v", "Q"], :retval=>"^v"
   attach_method :NXReadNSObjectFromCoder, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
 end
+require "cocoa/extensions"
