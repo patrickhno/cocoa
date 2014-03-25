@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-PROJECT_SPECS = FileList['spec/**/*.rb']
+PROJECT_SPECS = FileList['spec/**/*_spec.rb']
 
 require 'jeweler'
 Jeweler::Tasks.new do |gem|

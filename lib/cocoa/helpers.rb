@@ -1,93 +1,12 @@
 require 'active_support/inflector'
 require 'ffi'
-
-module ObjC
-  extend FFI::Library
- 
-  # Load the 'libobjc' library.
-  ffi_lib 'objc'
- 
-  # Bind the 'sel_registerName' function, which accepts a String and
-  # returns an equivalent Objective-C selector (i.e. message name).
-  attach_function :sel_registerName, [:string], :pointer
- 
-  # Bind the 'objc_msgSend' function, which sends a message to an
-  # Objective-C object. It accepts a pointer to the object being sent
-  # the message, a pointer to a selector, and a varargs array of
-  # arguments to be sent with the message. It returns a pointer to the
-  # result of sending the message.
-  attach_function :objc_msgSend, [:pointer, :pointer, :varargs], :pointer
-  #attach_function :objc_msgSend_stret, [:pointer, :pointer, :varargs], CGRect.by_value
- 
-  # A convenience method using objc_msgSend and sel_registerName to easily
-  # send Objective-C messages from Ruby.
-  def self.msgSend( id, selector, *args )
-    selector = sel_registerName(selector) if selector.is_a? String
-    objc_msgSend( id, selector, *args )
-  end
-
-  def self.msgSend_stret( return_type, id, selector, *args )
-    selector = sel_registerName(selector) if selector.is_a? String
-    method = "objc_msgSend_stret_for_#{return_type.name.underscore}".to_sym
-    unless respond_to? method
-      attach_function method, :objc_msgSend_stret, [:pointer, :pointer, :varargs], return_type.by_value
-    end
-    send(method, id, selector, *args )
-  end
- 
-  # Bind the 'objc_getClass' function, which accepts the name of an
-  # Objective-C class, and returns a pointer to that class.
-  attach_function :objc_getClass, [:string], :pointer
-
-  attach_function :objc_allocateClassPair, [:pointer, :string, :int], :pointer
-  attach_function :objc_registerClassPair, [:pointer], :void
-end
-
-class CGPoint < FFI::Struct
-  def initialize *args
-    options = args.first
-    if options.is_a? Hash
-      self[:x] = options[:x]
-      self[:y] = options[:y]
-    else
-      super *args
-    end
-  end
-  layout :x, :double,
-         :y, :double
-end
-
-class CGSize < FFI::Struct
-  def initialize *args
-    options = args.first
-    if options.is_a? Hash
-      self[:width] = options[:width]
-      self[:height] = options[:height]
-    else
-      super *args
-    end
-  end
-  layout :width, :double,
-         :height, :double
-end
-
-class CGRect < FFI::Struct
-  def initialize *args
-    options = args.first
-    if options.is_a? Hash
-      self[:origin][:x] = options[:x]
-      self[:origin][:y] = options[:y]
-      self[:size][:width] = options[:width]
-      self[:size][:height] = options[:height]
-    else
-      super *args
-    end
-  end
-  layout :origin, CGPoint,
-         :size, CGSize
-end
+require 'cocoa/objc'
 
 module Cocoa; end
+
+require 'cocoa/structs/NSPoint'
+require 'cocoa/structs/NSSize'
+require 'cocoa/structs/NSRect'
 
 class Cocoa::CFRange < FFI::Struct
   def initialize *args
@@ -104,10 +23,6 @@ class Cocoa::CFRange < FFI::Struct
   end
   layout :location, :long_long, :length, :long_long
 end
-
-NSRect = CGRect
-NSSize = CGSize
-NSPoint = CGPoint
 
 module Cocoa
 
@@ -138,16 +53,12 @@ module Cocoa
     CFRange.new(location: loc, length: len)
   end
 
-  # Accepts a Ruby String and creates an equivalent NSString instance
-  # and returns a pointer to it.
   def self.String_to_NSString( string )
     nsstring_class = ObjC.objc_getClass("NSString")
     ObjC.msgSend( nsstring_class, "stringWithUTF8String:",
                   :string, string )
   end
  
-  # Accepts a pointer to an NSString object, and returns the string
-  # contents as a Ruby String.
   def self.NSString_to_String( nsstring_pointer )
     c_string_pointer = ObjC.msgSend( nsstring_pointer, "UTF8String" )
     if c_string_pointer.null?
@@ -196,7 +107,7 @@ module Cocoa
 
   def self.attach_singular_method method,*params
     params = params.extract_options!
-params.freeze
+    params.freeze
     if params[:args] == 0
       define_singleton_method method do
         instance = new(true)
@@ -360,7 +271,7 @@ params.freeze
     end
 
     params = params.extract_options!
-params.freeze
+    params.freeze
     if params[:args] == 0
       begin
         attach_function "call_#{method}".to_sym, method, [], apple_type_to_ffi(params[:retval])
@@ -558,7 +469,7 @@ params.freeze
     end
 
     def self.attach_singular_method method,*__params
-__params.freeze
+      __params.freeze
       return if method==:class
       return if method==:new
       if __params.first.is_a?(Hash) && __params.first[:args] == 0
@@ -569,7 +480,7 @@ __params.freeze
         end
       else
         _params = [__params.dup].flatten
-_params.freeze
+        _params.freeze
         define_singleton_method method do |*args|
           par = if _params.size == 1 && _params.first[:variadic]
             _params
@@ -615,7 +526,7 @@ _params.freeze
       @@method_specs ||= {}
       if _params.first.is_a? Array
         _params = [_params].flatten
-_params.freeze
+        _params.freeze
         define_method method do |*args|
           if args.last.is_a? Hash
             params = _params.select{ |par| par[:args] == args.last.size+1 && par[:names].map(&:to_sym).sort == args.last.keys.sort }
@@ -643,7 +554,7 @@ _params.freeze
         params = _params.extract_options!
         @@method_specs[method] = params
         if params[:args] == 0
-params.freeze
+          params.freeze
           define_method method do
             case params[:retval]
             when '@'
@@ -721,7 +632,7 @@ params.freeze
         when '@'
           :pointer
         when /^{([^=]*)=.*}$/
-          $1.constantize.by_value
+          Cocoa::const_get($1).by_value
         else
           raise type
         end

@@ -413,8 +413,12 @@ Gem::Specification.new do |s|
     "lib/cocoa/bindings/NSXPCListener.rb",
     "lib/cocoa/extensions.rb",
     "lib/cocoa/helpers.rb",
+    "lib/cocoa/objc.rb",
+    "lib/cocoa/structs/NSPoint.rb",
+    "lib/cocoa/structs/NSRect.rb",
+    "lib/cocoa/structs/NSSize.rb",
     "spec/cocoa/cocoa_spec.rb",
-    "spec/cocoa/spec_helper.rb",
+    "spec/spec_helper.rb",
     "tasks/bacon.rake",
     "tasks/generate.rake",
     "tasks/setup.rake"
