@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "cocoa.gemspec",
+    "examples/window.rb",
     "lib/cocoa.rb",
     "lib/cocoa/bindings/CAAnimation.rb",
     "lib/cocoa/bindings/CAAnimationGroup.rb",
