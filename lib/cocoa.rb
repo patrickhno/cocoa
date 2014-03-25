@@ -2,7 +2,7 @@
 require 'active_support'
 
 require 'cocoa/helpers'
-Dir['lib/cocoa/bindings/*'].each do |name|
+Dir[File.dirname(__FILE__) + '/cocoa/bindings/*'].each do |name|
   require "cocoa/bindings/#{name.split('/').last}"
 end
 
