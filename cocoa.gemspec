@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "cocoa"
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Patrick Hanevold"]
-  s.date = "2014-03-25"
+  s.date = "2014-03-26"
   s.description = "Ruby FFI bindings for the OSX Cocoa API"
   s.email = "patrick.hanevold@gmail.com"
   s.extra_rdoc_files = [
