@@ -21,7 +21,7 @@ describe 'Cocoa' do
     array = Cocoa::NSMutableArray.array
     array.addObject "head"
     array.addObject "tail"
-    Cocoa::NSString_to_String(array.description.object).should == "(\n    head,\n    tail\n)"
+    ObjC.NSString_to_String(array.description.object).should == "(\n    head,\n    tail\n)"
   end
   it 'should return stringifyable strings' do
     array = Cocoa::NSMutableArray.array
