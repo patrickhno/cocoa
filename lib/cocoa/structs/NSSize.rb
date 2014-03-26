@@ -14,4 +14,8 @@ module Cocoa
   end
 
   NSSize = CGSize
+
+  def NSMakeSize width,height
+    CGSize.new(width: width, height: height)
+  end
 end

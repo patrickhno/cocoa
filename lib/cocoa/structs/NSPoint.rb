@@ -14,4 +14,10 @@ module Cocoa
   end
 
   NSPoint = CGPoint
+
+  def NSMakePoint x,y
+    CGPoint.new(x: x, y: y)
+  end
+
+  NSZeroPoint = CGPoint.new(x: 0, y: 0)
 end

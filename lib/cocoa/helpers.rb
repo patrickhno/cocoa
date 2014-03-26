@@ -7,22 +7,7 @@ module Cocoa; end
 require 'cocoa/structs/NSPoint'
 require 'cocoa/structs/NSSize'
 require 'cocoa/structs/NSRect'
-
-class Cocoa::CFRange < FFI::Struct
-  def initialize *args
-    options = args.first
-    if options.is_a? Hash
-      self[:location] = options[:location]
-      self[:length]   = options[:length]
-    else
-      super *args
-    end
-  end
-  def to_s
-    "<CFRange: #{self[:location]} #{self[:length]}>"
-  end
-  layout :location, :long_long, :length, :long_long
-end
+require 'cocoa/structs/NSRange'
 
 module Cocoa
 
@@ -35,22 +20,6 @@ module Cocoa
     else
       data
     end
-  end
-
-  def NSMakeSize width,height
-    CGSize.new(width: width, height: height)
-  end
-  def NSMakePoint x,y
-    CGPoint.new(x: x, y: y)
-  end
-  def CGRectMake x,y,width,height
-    CGRect.new(x: x, y: y, width: width, height: height)
-  end
-  NSZeroPoint = CGPoint.new(x: 0, y: 0)
-  NSZeroRect = CGRect.new(x: 0, y: 0, width: 0, height: 0)
-
-  def CFRangeMake loc,len
-    CFRange.new(location: loc, length: len)
   end
 
   def self.String_to_NSString( string )
