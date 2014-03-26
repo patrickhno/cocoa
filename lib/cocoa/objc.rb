@@ -37,65 +37,49 @@ module ObjC
     end
   end
 
+  def self.object_to_instance ret
+    klass_name = NSString_to_String(Cocoa::NSStringFromClass(ObjC.msgSend(ret,"class")))
+    return self if klass_name == '(NULL)'
+    instance = begin
+      ("Cocoa::"+klass_name).constantize.new(true)
+    rescue
+      klass_name = if klass_name =~ /^__NSCF/
+        "NS#{klass_name[6..-1]}" 
+      elsif klass_name[0]=='_'
+        "FIX_#{klass_name}" 
+      else
+        klass_name
+      end
+      klass = begin
+        Cocoa.const_get(klass_name)
+      rescue => e
+        superclass_name = NSString_to_String(Cocoa::NSStringFromClass(ObjC.msgSend(ret,'superclass')))
+        superclass = "Cocoa::#{superclass_name}".constantize
+        proxy = Class.new(superclass)
+        Cocoa.const_set(klass_name, proxy)
+        klass = ("Cocoa::"+klass_name).constantize
+        superclass.inherited(klass)
+        klass
+      end
+      klass.new(true)
+    end
+    instance.object = ret
+    instance
+  end
+
   def self.translate_retval method,ret,type
     case type
     when '@'
       return nil if ret.address == 0
       return ret if method == :NSStringFromClass
-      klass_name = NSString_to_String(Cocoa::NSStringFromClass(ObjC.msgSend(ret,"class")))
-      return self if klass_name == '(NULL)'
-      instance = begin
-        ("Cocoa::"+klass_name).constantize.new(true)
-      rescue
-        klass_name = if klass_name =~ /^__NSCF/
-          "NS#{klass_name[6..-1]}" 
-        elsif klass_name[0]=='_'
-          "FIX_#{klass_name}" 
-        else
-          klass_name
-        end
-        klass = begin
-          Cocoa.const_get(klass_name)
-        rescue => e
-          superclass_name = NSString_to_String(Cocoa::NSStringFromClass(ObjC.msgSend(ret,'superclass')))
-          superclass = "Cocoa::#{superclass_name}".constantize
-          proxy = Class.new(superclass)
-          Cocoa.const_set(klass_name, proxy)
-          klass = ("Cocoa::"+klass_name).constantize
-          superclass.inherited(klass)
-          klass
-        end
-        klass.new(true)
-      end
-      instance.object = ret
-      instance
+      object_to_instance ret
     when '#'
       ret
     when /^{([^=]*)=.*}$/
       ret
     when /^\^{[^=]*=.*}$/
       return nil if ret.address == 0
-      klass_name = NSString_to_String(Cocoa::NSStringFromClass(ObjC.msgSend(ret,"class")))
-      return self if klass_name == '(NULL)'
-      instance = begin
-        ("Cocoa::"+klass_name).constantize.new(true)
-      rescue
-        klass_name = "FIX_#{klass_name}" if klass_name[0]=='_'
-        klass = begin
-          Cocoa.const_get(klass_name)
-        rescue => e
-          superclass_name = NSString_to_String(Cocoa::NSStringFromClass(ObjC.msgSend(ret,'superclass')))
-          superclass = "Cocoa::#{superclass_name}".constantize
-          proxy = Class.new(superclass)
-          Cocoa.const_set(klass_name, proxy)
-          klass = ("Cocoa::"+klass_name).constantize
-          superclass.inherited(klass)
-          klass
-        end
-        klass.new(true)
-      end
-      instance.object = ret
-      instance
+      object_to_instance ret
     else
       raise type
     end
