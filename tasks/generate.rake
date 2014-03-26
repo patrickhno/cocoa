@@ -115,33 +115,8 @@ task :generate do
     end
   end
 
-  mod = File.open("lib/cocoa.rb",'w')
-  mod.puts %Q{
-require 'active_support'
-
-require 'cocoa/helpers'
-require "cocoa/bindings/NSString"
-
-module Cocoa
-  extend FFI::Library
-
-  # Load the Cocoa framework's binary code
-  ffi_lib '/System/Library/Frameworks/Cocoa.framework/Cocoa'
- 
-  # Needed to properly set up the Objective-C environment.
-  attach_function :NSApplicationLoad, [], :bool
-  NSApplicationLoad()
-
-  def const_missing name
-    if File.exists?(File.dirname(__FILE__) + "/cocoa/bindings/\#{name}.rb")
-      require "cocoa/bindings/\#{name}"
-      "Cocoa::\#{name}".constantize
-    else
-      super
-    end
-  end
-
-}
+  mod = File.open("lib/cocoa/bindings/Cocoa.rb",'w')
+  mod.puts 'module Cocoa'
   enums.each do |name,value|
     mod.puts "  #{name} = #{value}"
   end
@@ -179,6 +154,5 @@ module Cocoa
     end
   end
   mod.puts "end"
-  mod.puts 'require "cocoa/extensions"'
   mod.close
 end
