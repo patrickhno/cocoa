@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "cocoa"
-  s.version = "0.1.2"
+  s.version = "0.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Patrick Hanevold"]
-  s.date = "2014-03-26"
+  s.date = "2014-03-27"
   s.description = "Ruby FFI bindings for the OSX Cocoa API"
   s.email = "patrick.hanevold@gmail.com"
   s.extra_rdoc_files = [
@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "cocoa.gemspec",
+    "examples/hello_world.rb",
     "examples/window.rb",
     "lib/cocoa.rb",
     "lib/cocoa/bindings/CAAnimation.rb",
@@ -52,6 +53,7 @@ Gem::Specification.new do |s|
     "lib/cocoa/bindings/CIColor.rb",
     "lib/cocoa/bindings/CIFilter.rb",
     "lib/cocoa/bindings/CIImage.rb",
+    "lib/cocoa/bindings/Cocoa.rb",
     "lib/cocoa/bindings/NSATSTypesetter.rb",
     "lib/cocoa/bindings/NSActionCell.rb",
     "lib/cocoa/bindings/NSAffineTransform.rb",
@@ -415,6 +417,7 @@ Gem::Specification.new do |s|
     "lib/cocoa/helpers.rb",
     "lib/cocoa/objc.rb",
     "lib/cocoa/structs/NSPoint.rb",
+    "lib/cocoa/structs/NSRange.rb",
     "lib/cocoa/structs/NSRect.rb",
     "lib/cocoa/structs/NSSize.rb",
     "spec/cocoa/cocoa_spec.rb",
