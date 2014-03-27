@@ -258,7 +258,7 @@ module Cocoa
               self
             when '^v'
               ObjC.msgSend(@object,method.to_s)
-            when 'Q'
+            when 'Q', 'q'
               ObjC.msgSend(@object,method.to_s).address
             when 'B'
               ret = ObjC.msgSend(@object,method.to_s)
