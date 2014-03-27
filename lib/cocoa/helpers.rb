@@ -205,17 +205,7 @@ module Cocoa
           case params[:retval]
           when '@'
             return nil if ret.address == 0
-            klass_name = Cocoa::NSString_to_String(Cocoa::NSStringFromClass(ObjC.msgSend(ret,"class")))
-            return self if klass_name == '(NULL)'
-            instance = begin
-              ("Cocoa::"+klass_name).constantize.new(true)
-            rescue
-              klass_name = klass_name.gsub(/^_*/,'') if klass_name[0]=='_'
-              klass = smart_constantize(ret,klass_name)
-              klass.new(true)
-            end
-            instance.object = ret
-            instance
+            ObjC.object_to_instance(ret)
           when 'v'
             self
          else
@@ -277,30 +267,7 @@ module Cocoa
               ObjC.msgSend_stret($1.constantize,@object,method.to_s)
             when /^\^{([^=]*)=.*}$/
               ret = ObjC.msgSend(@object,method.to_s)
-              klass_name = ObjC.NSString_to_String(Cocoa::NSStringFromClass(ObjC.msgSend(ret,"class")))
-              if klass_name == '__NSCFType'
-                # dont know what the hell this is, experiment:
-                klass_name = $1
-              end
-              instance = begin
-                ("Cocoa::"+klass_name).constantize.new(true)
-              rescue
-                klass_name = "FIX_#{klass_name}" if klass_name[0]=='_'
-                klass = begin
-                  Cocoa.const_get(klass_name)
-                rescue => e
-                  superclass_name = ObjC.NSString_to_String(Cocoa::NSStringFromClass(ObjC.msgSend(ret,'superclass')))
-                  superclass = "Cocoa::#{superclass_name}".constantize
-                  proxy = Class.new(superclass)
-                  Cocoa.const_set(klass_name, proxy)
-                  klass = ("Cocoa::"+klass_name).constantize
-                  superclass.inherited(klass)
-                  klass
-                end
-                klass.new(true)
-              end
-              instance.object = ret
-              instance
+              ObjC.object_to_instance(ret)
             when '*'
               ObjC.msgSend(@object,method.to_s).read_string
             else
