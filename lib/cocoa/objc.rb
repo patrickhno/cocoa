@@ -222,4 +222,66 @@ module ObjC
       raise type.inspect
     end
   end
+
+  def self.call_arguments params,args
+    fixed_args = []
+    args.each_with_index do |arg,i|
+      case params[:types][i]
+      when '@'
+        fixed_args << arg
+      when 'd'
+        if arg.is_a?(Fixnum)
+          fixed_args << arg.to_f
+        else
+          raise ArgumentError.new("float expected, got #{arg.class.name}") unless arg.is_a?(Float)
+          fixed_args << arg
+        end
+      when 'I'
+        raise ArgumentError unless arg.is_a?(Fixnum)
+        fixed_args << arg
+      when 'Q'
+        raise ArgumentError.new(arg.inspect) unless arg.is_a?(Fixnum)
+        fixed_args << arg
+      when 'q'
+        raise ArgumentError unless arg.is_a?(Fixnum)
+        fixed_args << arg
+      when '#'
+        raise ArgumentError unless arg.is_a?(FFI::Pointer)
+        fixed_args << arg
+      when /^{[^=]*=.*}$/
+        raise ArgumentError.new(arg.inspect) unless arg.kind_of?(FFI::Struct)
+        fixed_args << arg
+      when /^\^{([^=]*)=.*}$/
+        case arg
+        when FFI::Pointer
+          fixed_args << arg
+        when Array
+          raise ArgumentError unless $1 == '__CFArray'
+          fixed_args << NSArray.arrayWithObjects(arg).object
+        else
+          match = $1
+          if arg.class.name =~ /^Cocoa::/ # "Cocoa::#{$1}".constantize
+            fixed_args << arg.object
+          elsif arg.is_a?(NilClass)
+            fixed_args << FFI::MemoryPointer::NULL
+          elsif arg.is_a?(String) && match == '__CFString'
+            fixed_args << Cocoa::String_to_NSString(arg)
+          else
+            raise ArgumentError.new("expected #{params[:types][i]} got #{arg.class.name} (#{match})")
+          end
+        end
+      when '^d'
+        raise ArgumentError unless arg.is_a?(Array)
+        arr = FFI::MemoryPointer.new(:double,arg.size)
+        arr.write_array_of_double(arg)
+        fixed_args << arr
+      when '^v'
+        raise ArgumentError unless arg.is_a?(NilClass)
+        fixed_args << FFI::MemoryPointer::NULL
+      else
+        raise params[:types][i]
+      end
+    end
+    fixed_args
+  end
 end

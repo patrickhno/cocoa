@@ -26,6 +26,7 @@ class Cocoa::NSObject
   end
 
   def self.inherited(parent)
+    include ClassMethods
     if parent.name
       klass = ObjC.objc_allocateClassPair(ObjC.objc_getClass(name.split('::').last),parent.name,0)
       ObjC.objc_registerClassPair(klass)
@@ -33,7 +34,7 @@ class Cocoa::NSObject
   end
 
   def initialize allocated=false
-    @klass = ObjC.objc_getClass(self.class.name.split('::').last)
+    @klass = ObjC.objc_getClass(self.native_name)
     unless allocated
       self.object = @klass
       new
@@ -41,11 +42,11 @@ class Cocoa::NSObject
   end
 
   def get_class
-    ObjC.objc_getClass(self.class.name.split('::').last)
+    ObjC.objc_getClass(self.native_name)
   end
 
   def alloc
-    self.object = ObjC.msgSend(ObjC.objc_getClass(self.class.name.split('::').last),"alloc")
+    self.object = ObjC.msgSend(ObjC.objc_getClass(self.native_name),"alloc")
     self
   end
 
@@ -62,5 +63,11 @@ class Cocoa::NSObject
   def autorelease
     self.object = ObjC.msgSend(@object,"autorelease")
     self
+  end
+
+  module ClassMethods
+    def native_name
+      self.class.name.split('::').last
+    end
   end
 end
