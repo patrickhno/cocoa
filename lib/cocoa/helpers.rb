@@ -89,25 +89,6 @@ module Cocoa
     attr_accessor :klass
     attr_reader :object
 
-    def self.smart_constantize ret,klass_name
-      begin
-        Cocoa.const_get(klass_name)
-      rescue
-        _superclass = ObjC.msgSend(ret,'superclass')
-        superclass_name = Cocoa::NSString_to_String(Cocoa::NSStringFromClass(_superclass))
-        superclass = begin
-          "Cocoa::#{superclass_name}".constantize        
-        rescue Exception => e
-          smart_constantize(_superclass,superclass_name)
-        end
-        proxy = Class.new(superclass)
-        Cocoa.const_set(klass_name, proxy)
-        klass = ("Cocoa::"+klass_name).constantize
-        superclass.inherited(klass)
-        klass
-      end
-    end
-
     def self.attach_singular_method method,*__params
       __params.freeze
       return if method==:class
