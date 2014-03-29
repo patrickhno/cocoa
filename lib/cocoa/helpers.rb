@@ -29,7 +29,7 @@ module Cocoa
       Cocoa.const_set(method,ObjC.NSString_to_String(send(raw)))
     else
       define_singleton_method method do
-       ObjC.NSString_to_String(send(raw))
+        ObjC.NSString_to_String(send(raw))
       end
     end
   end
@@ -90,6 +90,8 @@ module Cocoa
     attr_reader :object
 
     def self.attach_singular_method method,*__params
+      return if method == :superclass
+
       __params.freeze
       return if method==:class
       return if method==:new

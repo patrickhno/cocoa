@@ -10,6 +10,11 @@ describe 'Cocoa' do
     end
     Derived.new.get_lazy.class.name.should == 'Cocoa::NSMenu'
   end
+  it 'should provide ruby superclass' do
+    class Derived < Cocoa::NSObject
+    end
+    Derived.superclass.name.should == 'Cocoa::NSObject'
+  end
   it 'should provide correct return types for class methods' do
     Cocoa::NSMutableArray.array.class.name.should == 'Cocoa::NSMutableArray'
   end
