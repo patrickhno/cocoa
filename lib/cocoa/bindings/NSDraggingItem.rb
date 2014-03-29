@@ -7,7 +7,7 @@ module Cocoa
     attach_method :imageComponentsProvider, :args=>0, :names=>[], :types=>[], :retval=>"@?"
     attach_method :initWithPasteboardWriter, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :item, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :setDraggingFrame, [{:args=>1, :names=>[], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}"], :retval=>"v"}, {:args=>2, :names=>["contents"], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@"], :retval=>"v"}]
+    attach_method :setDraggingFrame, [{:args=>1, :names=>[], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}"], :retval=>"v"}, {:args=>2, :names=>[:contents], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@"], :retval=>"v"}]
     attach_method :setImageComponentsProvider, :args=>1, :names=>[], :types=>["@?"], :retval=>"v"
   end
 end

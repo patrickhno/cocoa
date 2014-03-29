@@ -30,6 +30,6 @@ module Cocoa
     attach_method :stopQuery, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :valueListAttributes, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :valueLists, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :valueOfAttribute, :args=>2, :names=>["forResultAtIndex"], :types=>["@", "Q"], :retval=>"@"
+    attach_method :valueOfAttribute, :args=>2, :names=>[:forResultAtIndex], :types=>["@", "Q"], :retval=>"@"
   end
 end

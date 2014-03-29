@@ -2,7 +2,7 @@
 require 'cocoa/bindings/NSObject'
 module Cocoa
   class NSSet < Cocoa::NSObject
-    attach_method :addObserver, :args=>4, :names=>["forKeyPath", "options", "context"], :types=>["@", "@", "Q", "^v"], :retval=>"v"
+    attach_method :addObserver, :args=>4, :names=>[:forKeyPath, :options, :context], :types=>["@", "@", "Q", "^v"], :retval=>"v"
     attach_method :allObjects, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :anyObject, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :containsObject, :args=>1, :names=>[], :types=>["@"], :retval=>"B"
@@ -10,28 +10,28 @@ module Cocoa
     attach_method :description, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :descriptionWithLocale, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :enumerateObjectsUsingBlock, :args=>1, :names=>[], :types=>["@?"], :retval=>"v"
-    attach_method :enumerateObjectsWithOptions, :args=>2, :names=>["usingBlock"], :types=>["Q", "@?"], :retval=>"v"
+    attach_method :enumerateObjectsWithOptions, :args=>2, :names=>[:usingBlock], :types=>["Q", "@?"], :retval=>"v"
     attach_method :filteredSetUsingPredicate, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :initWithArray, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_method :initWithObjects, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@", :variadic=>true}, {:args=>2, :names=>["count"], :types=>["^@", "Q"], :retval=>"@"}]
-    attach_method :initWithSet, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>2, :names=>["copyItems"], :types=>["@", "B"], :retval=>"@"}]
+    attach_method :initWithObjects, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@", :variadic=>true}, {:args=>2, :names=>[:count], :types=>["^@", "Q"], :retval=>"@"}]
+    attach_method :initWithSet, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>2, :names=>[:copyItems], :types=>["@", "B"], :retval=>"@"}]
     attach_method :intersectsSet, :args=>1, :names=>[], :types=>["@"], :retval=>"B"
     attach_method :isEqualToSet, :args=>1, :names=>[], :types=>["@"], :retval=>"B"
     attach_method :isSubsetOfSet, :args=>1, :names=>[], :types=>["@"], :retval=>"B"
-    attach_method :makeObjectsPerformSelector, [{:args=>1, :names=>[], :types=>[":"], :retval=>"v"}, {:args=>2, :names=>["withObject"], :types=>[":", "@"], :retval=>"v"}]
+    attach_method :makeObjectsPerformSelector, [{:args=>1, :names=>[], :types=>[":"], :retval=>"v"}, {:args=>2, :names=>[:withObject], :types=>[":", "@"], :retval=>"v"}]
     attach_method :member, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :objectEnumerator, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :objectsPassingTest, :args=>1, :names=>[], :types=>["@?"], :retval=>"@"
-    attach_method :objectsWithOptions, :args=>2, :names=>["passingTest"], :types=>["Q", "@?"], :retval=>"@"
-    attach_method :removeObserver, [{:args=>2, :names=>["forKeyPath"], :types=>["@", "@"], :retval=>"v"}, {:args=>3, :names=>["forKeyPath", "context"], :types=>["@", "@", "^v"], :retval=>"v"}]
+    attach_method :objectsWithOptions, :args=>2, :names=>[:passingTest], :types=>["Q", "@?"], :retval=>"@"
+    attach_method :removeObserver, [{:args=>2, :names=>[:forKeyPath], :types=>["@", "@"], :retval=>"v"}, {:args=>3, :names=>[:forKeyPath, :context], :types=>["@", "@", "^v"], :retval=>"v"}]
     attach_singular_method :set, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :setByAddingObject, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :setByAddingObjectsFromArray, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :setByAddingObjectsFromSet, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_method :setValue, :args=>2, :names=>["forKey"], :types=>["@", "@"], :retval=>"v"
+    attach_method :setValue, :args=>2, :names=>[:forKey], :types=>["@", "@"], :retval=>"v"
     attach_singular_method :setWithArray, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_singular_method :setWithObject, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_singular_method :setWithObjects, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@", :variadic=>true}, {:args=>2, :names=>["count"], :types=>["^@", "Q"], :retval=>"@"}]
+    attach_singular_method :setWithObjects, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@", :variadic=>true}, {:args=>2, :names=>[:count], :types=>["^@", "Q"], :retval=>"@"}]
     attach_singular_method :setWithSet, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :sortedArrayUsingDescriptors, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :valueForKey, :args=>1, :names=>[], :types=>["@"], :retval=>"@"

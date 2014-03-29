@@ -4,7 +4,7 @@ module Cocoa
   class NSOpenGLPixelFormat < Cocoa::NSObject
     attach_method :CGLPixelFormatObj, :args=>0, :names=>[], :types=>[], :retval=>"^v"
     attach_method :attributes, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :getValues, :args=>3, :names=>["forAttribute", "forVirtualScreen"], :types=>["^i", "I", "i"], :retval=>"v"
+    attach_method :getValues, :args=>3, :names=>[:forAttribute, :forVirtualScreen], :types=>["^i", "I", "i"], :retval=>"v"
     attach_method :initWithAttributes, :args=>1, :names=>[], :types=>["^I"], :retval=>"@"
     attach_method :initWithCGLPixelFormatObj, :args=>1, :names=>[], :types=>["^v"], :retval=>"@"
     attach_method :initWithData, :args=>1, :names=>[], :types=>["@"], :retval=>"@"

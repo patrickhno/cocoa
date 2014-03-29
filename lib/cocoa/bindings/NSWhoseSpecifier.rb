@@ -4,7 +4,7 @@ module Cocoa
   class NSWhoseSpecifier < Cocoa::NSScriptObjectSpecifier
     attach_method :endSubelementIdentifier, :args=>0, :names=>[], :types=>[], :retval=>"Q"
     attach_method :endSubelementIndex, :args=>0, :names=>[], :types=>[], :retval=>"q"
-    attach_method :initWithContainerClassDescription, :args=>4, :names=>["containerSpecifier", "key", "test"], :types=>["@", "@", "@", "@"], :retval=>"@"
+    attach_method :initWithContainerClassDescription, :args=>4, :names=>[:containerSpecifier, :key, :test], :types=>["@", "@", "@", "@"], :retval=>"@"
     attach_method :setEndSubelementIdentifier, :args=>1, :names=>[], :types=>["Q"], :retval=>"v"
     attach_method :setEndSubelementIndex, :args=>1, :names=>[], :types=>["q"], :retval=>"v"
     attach_method :setStartSubelementIdentifier, :args=>1, :names=>[], :types=>["Q"], :retval=>"v"

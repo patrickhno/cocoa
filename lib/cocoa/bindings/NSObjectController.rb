@@ -12,7 +12,7 @@ module Cocoa
     attach_method :entityName, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :fetch, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :fetchPredicate, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :fetchWithRequest, :args=>3, :names=>["merge", "error"], :types=>["@", "B", "^@"], :retval=>"B"
+    attach_method :fetchWithRequest, :args=>3, :names=>[:merge, :error], :types=>["@", "B", "^@"], :retval=>"B"
     attach_method :initWithContent, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :isEditable, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :managedObjectContext, :args=>0, :names=>[], :types=>[], :retval=>"@"

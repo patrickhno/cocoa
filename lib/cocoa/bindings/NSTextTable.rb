@@ -2,13 +2,13 @@
 require 'cocoa/bindings/NSTextBlock'
 module Cocoa
   class NSTextTable < Cocoa::NSTextBlock
-    attach_method :boundsRectForBlock, :args=>5, :names=>["contentRect", "inRect", "textContainer", "characterRange"], :types=>["@", "{CGRect={CGPoint=dd}{CGSize=dd}}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "{_NSRange=QQ}"], :retval=>"{CGRect={CGPoint=dd}{CGSize=dd}}"
+    attach_method :boundsRectForBlock, :args=>5, :names=>[:contentRect, :inRect, :textContainer, :characterRange], :types=>["@", "{CGRect={CGPoint=dd}{CGSize=dd}}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "{_NSRange=QQ}"], :retval=>"{CGRect={CGPoint=dd}{CGSize=dd}}"
     attach_method :collapsesBorders, :args=>0, :names=>[], :types=>[], :retval=>"B"
-    attach_method :drawBackgroundForBlock, :args=>5, :names=>["withFrame", "inView", "characterRange", "layoutManager"], :types=>["@", "{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "{_NSRange=QQ}", "@"], :retval=>"v"
+    attach_method :drawBackgroundForBlock, :args=>5, :names=>[:withFrame, :inView, :characterRange, :layoutManager], :types=>["@", "{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "{_NSRange=QQ}", "@"], :retval=>"v"
     attach_method :hidesEmptyCells, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :layoutAlgorithm, :args=>0, :names=>[], :types=>[], :retval=>"Q"
     attach_method :numberOfColumns, :args=>0, :names=>[], :types=>[], :retval=>"Q"
-    attach_method :rectForBlock, :args=>5, :names=>["layoutAtPoint", "inRect", "textContainer", "characterRange"], :types=>["@", "{CGPoint=dd}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "{_NSRange=QQ}"], :retval=>"{CGRect={CGPoint=dd}{CGSize=dd}}"
+    attach_method :rectForBlock, :args=>5, :names=>[:layoutAtPoint, :inRect, :textContainer, :characterRange], :types=>["@", "{CGPoint=dd}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "{_NSRange=QQ}"], :retval=>"{CGRect={CGPoint=dd}{CGSize=dd}}"
     attach_method :setCollapsesBorders, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
     attach_method :setHidesEmptyCells, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
     attach_method :setLayoutAlgorithm, :args=>1, :names=>[], :types=>["Q"], :retval=>"v"

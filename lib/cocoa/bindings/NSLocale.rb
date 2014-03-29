@@ -13,7 +13,7 @@ module Cocoa
     attach_singular_method :commonISOCurrencyCodes, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_singular_method :componentsFromLocaleIdentifier, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_singular_method :currentLocale, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :displayNameForKey, :args=>2, :names=>["value"], :types=>["@", "@"], :retval=>"@"
+    attach_method :displayNameForKey, :args=>2, :names=>[:value], :types=>["@", "@"], :retval=>"@"
     attach_method :initWithLocaleIdentifier, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_singular_method :lineDirectionForLanguage, :args=>1, :names=>[], :types=>["@"], :retval=>"Q"
     attach_method :localeIdentifier, :args=>0, :names=>[], :types=>[], :retval=>"@"

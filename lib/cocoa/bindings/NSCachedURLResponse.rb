@@ -3,7 +3,7 @@ require 'cocoa/bindings/NSObject'
 module Cocoa
   class NSCachedURLResponse < Cocoa::NSObject
     attach_method :data, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :initWithResponse, [{:args=>2, :names=>["data"], :types=>["@", "@"], :retval=>"@"}, {:args=>4, :names=>["data", "userInfo", "storagePolicy"], :types=>["@", "@", "@", "Q"], :retval=>"@"}]
+    attach_method :initWithResponse, [{:args=>2, :names=>[:data], :types=>["@", "@"], :retval=>"@"}, {:args=>4, :names=>[:data, :userInfo, :storagePolicy], :types=>["@", "@", "@", "Q"], :retval=>"@"}]
     attach_method :response, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :storagePolicy, :args=>0, :names=>[], :types=>[], :retval=>"Q"
     attach_method :userInfo, :args=>0, :names=>[], :types=>[], :retval=>"@"

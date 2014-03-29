@@ -4,7 +4,7 @@ module Cocoa
   class NSOperationQueue < Cocoa::NSObject
     attach_method :addOperation, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :addOperationWithBlock, :args=>1, :names=>[], :types=>["@?"], :retval=>"v"
-    attach_method :addOperations, :args=>2, :names=>["waitUntilFinished"], :types=>["@", "B"], :retval=>"v"
+    attach_method :addOperations, :args=>2, :names=>[:waitUntilFinished], :types=>["@", "B"], :retval=>"v"
     attach_method :cancelAllOperations, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_singular_method :currentQueue, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :isSuspended, :args=>0, :names=>[], :types=>[], :retval=>"B"

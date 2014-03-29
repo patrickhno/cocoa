@@ -2,27 +2,27 @@
 require 'cocoa/bindings/NSObject'
 module Cocoa
   class NSImage < Cocoa::NSObject
-    attach_method :CGImageForProposedRect, :args=>3, :names=>["context", "hints"], :types=>["^{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "@"], :retval=>"^{CGImage=}"
+    attach_method :CGImageForProposedRect, :args=>3, :names=>[:context, :hints], :types=>["^{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "@"], :retval=>"^{CGImage=}"
     attach_method :TIFFRepresentation, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :TIFFRepresentationUsingCompression, :args=>2, :names=>["factor"], :types=>["Q", "f"], :retval=>"@"
+    attach_method :TIFFRepresentationUsingCompression, :args=>2, :names=>[:factor], :types=>["Q", "f"], :retval=>"@"
     attach_method :accessibilityDescription, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :addRepresentation, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :addRepresentations, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :alignmentRect, :args=>0, :names=>[], :types=>[], :retval=>"{CGRect={CGPoint=dd}{CGSize=dd}}"
     attach_method :backgroundColor, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :bestRepresentationForDevice, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_method :bestRepresentationForRect, :args=>3, :names=>["context", "hints"], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "@"], :retval=>"@"
+    attach_method :bestRepresentationForRect, :args=>3, :names=>[:context, :hints], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "@"], :retval=>"@"
     attach_method :cacheDepthMatchesImageDepth, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :cacheMode, :args=>0, :names=>[], :types=>[], :retval=>"Q"
     attach_singular_method :canInitWithPasteboard, :args=>1, :names=>[], :types=>["@"], :retval=>"B"
     attach_method :cancelIncrementalLoad, :args=>0, :names=>[], :types=>[], :retval=>"v"
-    attach_method :compositeToPoint, [{:args=>3, :names=>["fromRect", "operation"], :types=>["{CGPoint=dd}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "Q"], :retval=>"v"}, {:args=>4, :names=>["fromRect", "operation", "fraction"], :types=>["{CGPoint=dd}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "Q", "d"], :retval=>"v"}, {:args=>2, :names=>["operation"], :types=>["{CGPoint=dd}", "Q"], :retval=>"v"}, {:args=>3, :names=>["operation", "fraction"], :types=>["{CGPoint=dd}", "Q", "d"], :retval=>"v"}]
+    attach_method :compositeToPoint, [{:args=>3, :names=>[:fromRect, :operation], :types=>["{CGPoint=dd}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "Q"], :retval=>"v"}, {:args=>4, :names=>[:fromRect, :operation, :fraction], :types=>["{CGPoint=dd}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "Q", "d"], :retval=>"v"}, {:args=>2, :names=>[:operation], :types=>["{CGPoint=dd}", "Q"], :retval=>"v"}, {:args=>3, :names=>[:operation, :fraction], :types=>["{CGPoint=dd}", "Q", "d"], :retval=>"v"}]
     attach_method :delegate, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :dissolveToPoint, [{:args=>2, :names=>["fraction"], :types=>["{CGPoint=dd}", "d"], :retval=>"v"}, {:args=>3, :names=>["fromRect", "fraction"], :types=>["{CGPoint=dd}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "d"], :retval=>"v"}]
-    attach_method :drawAtPoint, :args=>4, :names=>["fromRect", "operation", "fraction"], :types=>["{CGPoint=dd}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "Q", "d"], :retval=>"v"
-    attach_method :drawInRect, [{:args=>4, :names=>["fromRect", "operation", "fraction"], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "Q", "d"], :retval=>"v"}, {:args=>6, :names=>["fromRect", "operation", "fraction", "respectFlipped", "hints"], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "Q", "d", "B", "@"], :retval=>"v"}]
-    attach_method :drawRepresentation, :args=>2, :names=>["inRect"], :types=>["@", "{CGRect={CGPoint=dd}{CGSize=dd}}"], :retval=>"B"
-    attach_method :hitTestRect, :args=>5, :names=>["withImageDestinationRect", "context", "hints", "flipped"], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "@", "B"], :retval=>"B"
+    attach_method :dissolveToPoint, [{:args=>2, :names=>[:fraction], :types=>["{CGPoint=dd}", "d"], :retval=>"v"}, {:args=>3, :names=>[:fromRect, :fraction], :types=>["{CGPoint=dd}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "d"], :retval=>"v"}]
+    attach_method :drawAtPoint, :args=>4, :names=>[:fromRect, :operation, :fraction], :types=>["{CGPoint=dd}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "Q", "d"], :retval=>"v"
+    attach_method :drawInRect, [{:args=>4, :names=>[:fromRect, :operation, :fraction], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "Q", "d"], :retval=>"v"}, {:args=>6, :names=>[:fromRect, :operation, :fraction, :respectFlipped, :hints], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "Q", "d", "B", "@"], :retval=>"v"}]
+    attach_method :drawRepresentation, :args=>2, :names=>[:inRect], :types=>["@", "{CGRect={CGPoint=dd}{CGSize=dd}}"], :retval=>"B"
+    attach_method :hitTestRect, :args=>5, :names=>[:withImageDestinationRect, :context, :hints, :flipped], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "@", "B"], :retval=>"B"
     attach_singular_method :imageFileTypes, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_singular_method :imageNamed, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_singular_method :imagePasteboardTypes, :args=>0, :names=>[], :types=>[], :retval=>"@"
@@ -30,10 +30,10 @@ module Cocoa
     attach_singular_method :imageUnfilteredFileTypes, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_singular_method :imageUnfilteredPasteboardTypes, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_singular_method :imageUnfilteredTypes, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_singular_method :imageWithSize, :args=>3, :names=>["flipped", "drawingHandler"], :types=>["{CGSize=dd}", "B", "@?"], :retval=>"@"
+    attach_singular_method :imageWithSize, :args=>3, :names=>[:flipped, :drawingHandler], :types=>["{CGSize=dd}", "B", "@?"], :retval=>"@"
     attach_method :initByReferencingFile, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :initByReferencingURL, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_method :initWithCGImage, :args=>2, :names=>["size"], :types=>["^{CGImage=}", "{CGSize=dd}"], :retval=>"@"
+    attach_method :initWithCGImage, :args=>2, :names=>[:size], :types=>["^{CGImage=}", "{CGSize=dd}"], :retval=>"@"
     attach_method :initWithContentsOfFile, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :initWithContentsOfURL, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :initWithData, :args=>1, :names=>[], :types=>["@"], :retval=>"@"

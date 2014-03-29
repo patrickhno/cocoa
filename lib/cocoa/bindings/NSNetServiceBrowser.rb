@@ -4,12 +4,12 @@ module Cocoa
   class NSNetServiceBrowser < Cocoa::NSObject
     attach_method :delegate, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :init, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :removeFromRunLoop, :args=>2, :names=>["forMode"], :types=>["@", "@"], :retval=>"v"
-    attach_method :scheduleInRunLoop, :args=>2, :names=>["forMode"], :types=>["@", "@"], :retval=>"v"
+    attach_method :removeFromRunLoop, :args=>2, :names=>[:forMode], :types=>["@", "@"], :retval=>"v"
+    attach_method :scheduleInRunLoop, :args=>2, :names=>[:forMode], :types=>["@", "@"], :retval=>"v"
     attach_method :searchForAllDomains, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :searchForBrowsableDomains, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :searchForRegistrationDomains, :args=>0, :names=>[], :types=>[], :retval=>"v"
-    attach_method :searchForServicesOfType, :args=>2, :names=>["inDomain"], :types=>["@", "@"], :retval=>"v"
+    attach_method :searchForServicesOfType, :args=>2, :names=>[:inDomain], :types=>["@", "@"], :retval=>"v"
     attach_method :setDelegate, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :stop, :args=>0, :names=>[], :types=>[], :retval=>"v"
   end

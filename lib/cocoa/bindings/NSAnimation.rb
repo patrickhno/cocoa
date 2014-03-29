@@ -12,7 +12,7 @@ module Cocoa
     attach_method :delegate, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :duration, :args=>0, :names=>[], :types=>[], :retval=>"d"
     attach_method :frameRate, :args=>0, :names=>[], :types=>[], :retval=>"f"
-    attach_method :initWithDuration, :args=>2, :names=>["animationCurve"], :types=>["d", "Q"], :retval=>"@"
+    attach_method :initWithDuration, :args=>2, :names=>[:animationCurve], :types=>["d", "Q"], :retval=>"@"
     attach_method :isAnimating, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :progressMarks, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :removeProgressMark, :args=>1, :names=>[], :types=>["f"], :retval=>"v"
@@ -25,8 +25,8 @@ module Cocoa
     attach_method :setFrameRate, :args=>1, :names=>[], :types=>["f"], :retval=>"v"
     attach_method :setProgressMarks, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :startAnimation, :args=>0, :names=>[], :types=>[], :retval=>"v"
-    attach_method :startWhenAnimation, :args=>2, :names=>["reachesProgress"], :types=>["@", "f"], :retval=>"v"
+    attach_method :startWhenAnimation, :args=>2, :names=>[:reachesProgress], :types=>["@", "f"], :retval=>"v"
     attach_method :stopAnimation, :args=>0, :names=>[], :types=>[], :retval=>"v"
-    attach_method :stopWhenAnimation, :args=>2, :names=>["reachesProgress"], :types=>["@", "f"], :retval=>"v"
+    attach_method :stopWhenAnimation, :args=>2, :names=>[:reachesProgress], :types=>["@", "f"], :retval=>"v"
   end
 end

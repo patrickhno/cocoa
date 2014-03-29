@@ -5,7 +5,7 @@ module Cocoa
     attach_method :allowsTickMarkValuesOnly, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :altIncrementValue, :args=>0, :names=>[], :types=>[], :retval=>"d"
     attach_method :closestTickMarkValueToValue, :args=>1, :names=>[], :types=>["d"], :retval=>"d"
-    attach_method :drawBarInside, :args=>2, :names=>["flipped"], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "B"], :retval=>"v"
+    attach_method :drawBarInside, :args=>2, :names=>[:flipped], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "B"], :retval=>"v"
     attach_method :drawKnob, [{:args=>0, :names=>[], :types=>[], :retval=>"v"}, {:args=>1, :names=>[], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}"], :retval=>"v"}]
     attach_method :indexOfTickMarkAtPoint, :args=>1, :names=>[], :types=>["{CGPoint=dd}"], :retval=>"q"
     attach_method :isVertical, :args=>0, :names=>[], :types=>[], :retval=>"q"

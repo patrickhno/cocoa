@@ -3,7 +3,7 @@ require 'cocoa/bindings/NSScriptObjectSpecifier'
 module Cocoa
   class NSIndexSpecifier < Cocoa::NSScriptObjectSpecifier
     attach_method :index, :args=>0, :names=>[], :types=>[], :retval=>"q"
-    attach_method :initWithContainerClassDescription, :args=>4, :names=>["containerSpecifier", "key", "index"], :types=>["@", "@", "@", "q"], :retval=>"@"
+    attach_method :initWithContainerClassDescription, :args=>4, :names=>[:containerSpecifier, :key, :index], :types=>["@", "@", "@", "q"], :retval=>"@"
     attach_method :setIndex, :args=>1, :names=>[], :types=>["q"], :retval=>"v"
   end
 end

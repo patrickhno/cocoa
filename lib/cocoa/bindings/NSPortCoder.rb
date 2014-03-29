@@ -6,9 +6,9 @@ module Cocoa
     attach_method :decodePortObject, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :dispatch, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :encodePortObject, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
-    attach_method :initWithReceivePort, :args=>3, :names=>["sendPort", "components"], :types=>["@", "@", "@"], :retval=>"@"
+    attach_method :initWithReceivePort, :args=>3, :names=>[:sendPort, :components], :types=>["@", "@", "@"], :retval=>"@"
     attach_method :isBycopy, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :isByref, :args=>0, :names=>[], :types=>[], :retval=>"B"
-    attach_singular_method :portCoderWithReceivePort, :args=>3, :names=>["sendPort", "components"], :types=>["@", "@", "@"], :retval=>"@"
+    attach_singular_method :portCoderWithReceivePort, :args=>3, :names=>[:sendPort, :components], :types=>["@", "@", "@"], :retval=>"@"
   end
 end

@@ -2,7 +2,7 @@
 require 'cocoa/bindings/NSData'
 module Cocoa
   class NSMutableData < Cocoa::NSData
-    attach_method :appendBytes, :args=>2, :names=>["length"], :types=>["^v", "Q"], :retval=>"v"
+    attach_method :appendBytes, :args=>2, :names=>[:length], :types=>["^v", "Q"], :retval=>"v"
     attach_method :appendData, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_singular_method :dataWithCapacity, :args=>1, :names=>[], :types=>["Q"], :retval=>"@"
     attach_singular_method :dataWithLength, :args=>1, :names=>[], :types=>["Q"], :retval=>"@"
@@ -10,7 +10,7 @@ module Cocoa
     attach_method :initWithCapacity, :args=>1, :names=>[], :types=>["Q"], :retval=>"@"
     attach_method :initWithLength, :args=>1, :names=>[], :types=>["Q"], :retval=>"@"
     attach_method :mutableBytes, :args=>0, :names=>[], :types=>[], :retval=>"^v"
-    attach_method :replaceBytesInRange, [{:args=>2, :names=>["withBytes"], :types=>["{_NSRange=QQ}", "^v"], :retval=>"v"}, {:args=>3, :names=>["withBytes", "length"], :types=>["{_NSRange=QQ}", "^v", "Q"], :retval=>"v"}]
+    attach_method :replaceBytesInRange, [{:args=>2, :names=>[:withBytes], :types=>["{_NSRange=QQ}", "^v"], :retval=>"v"}, {:args=>3, :names=>[:withBytes, :length], :types=>["{_NSRange=QQ}", "^v", "Q"], :retval=>"v"}]
     attach_method :resetBytesInRange, :args=>1, :names=>[], :types=>["{_NSRange=QQ}"], :retval=>"v"
     attach_method :setData, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setLength, :args=>1, :names=>[], :types=>["Q"], :retval=>"v"

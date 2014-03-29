@@ -2,14 +2,14 @@
 require 'cocoa/bindings/NSCoder'
 module Cocoa
   class NSArchiver < Cocoa::NSCoder
-    attach_singular_method :archiveRootObject, :args=>2, :names=>["toFile"], :types=>["@", "@"], :retval=>"B"
+    attach_singular_method :archiveRootObject, :args=>2, :names=>[:toFile], :types=>["@", "@"], :retval=>"B"
     attach_singular_method :archivedDataWithRootObject, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :archiverData, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :classNameEncodedForTrueClassName, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_method :encodeClassName, :args=>2, :names=>["intoClassName"], :types=>["@", "@"], :retval=>"v"
+    attach_method :encodeClassName, :args=>2, :names=>[:intoClassName], :types=>["@", "@"], :retval=>"v"
     attach_method :encodeConditionalObject, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :encodeRootObject, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :initForWritingWithMutableData, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_method :replaceObject, :args=>2, :names=>["withObject"], :types=>["@", "@"], :retval=>"v"
+    attach_method :replaceObject, :args=>2, :names=>[:withObject], :types=>["@", "@"], :retval=>"v"
   end
 end

@@ -2,7 +2,7 @@
 require 'cocoa/bindings/NSObject'
 module Cocoa
   class NSTrackingArea < Cocoa::NSObject
-    attach_method :initWithRect, :args=>4, :names=>["options", "owner", "userInfo"], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "Q", "@", "@"], :retval=>"@"
+    attach_method :initWithRect, :args=>4, :names=>[:options, :owner, :userInfo], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "Q", "@", "@"], :retval=>"@"
     attach_method :options, :args=>0, :names=>[], :types=>[], :retval=>"Q"
     attach_method :owner, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :rect, :args=>0, :names=>[], :types=>[], :retval=>"{CGRect={CGPoint=dd}{CGSize=dd}}"

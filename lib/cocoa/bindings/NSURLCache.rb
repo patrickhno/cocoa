@@ -6,7 +6,7 @@ module Cocoa
     attach_method :currentDiskUsage, :args=>0, :names=>[], :types=>[], :retval=>"Q"
     attach_method :currentMemoryUsage, :args=>0, :names=>[], :types=>[], :retval=>"Q"
     attach_method :diskCapacity, :args=>0, :names=>[], :types=>[], :retval=>"Q"
-    attach_method :initWithMemoryCapacity, :args=>3, :names=>["diskCapacity", "diskPath"], :types=>["Q", "Q", "@"], :retval=>"@"
+    attach_method :initWithMemoryCapacity, :args=>3, :names=>[:diskCapacity, :diskPath], :types=>["Q", "Q", "@"], :retval=>"@"
     attach_method :memoryCapacity, :args=>0, :names=>[], :types=>[], :retval=>"Q"
     attach_method :removeAllCachedResponses, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :removeCachedResponseForRequest, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
@@ -14,6 +14,6 @@ module Cocoa
     attach_method :setMemoryCapacity, :args=>1, :names=>[], :types=>["Q"], :retval=>"v"
     attach_singular_method :setSharedURLCache, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_singular_method :sharedURLCache, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :storeCachedResponse, :args=>2, :names=>["forRequest"], :types=>["@", "@"], :retval=>"v"
+    attach_method :storeCachedResponse, :args=>2, :names=>[:forRequest], :types=>["@", "@"], :retval=>"v"
   end
 end

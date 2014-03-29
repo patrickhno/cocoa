@@ -4,8 +4,8 @@ module Cocoa
   class NSAppleScript < Cocoa::NSObject
     attach_method :compileAndReturnError, :args=>1, :names=>[], :types=>["^@"], :retval=>"B"
     attach_method :executeAndReturnError, :args=>1, :names=>[], :types=>["^@"], :retval=>"@"
-    attach_method :executeAppleEvent, :args=>2, :names=>["error"], :types=>["@", "^@"], :retval=>"@"
-    attach_method :initWithContentsOfURL, :args=>2, :names=>["error"], :types=>["@", "^@"], :retval=>"@"
+    attach_method :executeAppleEvent, :args=>2, :names=>[:error], :types=>["@", "^@"], :retval=>"@"
+    attach_method :initWithContentsOfURL, :args=>2, :names=>[:error], :types=>["@", "^@"], :retval=>"@"
     attach_method :initWithSource, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :isCompiled, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :richTextSource, :args=>0, :names=>[], :types=>[], :retval=>"@"

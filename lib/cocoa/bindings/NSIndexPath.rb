@@ -8,9 +8,9 @@ module Cocoa
     attach_method :indexPathByAddingIndex, :args=>1, :names=>[], :types=>["Q"], :retval=>"@"
     attach_method :indexPathByRemovingLastIndex, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_singular_method :indexPathWithIndex, :args=>1, :names=>[], :types=>["Q"], :retval=>"@"
-    attach_singular_method :indexPathWithIndexes, :args=>2, :names=>["length"], :types=>["^Q", "Q"], :retval=>"@"
+    attach_singular_method :indexPathWithIndexes, :args=>2, :names=>[:length], :types=>["^Q", "Q"], :retval=>"@"
     attach_method :initWithIndex, :args=>1, :names=>[], :types=>["Q"], :retval=>"@"
-    attach_method :initWithIndexes, :args=>2, :names=>["length"], :types=>["^Q", "Q"], :retval=>"@"
+    attach_method :initWithIndexes, :args=>2, :names=>[:length], :types=>["^Q", "Q"], :retval=>"@"
     attach_method :length, :args=>0, :names=>[], :types=>[], :retval=>"Q"
   end
 end

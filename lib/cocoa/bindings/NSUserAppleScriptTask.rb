@@ -2,6 +2,6 @@
 require 'cocoa/bindings/NSUserScriptTask'
 module Cocoa
   class NSUserAppleScriptTask < Cocoa::NSUserScriptTask
-    attach_method :executeWithAppleEvent, :args=>2, :names=>["completionHandler"], :types=>["@", "@?"], :retval=>"v"
+    attach_method :executeWithAppleEvent, :args=>2, :names=>[:completionHandler], :types=>["@", "@?"], :retval=>"v"
   end
 end

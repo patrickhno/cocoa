@@ -2,7 +2,7 @@
 require 'cocoa/bindings/NSStream'
 module Cocoa
   class NSInputStream < Cocoa::NSStream
-    attach_method :getBuffer, :args=>2, :names=>["length"], :types=>["^*", "^Q"], :retval=>"B"
+    attach_method :getBuffer, :args=>2, :names=>[:length], :types=>["^*", "^Q"], :retval=>"B"
     attach_method :hasBytesAvailable, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :initWithData, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :initWithFileAtPath, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
@@ -10,6 +10,6 @@ module Cocoa
     attach_singular_method :inputStreamWithData, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_singular_method :inputStreamWithFileAtPath, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_singular_method :inputStreamWithURL, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_method :read, :args=>2, :names=>["maxLength"], :types=>["*", "Q"], :retval=>"q"
+    attach_method :read, :args=>2, :names=>[:maxLength], :types=>["*", "Q"], :retval=>"q"
   end
 end

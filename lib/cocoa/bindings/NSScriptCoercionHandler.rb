@@ -2,8 +2,8 @@
 require 'cocoa/bindings/NSObject'
 module Cocoa
   class NSScriptCoercionHandler < Cocoa::NSObject
-    attach_method :coerceValue, :args=>2, :names=>["toClass"], :types=>["@", "#"], :retval=>"@"
-    attach_method :registerCoercer, :args=>4, :names=>["selector", "toConvertFromClass", "toClass"], :types=>["@", ":", "#", "#"], :retval=>"v"
+    attach_method :coerceValue, :args=>2, :names=>[:toClass], :types=>["@", "#"], :retval=>"@"
+    attach_method :registerCoercer, :args=>4, :names=>[:selector, :toConvertFromClass, :toClass], :types=>["@", ":", "#", "#"], :retval=>"v"
     attach_singular_method :sharedCoercionHandler, :args=>0, :names=>[], :types=>[], :retval=>"@"
   end
 end

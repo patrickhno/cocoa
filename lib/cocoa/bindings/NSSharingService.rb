@@ -6,7 +6,7 @@ module Cocoa
     attach_method :canPerformWithItems, :args=>1, :names=>[], :types=>["@"], :retval=>"B"
     attach_method :delegate, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :image, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :initWithTitle, :args=>4, :names=>["image", "alternateImage", "handler"], :types=>["@", "@", "@", "@?"], :retval=>"@"
+    attach_method :initWithTitle, :args=>4, :names=>[:image, :alternateImage, :handler], :types=>["@", "@", "@", "@?"], :retval=>"@"
     attach_method :performWithItems, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setDelegate, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_singular_method :sharingServiceNamed, :args=>1, :names=>[], :types=>["@"], :retval=>"@"

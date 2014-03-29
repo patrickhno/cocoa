@@ -2,10 +2,10 @@
 require 'cocoa/bindings/NSObject'
 module Cocoa
   class NSFormatter < Cocoa::NSObject
-    attach_method :attributedStringForObjectValue, :args=>2, :names=>["withDefaultAttributes"], :types=>["@", "@"], :retval=>"@"
+    attach_method :attributedStringForObjectValue, :args=>2, :names=>[:withDefaultAttributes], :types=>["@", "@"], :retval=>"@"
     attach_method :editingStringForObjectValue, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_method :getObjectValue, :args=>3, :names=>["forString", "errorDescription"], :types=>["^@", "@", "^@"], :retval=>"B"
-    attach_method :isPartialStringValid, [{:args=>3, :names=>["newEditingString", "errorDescription"], :types=>["@", "^@", "^@"], :retval=>"B"}, {:args=>5, :names=>["proposedSelectedRange", "originalString", "originalSelectedRange", "errorDescription"], :types=>["^@", "^{_NSRange=QQ}", "@", "{_NSRange=QQ}", "^@"], :retval=>"B"}]
+    attach_method :getObjectValue, :args=>3, :names=>[:forString, :errorDescription], :types=>["^@", "@", "^@"], :retval=>"B"
+    attach_method :isPartialStringValid, [{:args=>3, :names=>[:newEditingString, :errorDescription], :types=>["@", "^@", "^@"], :retval=>"B"}, {:args=>5, :names=>[:proposedSelectedRange, :originalString, :originalSelectedRange, :errorDescription], :types=>["^@", "^{_NSRange=QQ}", "@", "{_NSRange=QQ}", "^@"], :retval=>"B"}]
     attach_method :stringForObjectValue, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
   end
 end

@@ -6,7 +6,7 @@ module Cocoa
     attach_method :alternateImage, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :attributedTitle, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :doubleAction, :args=>0, :names=>[], :types=>[], :retval=>":"
-    attach_method :drawStatusBarBackgroundInRect, :args=>2, :names=>["withHighlight"], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "B"], :retval=>"v"
+    attach_method :drawStatusBarBackgroundInRect, :args=>2, :names=>[:withHighlight], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "B"], :retval=>"v"
     attach_method :highlightMode, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :image, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :isEnabled, :args=>0, :names=>[], :types=>[], :retval=>"B"

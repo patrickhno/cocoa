@@ -34,7 +34,7 @@ module Cocoa
     attach_method :pasteFont, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :pasteRuler, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :readRTFDFromFile, :args=>1, :names=>[], :types=>["@"], :retval=>"B"
-    attach_method :replaceCharactersInRange, [{:args=>2, :names=>["withRTF"], :types=>["{_NSRange=QQ}", "@"], :retval=>"v"}, {:args=>2, :names=>["withRTFD"], :types=>["{_NSRange=QQ}", "@"], :retval=>"v"}, {:args=>2, :names=>["withString"], :types=>["{_NSRange=QQ}", "@"], :retval=>"v"}]
+    attach_method :replaceCharactersInRange, [{:args=>2, :names=>[:withRTF], :types=>["{_NSRange=QQ}", "@"], :retval=>"v"}, {:args=>2, :names=>[:withRTFD], :types=>["{_NSRange=QQ}", "@"], :retval=>"v"}, {:args=>2, :names=>[:withString], :types=>["{_NSRange=QQ}", "@"], :retval=>"v"}]
     attach_method :scrollRangeToVisible, :args=>1, :names=>[], :types=>["{_NSRange=QQ}"], :retval=>"v"
     attach_method :selectAll, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :selectedRange, :args=>0, :names=>[], :types=>[], :retval=>"{_NSRange=QQ}"
@@ -45,7 +45,7 @@ module Cocoa
     attach_method :setDrawsBackground, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
     attach_method :setEditable, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
     attach_method :setFieldEditor, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
-    attach_method :setFont, [{:args=>1, :names=>[], :types=>["@"], :retval=>"v"}, {:args=>2, :names=>["range"], :types=>["@", "{_NSRange=QQ}"], :retval=>"v"}]
+    attach_method :setFont, [{:args=>1, :names=>[], :types=>["@"], :retval=>"v"}, {:args=>2, :names=>[:range], :types=>["@", "{_NSRange=QQ}"], :retval=>"v"}]
     attach_method :setHorizontallyResizable, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
     attach_method :setImportsGraphics, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
     attach_method :setMaxSize, :args=>1, :names=>[], :types=>["{CGSize=dd}"], :retval=>"v"
@@ -54,7 +54,7 @@ module Cocoa
     attach_method :setSelectable, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
     attach_method :setSelectedRange, :args=>1, :names=>[], :types=>["{_NSRange=QQ}"], :retval=>"v"
     attach_method :setString, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
-    attach_method :setTextColor, [{:args=>1, :names=>[], :types=>["@"], :retval=>"v"}, {:args=>2, :names=>["range"], :types=>["@", "{_NSRange=QQ}"], :retval=>"v"}]
+    attach_method :setTextColor, [{:args=>1, :names=>[], :types=>["@"], :retval=>"v"}, {:args=>2, :names=>[:range], :types=>["@", "{_NSRange=QQ}"], :retval=>"v"}]
     attach_method :setUsesFontPanel, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
     attach_method :setVerticallyResizable, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
     attach_method :showGuessPanel, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
@@ -67,6 +67,6 @@ module Cocoa
     attach_method :underline, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :unscript, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :usesFontPanel, :args=>0, :names=>[], :types=>[], :retval=>"B"
-    attach_method :writeRTFDToFile, :args=>2, :names=>["atomically"], :types=>["@", "B"], :retval=>"B"
+    attach_method :writeRTFDToFile, :args=>2, :names=>[:atomically], :types=>["@", "B"], :retval=>"B"
   end
 end

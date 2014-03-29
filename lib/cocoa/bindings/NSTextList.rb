@@ -2,7 +2,7 @@
 require 'cocoa/bindings/NSObject'
 module Cocoa
   class NSTextList < Cocoa::NSObject
-    attach_method :initWithMarkerFormat, :args=>2, :names=>["options"], :types=>["@", "Q"], :retval=>"@"
+    attach_method :initWithMarkerFormat, :args=>2, :names=>[:options], :types=>["@", "Q"], :retval=>"@"
     attach_method :listOptions, :args=>0, :names=>[], :types=>[], :retval=>"Q"
     attach_method :markerForItemNumber, :args=>1, :names=>[], :types=>["q"], :retval=>"@"
     attach_method :markerFormat, :args=>0, :names=>[], :types=>[], :retval=>"@"

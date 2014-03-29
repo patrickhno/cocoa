@@ -14,7 +14,7 @@ module Cocoa
     attach_singular_method :setAnimationTimingFunction, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_singular_method :setCompletionBlock, :args=>1, :names=>[], :types=>["@?"], :retval=>"v"
     attach_singular_method :setDisableActions, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
-    attach_singular_method :setValue, :args=>2, :names=>["forKey"], :types=>["@", "@"], :retval=>"v"
+    attach_singular_method :setValue, :args=>2, :names=>[:forKey], :types=>["@", "@"], :retval=>"v"
     attach_singular_method :unlock, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_singular_method :valueForKey, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
   end

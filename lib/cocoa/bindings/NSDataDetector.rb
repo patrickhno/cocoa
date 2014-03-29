@@ -3,7 +3,7 @@ require 'cocoa/bindings/NSRegularExpression'
 module Cocoa
   class NSDataDetector < Cocoa::NSRegularExpression
     attach_method :checkingTypes, :args=>0, :names=>[], :types=>[], :retval=>"Q"
-    attach_singular_method :dataDetectorWithTypes, :args=>2, :names=>["error"], :types=>["Q", "^@"], :retval=>"@"
-    attach_method :initWithTypes, :args=>2, :names=>["error"], :types=>["Q", "^@"], :retval=>"@"
+    attach_singular_method :dataDetectorWithTypes, :args=>2, :names=>[:error], :types=>["Q", "^@"], :retval=>"@"
+    attach_method :initWithTypes, :args=>2, :names=>[:error], :types=>["Q", "^@"], :retval=>"@"
   end
 end

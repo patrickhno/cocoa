@@ -4,12 +4,12 @@ module Cocoa
   class NSFileCoordinator < Cocoa::NSObject
     attach_singular_method :addFilePresenter, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :cancel, :args=>0, :names=>[], :types=>[], :retval=>"v"
-    attach_method :coordinateReadingItemAtURL, [{:args=>4, :names=>["options", "error", "byAccessor"], :types=>["@", "Q", "^@", "@?"], :retval=>"v"}, {:args=>6, :names=>["options", "writingItemAtURL", "options", "error", "byAccessor"], :types=>["@", "Q", "@", "Q", "^@", "@?"], :retval=>"v"}]
-    attach_method :coordinateWritingItemAtURL, [{:args=>4, :names=>["options", "error", "byAccessor"], :types=>["@", "Q", "^@", "@?"], :retval=>"v"}, {:args=>6, :names=>["options", "writingItemAtURL", "options", "error", "byAccessor"], :types=>["@", "Q", "@", "Q", "^@", "@?"], :retval=>"v"}]
+    attach_method :coordinateReadingItemAtURL, [{:args=>4, :names=>[:options, :error, :byAccessor], :types=>["@", "Q", "^@", "@?"], :retval=>"v"}, {:args=>6, :names=>[:options, :writingItemAtURL, :options, :error, :byAccessor], :types=>["@", "Q", "@", "Q", "^@", "@?"], :retval=>"v"}]
+    attach_method :coordinateWritingItemAtURL, [{:args=>4, :names=>[:options, :error, :byAccessor], :types=>["@", "Q", "^@", "@?"], :retval=>"v"}, {:args=>6, :names=>[:options, :writingItemAtURL, :options, :error, :byAccessor], :types=>["@", "Q", "@", "Q", "^@", "@?"], :retval=>"v"}]
     attach_singular_method :filePresenters, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :initWithFilePresenter, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_method :itemAtURL, [{:args=>2, :names=>["didMoveToURL"], :types=>["@", "@"], :retval=>"v"}, {:args=>2, :names=>["willMoveToURL"], :types=>["@", "@"], :retval=>"v"}]
-    attach_method :prepareForReadingItemsAtURLs, :args=>6, :names=>["options", "writingItemsAtURLs", "options", "error", "byAccessor"], :types=>["@", "Q", "@", "Q", "^@", "@?"], :retval=>"v"
+    attach_method :itemAtURL, [{:args=>2, :names=>[:didMoveToURL], :types=>["@", "@"], :retval=>"v"}, {:args=>2, :names=>[:willMoveToURL], :types=>["@", "@"], :retval=>"v"}]
+    attach_method :prepareForReadingItemsAtURLs, :args=>6, :names=>[:options, :writingItemsAtURLs, :options, :error, :byAccessor], :types=>["@", "Q", "@", "Q", "^@", "@?"], :retval=>"v"
     attach_singular_method :removeFilePresenter, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
   end
 end

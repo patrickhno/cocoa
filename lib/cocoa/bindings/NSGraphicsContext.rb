@@ -11,7 +11,7 @@ module Cocoa
     attach_method :flushGraphics, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_singular_method :graphicsContextWithAttributes, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_singular_method :graphicsContextWithBitmapImageRep, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_singular_method :graphicsContextWithGraphicsPort, :args=>2, :names=>["flipped"], :types=>["^v", "B"], :retval=>"@"
+    attach_singular_method :graphicsContextWithGraphicsPort, :args=>2, :names=>[:flipped], :types=>["^v", "B"], :retval=>"@"
     attach_singular_method :graphicsContextWithWindow, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :graphicsPort, :args=>0, :names=>[], :types=>[], :retval=>"^v"
     attach_method :imageInterpolation, :args=>0, :names=>[], :types=>[], :retval=>"Q"

@@ -3,7 +3,7 @@ require 'cocoa/bindings/NSObject'
 module Cocoa
   class NSTabViewItem < Cocoa::NSObject
     attach_method :color, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :drawLabel, :args=>2, :names=>["inRect"], :types=>["B", "{CGRect={CGPoint=dd}{CGSize=dd}}"], :retval=>"v"
+    attach_method :drawLabel, :args=>2, :names=>[:inRect], :types=>["B", "{CGRect={CGPoint=dd}{CGSize=dd}}"], :retval=>"v"
     attach_method :identifier, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :initWithIdentifier, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :initialFirstResponder, :args=>0, :names=>[], :types=>[], :retval=>"@"

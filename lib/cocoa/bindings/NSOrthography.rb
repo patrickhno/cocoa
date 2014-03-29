@@ -7,9 +7,9 @@ module Cocoa
     attach_method :dominantLanguage, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :dominantLanguageForScript, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :dominantScript, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :initWithDominantScript, :args=>2, :names=>["languageMap"], :types=>["@", "@"], :retval=>"@"
+    attach_method :initWithDominantScript, :args=>2, :names=>[:languageMap], :types=>["@", "@"], :retval=>"@"
     attach_method :languageMap, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :languagesForScript, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_singular_method :orthographyWithDominantScript, :args=>2, :names=>["languageMap"], :types=>["@", "@"], :retval=>"@"
+    attach_singular_method :orthographyWithDominantScript, :args=>2, :names=>[:languageMap], :types=>["@", "@"], :retval=>"@"
   end
 end

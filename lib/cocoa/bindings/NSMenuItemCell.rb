@@ -3,12 +3,12 @@ require 'cocoa/bindings/NSButtonCell'
 module Cocoa
   class NSMenuItemCell < Cocoa::NSButtonCell
     attach_method :calcSize, :args=>0, :names=>[], :types=>[], :retval=>"v"
-    attach_method :drawBorderAndBackgroundWithFrame, :args=>2, :names=>["inView"], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@"], :retval=>"v"
-    attach_method :drawImageWithFrame, :args=>2, :names=>["inView"], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@"], :retval=>"v"
-    attach_method :drawKeyEquivalentWithFrame, :args=>2, :names=>["inView"], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@"], :retval=>"v"
-    attach_method :drawSeparatorItemWithFrame, :args=>2, :names=>["inView"], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@"], :retval=>"v"
-    attach_method :drawStateImageWithFrame, :args=>2, :names=>["inView"], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@"], :retval=>"v"
-    attach_method :drawTitleWithFrame, :args=>2, :names=>["inView"], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@"], :retval=>"v"
+    attach_method :drawBorderAndBackgroundWithFrame, :args=>2, :names=>[:inView], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@"], :retval=>"v"
+    attach_method :drawImageWithFrame, :args=>2, :names=>[:inView], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@"], :retval=>"v"
+    attach_method :drawKeyEquivalentWithFrame, :args=>2, :names=>[:inView], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@"], :retval=>"v"
+    attach_method :drawSeparatorItemWithFrame, :args=>2, :names=>[:inView], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@"], :retval=>"v"
+    attach_method :drawStateImageWithFrame, :args=>2, :names=>[:inView], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@"], :retval=>"v"
+    attach_method :drawTitleWithFrame, :args=>2, :names=>[:inView], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@"], :retval=>"v"
     attach_method :imageWidth, :args=>0, :names=>[], :types=>[], :retval=>"d"
     attach_method :keyEquivalentRectForBounds, :args=>1, :names=>[], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}"], :retval=>"{CGRect={CGPoint=dd}{CGSize=dd}}"
     attach_method :keyEquivalentWidth, :args=>0, :names=>[], :types=>[], :retval=>"d"

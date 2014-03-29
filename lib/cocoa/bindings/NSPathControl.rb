@@ -13,7 +13,7 @@ module Cocoa
     attach_method :setBackgroundColor, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setDelegate, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setDoubleAction, :args=>1, :names=>[], :types=>[":"], :retval=>"v"
-    attach_method :setDraggingSourceOperationMask, :args=>2, :names=>["forLocal"], :types=>["Q", "B"], :retval=>"v"
+    attach_method :setDraggingSourceOperationMask, :args=>2, :names=>[:forLocal], :types=>["Q", "B"], :retval=>"v"
     attach_method :setMenu, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setPathComponentCells, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setPathStyle, :args=>1, :names=>[], :types=>["q"], :retval=>"v"

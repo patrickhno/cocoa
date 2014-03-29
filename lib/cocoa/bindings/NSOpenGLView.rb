@@ -4,7 +4,7 @@ module Cocoa
   class NSOpenGLView < Cocoa::NSView
     attach_method :clearGLContext, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_singular_method :defaultPixelFormat, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :initWithFrame, :args=>2, :names=>["pixelFormat"], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@"], :retval=>"@"
+    attach_method :initWithFrame, :args=>2, :names=>[:pixelFormat], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@"], :retval=>"@"
     attach_method :openGLContext, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :pixelFormat, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :prepareOpenGL, :args=>0, :names=>[], :types=>[], :retval=>"v"

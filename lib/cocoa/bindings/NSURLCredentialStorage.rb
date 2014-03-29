@@ -5,9 +5,9 @@ module Cocoa
     attach_method :allCredentials, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :credentialsForProtectionSpace, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :defaultCredentialForProtectionSpace, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_method :removeCredential, :args=>2, :names=>["forProtectionSpace"], :types=>["@", "@"], :retval=>"v"
-    attach_method :setCredential, :args=>2, :names=>["forProtectionSpace"], :types=>["@", "@"], :retval=>"v"
-    attach_method :setDefaultCredential, :args=>2, :names=>["forProtectionSpace"], :types=>["@", "@"], :retval=>"v"
+    attach_method :removeCredential, :args=>2, :names=>[:forProtectionSpace], :types=>["@", "@"], :retval=>"v"
+    attach_method :setCredential, :args=>2, :names=>[:forProtectionSpace], :types=>["@", "@"], :retval=>"v"
+    attach_method :setDefaultCredential, :args=>2, :names=>[:forProtectionSpace], :types=>["@", "@"], :retval=>"v"
     attach_singular_method :sharedCredentialStorage, :args=>0, :names=>[], :types=>[], :retval=>"@"
   end
 end

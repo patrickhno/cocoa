@@ -2,7 +2,7 @@
 require 'cocoa/bindings/NSScriptObjectSpecifier'
 module Cocoa
   class NSUniqueIDSpecifier < Cocoa::NSScriptObjectSpecifier
-    attach_method :initWithContainerClassDescription, :args=>4, :names=>["containerSpecifier", "key", "uniqueID"], :types=>["@", "@", "@", "@"], :retval=>"@"
+    attach_method :initWithContainerClassDescription, :args=>4, :names=>[:containerSpecifier, :key, :uniqueID], :types=>["@", "@", "@", "@"], :retval=>"@"
     attach_method :setUniqueID, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :uniqueID, :args=>0, :names=>[], :types=>[], :retval=>"@"
   end

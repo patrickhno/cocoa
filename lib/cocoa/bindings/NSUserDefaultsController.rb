@@ -5,7 +5,7 @@ module Cocoa
     attach_method :appliesImmediately, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :defaults, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :hasUnappliedChanges, :args=>0, :names=>[], :types=>[], :retval=>"B"
-    attach_method :initWithDefaults, :args=>2, :names=>["initialValues"], :types=>["@", "@"], :retval=>"@"
+    attach_method :initWithDefaults, :args=>2, :names=>[:initialValues], :types=>["@", "@"], :retval=>"@"
     attach_method :initialValues, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :revert, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :revertToInitialValues, :args=>1, :names=>[], :types=>["@"], :retval=>"v"

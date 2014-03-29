@@ -2,6 +2,6 @@
 require 'cocoa/bindings/NSObject'
 module Cocoa
   class NSInputServer < Cocoa::NSObject
-    attach_method :initWithDelegate, :args=>2, :names=>["name"], :types=>["@", "@"], :retval=>"@"
+    attach_method :initWithDelegate, :args=>2, :names=>[:name], :types=>["@", "@"], :retval=>"@"
   end
 end

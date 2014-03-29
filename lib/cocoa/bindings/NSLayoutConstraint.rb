@@ -3,8 +3,8 @@ require 'cocoa/bindings/NSObject'
 module Cocoa
   class NSLayoutConstraint < Cocoa::NSObject
     attach_method :constant, :args=>0, :names=>[], :types=>[], :retval=>"d"
-    attach_singular_method :constraintWithItem, :args=>7, :names=>["attribute", "relatedBy", "toItem", "attribute", "multiplier", "constant"], :types=>["@", "q", "q", "@", "q", "d", "d"], :retval=>"@"
-    attach_singular_method :constraintsWithVisualFormat, :args=>4, :names=>["options", "metrics", "views"], :types=>["@", "Q", "@", "@"], :retval=>"@"
+    attach_singular_method :constraintWithItem, :args=>7, :names=>[:attribute, :relatedBy, :toItem, :attribute, :multiplier, :constant], :types=>["@", "q", "q", "@", "q", "d", "d"], :retval=>"@"
+    attach_singular_method :constraintsWithVisualFormat, :args=>4, :names=>[:options, :metrics, :views], :types=>["@", "Q", "@", "@"], :retval=>"@"
     attach_method :firstAttribute, :args=>0, :names=>[], :types=>[], :retval=>"q"
     attach_method :firstItem, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :multiplier, :args=>0, :names=>[], :types=>[], :retval=>"d"

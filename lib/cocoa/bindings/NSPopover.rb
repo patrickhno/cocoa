@@ -19,6 +19,6 @@ module Cocoa
     attach_method :setContentViewController, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setDelegate, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setPositioningRect, :args=>1, :names=>[], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}"], :retval=>"v"
-    attach_method :showRelativeToRect, :args=>3, :names=>["ofView", "preferredEdge"], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "Q"], :retval=>"v"
+    attach_method :showRelativeToRect, :args=>3, :names=>[:ofView, :preferredEdge], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "Q"], :retval=>"v"
   end
 end

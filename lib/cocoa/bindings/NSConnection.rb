@@ -5,21 +5,21 @@ module Cocoa
     attach_method :addRequestMode, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :addRunLoop, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_singular_method :allConnections, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_singular_method :connectionWithReceivePort, :args=>2, :names=>["sendPort"], :types=>["@", "@"], :retval=>"@"
-    attach_singular_method :connectionWithRegisteredName, [{:args=>2, :names=>["host"], :types=>["@", "@"], :retval=>"@"}, {:args=>3, :names=>["host", "usingNameServer"], :types=>["@", "@", "@"], :retval=>"@"}]
+    attach_singular_method :connectionWithReceivePort, :args=>2, :names=>[:sendPort], :types=>["@", "@"], :retval=>"@"
+    attach_singular_method :connectionWithRegisteredName, [{:args=>2, :names=>[:host], :types=>["@", "@"], :retval=>"@"}, {:args=>3, :names=>[:host, :usingNameServer], :types=>["@", "@", "@"], :retval=>"@"}]
     attach_singular_method :currentConversation, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_singular_method :defaultConnection, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :delegate, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :dispatchWithComponents, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :enableMultipleThreads, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :independentConversationQueueing, :args=>0, :names=>[], :types=>[], :retval=>"B"
-    attach_method :initWithReceivePort, :args=>2, :names=>["sendPort"], :types=>["@", "@"], :retval=>"@"
+    attach_method :initWithReceivePort, :args=>2, :names=>[:sendPort], :types=>["@", "@"], :retval=>"@"
     attach_method :invalidate, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :isValid, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :localObjects, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :multipleThreadsEnabled, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :receivePort, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :registerName, [{:args=>1, :names=>[], :types=>["@"], :retval=>"B"}, {:args=>2, :names=>["withNameServer"], :types=>["@", "@"], :retval=>"B"}]
+    attach_method :registerName, [{:args=>1, :names=>[], :types=>["@"], :retval=>"B"}, {:args=>2, :names=>[:withNameServer], :types=>["@", "@"], :retval=>"B"}]
     attach_method :remoteObjects, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :removeRequestMode, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :removeRunLoop, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
@@ -28,10 +28,10 @@ module Cocoa
     attach_method :requestTimeout, :args=>0, :names=>[], :types=>[], :retval=>"d"
     attach_method :rootObject, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :rootProxy, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_singular_method :rootProxyForConnectionWithRegisteredName, [{:args=>2, :names=>["host"], :types=>["@", "@"], :retval=>"@"}, {:args=>3, :names=>["host", "usingNameServer"], :types=>["@", "@", "@"], :retval=>"@"}]
+    attach_singular_method :rootProxyForConnectionWithRegisteredName, [{:args=>2, :names=>[:host], :types=>["@", "@"], :retval=>"@"}, {:args=>3, :names=>[:host, :usingNameServer], :types=>["@", "@", "@"], :retval=>"@"}]
     attach_method :runInNewThread, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :sendPort, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_singular_method :serviceConnectionWithName, [{:args=>2, :names=>["rootObject"], :types=>["@", "@"], :retval=>"@"}, {:args=>3, :names=>["rootObject", "usingNameServer"], :types=>["@", "@", "@"], :retval=>"@"}]
+    attach_singular_method :serviceConnectionWithName, [{:args=>2, :names=>[:rootObject], :types=>["@", "@"], :retval=>"@"}, {:args=>3, :names=>[:rootObject, :usingNameServer], :types=>["@", "@", "@"], :retval=>"@"}]
     attach_method :setDelegate, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setIndependentConversationQueueing, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
     attach_method :setReplyTimeout, :args=>1, :names=>[], :types=>["d"], :retval=>"v"

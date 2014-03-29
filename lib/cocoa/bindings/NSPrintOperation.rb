@@ -2,8 +2,8 @@
 require 'cocoa/bindings/NSObject'
 module Cocoa
   class NSPrintOperation < Cocoa::NSObject
-    attach_singular_method :EPSOperationWithView, [{:args=>3, :names=>["insideRect", "toData"], :types=>["@", "{CGRect={CGPoint=dd}{CGSize=dd}}", "@"], :retval=>"@"}, {:args=>4, :names=>["insideRect", "toData", "printInfo"], :types=>["@", "{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "@"], :retval=>"@"}, {:args=>4, :names=>["insideRect", "toPath", "printInfo"], :types=>["@", "{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "@"], :retval=>"@"}]
-    attach_singular_method :PDFOperationWithView, [{:args=>3, :names=>["insideRect", "toData"], :types=>["@", "{CGRect={CGPoint=dd}{CGSize=dd}}", "@"], :retval=>"@"}, {:args=>4, :names=>["insideRect", "toData", "printInfo"], :types=>["@", "{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "@"], :retval=>"@"}, {:args=>4, :names=>["insideRect", "toPath", "printInfo"], :types=>["@", "{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "@"], :retval=>"@"}]
+    attach_singular_method :EPSOperationWithView, [{:args=>3, :names=>[:insideRect, :toData], :types=>["@", "{CGRect={CGPoint=dd}{CGSize=dd}}", "@"], :retval=>"@"}, {:args=>4, :names=>[:insideRect, :toData, :printInfo], :types=>["@", "{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "@"], :retval=>"@"}, {:args=>4, :names=>[:insideRect, :toPath, :printInfo], :types=>["@", "{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "@"], :retval=>"@"}]
+    attach_singular_method :PDFOperationWithView, [{:args=>3, :names=>[:insideRect, :toData], :types=>["@", "{CGRect={CGPoint=dd}{CGSize=dd}}", "@"], :retval=>"@"}, {:args=>4, :names=>[:insideRect, :toData, :printInfo], :types=>["@", "{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "@"], :retval=>"@"}, {:args=>4, :names=>[:insideRect, :toPath, :printInfo], :types=>["@", "{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "@"], :retval=>"@"}]
     attach_method :accessoryView, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :canSpawnSeparateThread, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :cleanUpOperation, :args=>0, :names=>[], :types=>[], :retval=>"v"
@@ -20,10 +20,10 @@ module Cocoa
     attach_method :pageRange, :args=>0, :names=>[], :types=>[], :retval=>"{_NSRange=QQ}"
     attach_method :preferredRenderingQuality, :args=>0, :names=>[], :types=>[], :retval=>"q"
     attach_method :printInfo, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_singular_method :printOperationWithView, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>2, :names=>["printInfo"], :types=>["@", "@"], :retval=>"@"}]
+    attach_singular_method :printOperationWithView, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>2, :names=>[:printInfo], :types=>["@", "@"], :retval=>"@"}]
     attach_method :printPanel, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :runOperation, :args=>0, :names=>[], :types=>[], :retval=>"B"
-    attach_method :runOperationModalForWindow, :args=>4, :names=>["delegate", "didRunSelector", "contextInfo"], :types=>["@", "@", ":", "^v"], :retval=>"v"
+    attach_method :runOperationModalForWindow, :args=>4, :names=>[:delegate, :didRunSelector, :contextInfo], :types=>["@", "@", ":", "^v"], :retval=>"v"
     attach_method :setAccessoryView, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setCanSpawnSeparateThread, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
     attach_singular_method :setCurrentOperation, :args=>1, :names=>[], :types=>["@"], :retval=>"v"

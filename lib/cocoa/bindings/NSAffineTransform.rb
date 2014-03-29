@@ -10,7 +10,7 @@ module Cocoa
     attach_method :rotateByDegrees, :args=>1, :names=>[], :types=>["d"], :retval=>"v"
     attach_method :rotateByRadians, :args=>1, :names=>[], :types=>["d"], :retval=>"v"
     attach_method :scaleBy, :args=>1, :names=>[], :types=>["d"], :retval=>"v"
-    attach_method :scaleXBy, :args=>2, :names=>["yBy"], :types=>["d", "d"], :retval=>"v"
+    attach_method :scaleXBy, :args=>2, :names=>[:yBy], :types=>["d", "d"], :retval=>"v"
     attach_method :set, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :setTransformStruct, :args=>1, :names=>[], :types=>["{_NSAffineTransformStruct=dddddd}"], :retval=>"v"
     attach_singular_method :transform, :args=>0, :names=>[], :types=>[], :retval=>"@"
@@ -18,6 +18,6 @@ module Cocoa
     attach_method :transformPoint, :args=>1, :names=>[], :types=>["{CGPoint=dd}"], :retval=>"{CGPoint=dd}"
     attach_method :transformSize, :args=>1, :names=>[], :types=>["{CGSize=dd}"], :retval=>"{CGSize=dd}"
     attach_method :transformStruct, :args=>0, :names=>[], :types=>[], :retval=>"{_NSAffineTransformStruct=dddddd}"
-    attach_method :translateXBy, :args=>2, :names=>["yBy"], :types=>["d", "d"], :retval=>"v"
+    attach_method :translateXBy, :args=>2, :names=>[:yBy], :types=>["d", "d"], :retval=>"v"
   end
 end

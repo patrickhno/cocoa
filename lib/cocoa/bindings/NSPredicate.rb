@@ -2,10 +2,10 @@
 require 'cocoa/bindings/NSObject'
 module Cocoa
   class NSPredicate < Cocoa::NSObject
-    attach_method :evaluateWithObject, [{:args=>1, :names=>[], :types=>["@"], :retval=>"B"}, {:args=>2, :names=>["substitutionVariables"], :types=>["@", "@"], :retval=>"B"}]
+    attach_method :evaluateWithObject, [{:args=>1, :names=>[], :types=>["@"], :retval=>"B"}, {:args=>2, :names=>[:substitutionVariables], :types=>["@", "@"], :retval=>"B"}]
     attach_method :predicateFormat, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_singular_method :predicateWithBlock, :args=>1, :names=>[], :types=>["@?"], :retval=>"@"
-    attach_singular_method :predicateWithFormat, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@", :variadic=>true}, {:args=>2, :names=>["argumentArray"], :types=>["@", "@"], :retval=>"@"}, {:args=>2, :names=>["arguments"], :types=>["@", "^{__va_list_tag=II^v^v}"], :retval=>"@"}]
+    attach_singular_method :predicateWithFormat, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@", :variadic=>true}, {:args=>2, :names=>[:argumentArray], :types=>["@", "@"], :retval=>"@"}, {:args=>2, :names=>[:arguments], :types=>["@", "^{__va_list_tag=II^v^v}"], :retval=>"@"}]
     attach_method :predicateWithSubstitutionVariables, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_singular_method :predicateWithValue, :args=>1, :names=>[], :types=>["B"], :retval=>"@"
   end

@@ -7,7 +7,7 @@ module Cocoa
     attach_method :attachColorList, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :color, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :detachColorList, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
-    attach_singular_method :dragColor, :args=>3, :names=>["withEvent", "fromView"], :types=>["@", "@", "@"], :retval=>"B"
+    attach_singular_method :dragColor, :args=>3, :names=>[:withEvent, :fromView], :types=>["@", "@", "@"], :retval=>"B"
     attach_method :isContinuous, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :mode, :args=>0, :names=>[], :types=>[], :retval=>"q"
     attach_method :setAccessoryView, :args=>1, :names=>[], :types=>["@"], :retval=>"v"

@@ -20,7 +20,7 @@ module Cocoa
     attach_method :redoActionName, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :redoMenuItemTitle, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :redoMenuTitleForUndoActionName, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_method :registerUndoWithTarget, :args=>3, :names=>["selector", "object"], :types=>["@", ":", "@"], :retval=>"v"
+    attach_method :registerUndoWithTarget, :args=>3, :names=>[:selector, :object], :types=>["@", ":", "@"], :retval=>"v"
     attach_method :removeAllActions, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :removeAllActionsWithTarget, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :runLoopModes, :args=>0, :names=>[], :types=>[], :retval=>"@"

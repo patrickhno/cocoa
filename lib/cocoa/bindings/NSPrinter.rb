@@ -3,16 +3,16 @@ require 'cocoa/bindings/NSObject'
 module Cocoa
   class NSPrinter < Cocoa::NSObject
     attach_method :acceptsBinary, :args=>0, :names=>[], :types=>[], :retval=>"B"
-    attach_method :booleanForKey, :args=>2, :names=>["inTable"], :types=>["@", "@"], :retval=>"B"
+    attach_method :booleanForKey, :args=>2, :names=>[:inTable], :types=>["@", "@"], :retval=>"B"
     attach_method :deviceDescription, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :domain, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :floatForKey, :args=>2, :names=>["inTable"], :types=>["@", "@"], :retval=>"f"
+    attach_method :floatForKey, :args=>2, :names=>[:inTable], :types=>["@", "@"], :retval=>"f"
     attach_method :host, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :imageRectForPaper, :args=>1, :names=>[], :types=>["@"], :retval=>"{CGRect={CGPoint=dd}{CGSize=dd}}"
-    attach_method :intForKey, :args=>2, :names=>["inTable"], :types=>["@", "@"], :retval=>"i"
+    attach_method :intForKey, :args=>2, :names=>[:inTable], :types=>["@", "@"], :retval=>"i"
     attach_method :isColor, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :isFontAvailable, :args=>1, :names=>[], :types=>["@"], :retval=>"B"
-    attach_method :isKey, :args=>2, :names=>["inTable"], :types=>["@", "@"], :retval=>"B"
+    attach_method :isKey, :args=>2, :names=>[:inTable], :types=>["@", "@"], :retval=>"B"
     attach_method :isOutputStackInReverseOrder, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :languageLevel, :args=>0, :names=>[], :types=>[], :retval=>"q"
     attach_method :name, :args=>0, :names=>[], :types=>[], :retval=>"@"
@@ -20,13 +20,13 @@ module Cocoa
     attach_method :pageSizeForPaper, :args=>1, :names=>[], :types=>["@"], :retval=>"{CGSize=dd}"
     attach_singular_method :printerNames, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_singular_method :printerTypes, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_singular_method :printerWithName, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>3, :names=>["domain", "includeUnavailable"], :types=>["@", "@", "B"], :retval=>"@"}]
+    attach_singular_method :printerWithName, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>3, :names=>[:domain, :includeUnavailable], :types=>["@", "@", "B"], :retval=>"@"}]
     attach_singular_method :printerWithType, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_method :rectForKey, :args=>2, :names=>["inTable"], :types=>["@", "@"], :retval=>"{CGRect={CGPoint=dd}{CGSize=dd}}"
-    attach_method :sizeForKey, :args=>2, :names=>["inTable"], :types=>["@", "@"], :retval=>"{CGSize=dd}"
+    attach_method :rectForKey, :args=>2, :names=>[:inTable], :types=>["@", "@"], :retval=>"{CGRect={CGPoint=dd}{CGSize=dd}}"
+    attach_method :sizeForKey, :args=>2, :names=>[:inTable], :types=>["@", "@"], :retval=>"{CGSize=dd}"
     attach_method :statusForTable, :args=>1, :names=>[], :types=>["@"], :retval=>"Q"
-    attach_method :stringForKey, :args=>2, :names=>["inTable"], :types=>["@", "@"], :retval=>"@"
-    attach_method :stringListForKey, :args=>2, :names=>["inTable"], :types=>["@", "@"], :retval=>"@"
+    attach_method :stringForKey, :args=>2, :names=>[:inTable], :types=>["@", "@"], :retval=>"@"
+    attach_method :stringListForKey, :args=>2, :names=>[:inTable], :types=>["@", "@"], :retval=>"@"
     attach_method :type, :args=>0, :names=>[], :types=>[], :retval=>"@"
   end
 end

@@ -12,7 +12,7 @@ module Cocoa
     attach_method :font, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :indexOfTabViewItem, :args=>1, :names=>[], :types=>["@"], :retval=>"q"
     attach_method :indexOfTabViewItemWithIdentifier, :args=>1, :names=>[], :types=>["@"], :retval=>"q"
-    attach_method :insertTabViewItem, :args=>2, :names=>["atIndex"], :types=>["@", "q"], :retval=>"v"
+    attach_method :insertTabViewItem, :args=>2, :names=>[:atIndex], :types=>["@", "q"], :retval=>"v"
     attach_method :minimumSize, :args=>0, :names=>[], :types=>[], :retval=>"{CGSize=dd}"
     attach_method :numberOfTabViewItems, :args=>0, :names=>[], :types=>[], :retval=>"q"
     attach_method :removeTabViewItem, :args=>1, :names=>[], :types=>["@"], :retval=>"v"

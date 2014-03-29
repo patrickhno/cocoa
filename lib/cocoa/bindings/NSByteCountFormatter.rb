@@ -18,7 +18,7 @@ module Cocoa
     attach_method :setIncludesUnit, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
     attach_method :setZeroPadsFractionDigits, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
     attach_method :stringFromByteCount, :args=>1, :names=>[], :types=>["q"], :retval=>"@"
-    attach_singular_method :stringFromByteCount, :args=>2, :names=>["countStyle"], :types=>["q", "q"], :retval=>"@"
+    attach_singular_method :stringFromByteCount, :args=>2, :names=>[:countStyle], :types=>["q", "q"], :retval=>"@"
     attach_method :zeroPadsFractionDigits, :args=>0, :names=>[], :types=>[], :retval=>"B"
   end
 end

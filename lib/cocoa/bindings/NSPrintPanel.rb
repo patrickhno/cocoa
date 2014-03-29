@@ -5,7 +5,7 @@ module Cocoa
     attach_method :accessoryControllers, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :accessoryView, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :addAccessoryController, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
-    attach_method :beginSheetWithPrintInfo, :args=>5, :names=>["modalForWindow", "delegate", "didEndSelector", "contextInfo"], :types=>["@", "@", "@", ":", "^v"], :retval=>"v"
+    attach_method :beginSheetWithPrintInfo, :args=>5, :names=>[:modalForWindow, :delegate, :didEndSelector, :contextInfo], :types=>["@", "@", "@", ":", "^v"], :retval=>"v"
     attach_method :defaultButtonTitle, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :finalWritePrintInfo, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :helpAnchor, :args=>0, :names=>[], :types=>[], :retval=>"@"

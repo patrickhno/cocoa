@@ -3,8 +3,8 @@ require 'cocoa/bindings/NSObject'
 module Cocoa
   class NSSpellServer < Cocoa::NSObject
     attach_method :delegate, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :isWordInUserDictionaries, :args=>2, :names=>["caseSensitive"], :types=>["@", "B"], :retval=>"B"
-    attach_method :registerLanguage, :args=>2, :names=>["byVendor"], :types=>["@", "@"], :retval=>"B"
+    attach_method :isWordInUserDictionaries, :args=>2, :names=>[:caseSensitive], :types=>["@", "B"], :retval=>"B"
+    attach_method :registerLanguage, :args=>2, :names=>[:byVendor], :types=>["@", "@"], :retval=>"B"
     attach_method :run, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :setDelegate, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
   end

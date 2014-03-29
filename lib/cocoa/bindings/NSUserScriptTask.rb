@@ -3,7 +3,7 @@ require 'cocoa/bindings/NSObject'
 module Cocoa
   class NSUserScriptTask < Cocoa::NSObject
     attach_method :executeWithCompletionHandler, :args=>1, :names=>[], :types=>["@?"], :retval=>"v"
-    attach_method :initWithURL, :args=>2, :names=>["error"], :types=>["@", "^@"], :retval=>"@"
+    attach_method :initWithURL, :args=>2, :names=>[:error], :types=>["@", "^@"], :retval=>"@"
     attach_method :scriptURL, :args=>0, :names=>[], :types=>[], :retval=>"@"
   end
 end

@@ -7,7 +7,7 @@ module Cocoa
     attach_method :drawCellAtIndex, :args=>1, :names=>[], :types=>["q"], :retval=>"v"
     attach_method :indexOfCellWithTag, :args=>1, :names=>[], :types=>["q"], :retval=>"q"
     attach_method :indexOfSelectedItem, :args=>0, :names=>[], :types=>[], :retval=>"q"
-    attach_method :insertEntry, :args=>2, :names=>["atIndex"], :types=>["@", "q"], :retval=>"@"
+    attach_method :insertEntry, :args=>2, :names=>[:atIndex], :types=>["@", "q"], :retval=>"@"
     attach_method :preferredTextFieldWidth, :args=>0, :names=>[], :types=>[], :retval=>"d"
     attach_method :removeEntryAtIndex, :args=>1, :names=>[], :types=>["q"], :retval=>"v"
     attach_method :selectTextAtIndex, :args=>1, :names=>[], :types=>["q"], :retval=>"v"

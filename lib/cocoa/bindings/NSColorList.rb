@@ -6,13 +6,13 @@ module Cocoa
     attach_singular_method :availableColorLists, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_singular_method :colorListNamed, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :colorWithKey, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_method :initWithName, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>2, :names=>["fromFile"], :types=>["@", "@"], :retval=>"@"}]
-    attach_method :insertColor, :args=>3, :names=>["key", "atIndex"], :types=>["@", "@", "Q"], :retval=>"v"
+    attach_method :initWithName, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>2, :names=>[:fromFile], :types=>["@", "@"], :retval=>"@"}]
+    attach_method :insertColor, :args=>3, :names=>[:key, :atIndex], :types=>["@", "@", "Q"], :retval=>"v"
     attach_method :isEditable, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :name, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :removeColorWithKey, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :removeFile, :args=>0, :names=>[], :types=>[], :retval=>"v"
-    attach_method :setColor, :args=>2, :names=>["forKey"], :types=>["@", "@"], :retval=>"v"
+    attach_method :setColor, :args=>2, :names=>[:forKey], :types=>["@", "@"], :retval=>"v"
     attach_method :writeToFile, :args=>1, :names=>[], :types=>["@"], :retval=>"B"
   end
 end

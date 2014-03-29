@@ -3,7 +3,7 @@ require 'cocoa/bindings/NSScriptObjectSpecifier'
 module Cocoa
   class NSRangeSpecifier < Cocoa::NSScriptObjectSpecifier
     attach_method :endSpecifier, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :initWithContainerClassDescription, :args=>5, :names=>["containerSpecifier", "key", "startSpecifier", "endSpecifier"], :types=>["@", "@", "@", "@", "@"], :retval=>"@"
+    attach_method :initWithContainerClassDescription, :args=>5, :names=>[:containerSpecifier, :key, :startSpecifier, :endSpecifier], :types=>["@", "@", "@", "@", "@"], :retval=>"@"
     attach_method :setEndSpecifier, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setStartSpecifier, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :startSpecifier, :args=>0, :names=>[], :types=>[], :retval=>"@"

@@ -2,6 +2,6 @@
 require 'cocoa/bindings/NSScriptWhoseTest'
 module Cocoa
   class NSSpecifierTest < Cocoa::NSScriptWhoseTest
-    attach_method :initWithObjectSpecifier, :args=>3, :names=>["comparisonOperator", "testObject"], :types=>["@", "Q", "@"], :retval=>"@"
+    attach_method :initWithObjectSpecifier, :args=>3, :names=>[:comparisonOperator, :testObject], :types=>["@", "Q", "@"], :retval=>"@"
   end
 end

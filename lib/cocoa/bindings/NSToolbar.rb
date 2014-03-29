@@ -13,7 +13,7 @@ module Cocoa
     attach_method :fullScreenAccessoryViewMinHeight, :args=>0, :names=>[], :types=>[], :retval=>"d"
     attach_method :identifier, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :initWithIdentifier, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_method :insertItemWithItemIdentifier, :args=>2, :names=>["atIndex"], :types=>["@", "q"], :retval=>"v"
+    attach_method :insertItemWithItemIdentifier, :args=>2, :names=>[:atIndex], :types=>["@", "q"], :retval=>"v"
     attach_method :isVisible, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :items, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :removeItemAtIndex, :args=>1, :names=>[], :types=>["q"], :retval=>"v"

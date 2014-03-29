@@ -5,8 +5,8 @@ module Cocoa
     attach_method :close, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :document, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :initWithWindow, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_method :initWithWindowNibName, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>2, :names=>["owner"], :types=>["@", "@"], :retval=>"@"}]
-    attach_method :initWithWindowNibPath, :args=>2, :names=>["owner"], :types=>["@", "@"], :retval=>"@"
+    attach_method :initWithWindowNibName, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>2, :names=>[:owner], :types=>["@", "@"], :retval=>"@"}]
+    attach_method :initWithWindowNibPath, :args=>2, :names=>[:owner], :types=>["@", "@"], :retval=>"@"
     attach_method :isWindowLoaded, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :loadWindow, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :owner, :args=>0, :names=>[], :types=>[], :retval=>"@"

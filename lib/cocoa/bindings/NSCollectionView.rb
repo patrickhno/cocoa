@@ -6,8 +6,8 @@ module Cocoa
     attach_method :backgroundColors, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :content, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :delegate, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :draggingImageForItemsAtIndexes, :args=>3, :names=>["withEvent", "offset"], :types=>["@", "@", "^{CGPoint=dd}"], :retval=>"@"
-    attach_method :frameForItemAtIndex, [{:args=>1, :names=>[], :types=>["Q"], :retval=>"{CGRect={CGPoint=dd}{CGSize=dd}}"}, {:args=>2, :names=>["withNumberOfItems"], :types=>["Q", "Q"], :retval=>"{CGRect={CGPoint=dd}{CGSize=dd}}"}]
+    attach_method :draggingImageForItemsAtIndexes, :args=>3, :names=>[:withEvent, :offset], :types=>["@", "@", "^{CGPoint=dd}"], :retval=>"@"
+    attach_method :frameForItemAtIndex, [{:args=>1, :names=>[], :types=>["Q"], :retval=>"{CGRect={CGPoint=dd}{CGSize=dd}}"}, {:args=>2, :names=>[:withNumberOfItems], :types=>["Q", "Q"], :retval=>"{CGRect={CGPoint=dd}{CGSize=dd}}"}]
     attach_method :isFirstResponder, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :isSelectable, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :itemAtIndex, :args=>1, :names=>[], :types=>["Q"], :retval=>"@"
@@ -22,7 +22,7 @@ module Cocoa
     attach_method :setBackgroundColors, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setContent, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setDelegate, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
-    attach_method :setDraggingSourceOperationMask, :args=>2, :names=>["forLocal"], :types=>["Q", "B"], :retval=>"v"
+    attach_method :setDraggingSourceOperationMask, :args=>2, :names=>[:forLocal], :types=>["Q", "B"], :retval=>"v"
     attach_method :setItemPrototype, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setMaxItemSize, :args=>1, :names=>[], :types=>["{CGSize=dd}"], :retval=>"v"
     attach_method :setMaxNumberOfColumns, :args=>1, :names=>[], :types=>["Q"], :retval=>"v"

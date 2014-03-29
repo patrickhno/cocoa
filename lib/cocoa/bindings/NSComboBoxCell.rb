@@ -11,7 +11,7 @@ module Cocoa
     attach_method :hasVerticalScroller, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :indexOfItemWithObjectValue, :args=>1, :names=>[], :types=>["@"], :retval=>"q"
     attach_method :indexOfSelectedItem, :args=>0, :names=>[], :types=>[], :retval=>"q"
-    attach_method :insertItemWithObjectValue, :args=>2, :names=>["atIndex"], :types=>["@", "q"], :retval=>"v"
+    attach_method :insertItemWithObjectValue, :args=>2, :names=>[:atIndex], :types=>["@", "q"], :retval=>"v"
     attach_method :intercellSpacing, :args=>0, :names=>[], :types=>[], :retval=>"{CGSize=dd}"
     attach_method :isButtonBordered, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :itemHeight, :args=>0, :names=>[], :types=>[], :retval=>"d"

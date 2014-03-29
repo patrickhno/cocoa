@@ -3,7 +3,7 @@ require 'cocoa/bindings/NSScriptObjectSpecifier'
 module Cocoa
   class NSRelativeSpecifier < Cocoa::NSScriptObjectSpecifier
     attach_method :baseSpecifier, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :initWithContainerClassDescription, :args=>5, :names=>["containerSpecifier", "key", "relativePosition", "baseSpecifier"], :types=>["@", "@", "@", "Q", "@"], :retval=>"@"
+    attach_method :initWithContainerClassDescription, :args=>5, :names=>[:containerSpecifier, :key, :relativePosition, :baseSpecifier], :types=>["@", "@", "@", "Q", "@"], :retval=>"@"
     attach_method :relativePosition, :args=>0, :names=>[], :types=>[], :retval=>"Q"
     attach_method :setBaseSpecifier, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setRelativePosition, :args=>1, :names=>[], :types=>["Q"], :retval=>"v"

@@ -4,7 +4,7 @@ module Cocoa
   class NSValueTransformer < Cocoa::NSObject
     attach_singular_method :allowsReverseTransformation, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :reverseTransformedValue, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_singular_method :setValueTransformer, :args=>2, :names=>["forName"], :types=>["@", "@"], :retval=>"v"
+    attach_singular_method :setValueTransformer, :args=>2, :names=>[:forName], :types=>["@", "@"], :retval=>"v"
     attach_method :transformedValue, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_singular_method :transformedValueClass, :args=>0, :names=>[], :types=>[], :retval=>"#"
     attach_singular_method :valueTransformerForName, :args=>1, :names=>[], :types=>["@"], :retval=>"@"

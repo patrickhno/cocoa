@@ -7,7 +7,7 @@ module Cocoa
     attach_method :backgroundColor, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :borderType, :args=>0, :names=>[], :types=>[], :retval=>"Q"
     attach_method :contentSize, :args=>0, :names=>[], :types=>[], :retval=>"{CGSize=dd}"
-    attach_singular_method :contentSizeForFrameSize, [{:args=>4, :names=>["hasHorizontalScroller", "hasVerticalScroller", "borderType"], :types=>["{CGSize=dd}", "B", "B", "Q"], :retval=>"{CGSize=dd}"}, {:args=>6, :names=>["horizontalScrollerClass", "verticalScrollerClass", "borderType", "controlSize", "scrollerStyle"], :types=>["{CGSize=dd}", "#", "#", "Q", "Q", "q"], :retval=>"{CGSize=dd}"}]
+    attach_singular_method :contentSizeForFrameSize, [{:args=>4, :names=>[:hasHorizontalScroller, :hasVerticalScroller, :borderType], :types=>["{CGSize=dd}", "B", "B", "Q"], :retval=>"{CGSize=dd}"}, {:args=>6, :names=>[:horizontalScrollerClass, :verticalScrollerClass, :borderType, :controlSize, :scrollerStyle], :types=>["{CGSize=dd}", "#", "#", "Q", "Q", "q"], :retval=>"{CGSize=dd}"}]
     attach_method :contentView, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :documentCursor, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :documentView, :args=>0, :names=>[], :types=>[], :retval=>"@"
@@ -15,7 +15,7 @@ module Cocoa
     attach_method :drawsBackground, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :findBarPosition, :args=>0, :names=>[], :types=>[], :retval=>"q"
     attach_method :flashScrollers, :args=>0, :names=>[], :types=>[], :retval=>"v"
-    attach_singular_method :frameSizeForContentSize, [{:args=>4, :names=>["hasHorizontalScroller", "hasVerticalScroller", "borderType"], :types=>["{CGSize=dd}", "B", "B", "Q"], :retval=>"{CGSize=dd}"}, {:args=>6, :names=>["horizontalScrollerClass", "verticalScrollerClass", "borderType", "controlSize", "scrollerStyle"], :types=>["{CGSize=dd}", "#", "#", "Q", "Q", "q"], :retval=>"{CGSize=dd}"}]
+    attach_singular_method :frameSizeForContentSize, [{:args=>4, :names=>[:hasHorizontalScroller, :hasVerticalScroller, :borderType], :types=>["{CGSize=dd}", "B", "B", "Q"], :retval=>"{CGSize=dd}"}, {:args=>6, :names=>[:horizontalScrollerClass, :verticalScrollerClass, :borderType, :controlSize, :scrollerStyle], :types=>["{CGSize=dd}", "#", "#", "Q", "Q", "q"], :retval=>"{CGSize=dd}"}]
     attach_method :hasHorizontalRuler, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :hasHorizontalScroller, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :hasVerticalRuler, :args=>0, :names=>[], :types=>[], :retval=>"B"
@@ -57,7 +57,7 @@ module Cocoa
     attach_method :setHorizontalScrollElasticity, :args=>1, :names=>[], :types=>["q"], :retval=>"v"
     attach_method :setHorizontalScroller, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setLineScroll, :args=>1, :names=>[], :types=>["d"], :retval=>"v"
-    attach_method :setMagnification, [{:args=>1, :names=>[], :types=>["d"], :retval=>"v"}, {:args=>2, :names=>["centeredAtPoint"], :types=>["d", "{CGPoint=dd}"], :retval=>"v"}]
+    attach_method :setMagnification, [{:args=>1, :names=>[], :types=>["d"], :retval=>"v"}, {:args=>2, :names=>[:centeredAtPoint], :types=>["d", "{CGPoint=dd}"], :retval=>"v"}]
     attach_method :setMaxMagnification, :args=>1, :names=>[], :types=>["d"], :retval=>"v"
     attach_method :setMinMagnification, :args=>1, :names=>[], :types=>["d"], :retval=>"v"
     attach_method :setPageScroll, :args=>1, :names=>[], :types=>["d"], :retval=>"v"

@@ -5,7 +5,7 @@ module Cocoa
     attach_method :delegate, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :drawSelector, :args=>0, :names=>[], :types=>[], :retval=>":"
     attach_method :drawingHandler, :args=>0, :names=>[], :types=>[], :retval=>"@?"
-    attach_method :initWithDrawSelector, :args=>2, :names=>["delegate"], :types=>[":", "@"], :retval=>"@"
-    attach_method :initWithSize, :args=>3, :names=>["flipped", "drawingHandler"], :types=>["{CGSize=dd}", "B", "@?"], :retval=>"@"
+    attach_method :initWithDrawSelector, :args=>2, :names=>[:delegate], :types=>[":", "@"], :retval=>"@"
+    attach_method :initWithSize, :args=>3, :names=>[:flipped, :drawingHandler], :types=>["{CGSize=dd}", "B", "@?"], :retval=>"@"
   end
 end

@@ -8,7 +8,7 @@ module Cocoa
     attach_method :reloadDefaultFontFamilies, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :setAccessoryView, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setEnabled, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
-    attach_method :setPanelFont, :args=>2, :names=>["isMultiple"], :types=>["@", "B"], :retval=>"v"
+    attach_method :setPanelFont, :args=>2, :names=>[:isMultiple], :types=>["@", "B"], :retval=>"v"
     attach_singular_method :sharedFontPanel, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_singular_method :sharedFontPanelExists, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :worksWhenModal, :args=>0, :names=>[], :types=>[], :retval=>"B"

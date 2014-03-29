@@ -3,9 +3,9 @@ require 'cocoa/bindings/NSResponder'
 module Cocoa
   class NSViewController < Cocoa::NSResponder
     attach_method :commitEditing, :args=>0, :names=>[], :types=>[], :retval=>"B"
-    attach_method :commitEditingWithDelegate, :args=>3, :names=>["didCommitSelector", "contextInfo"], :types=>["@", ":", "^v"], :retval=>"v"
+    attach_method :commitEditingWithDelegate, :args=>3, :names=>[:didCommitSelector, :contextInfo], :types=>["@", ":", "^v"], :retval=>"v"
     attach_method :discardEditing, :args=>0, :names=>[], :types=>[], :retval=>"v"
-    attach_method :initWithNibName, :args=>2, :names=>["bundle"], :types=>["@", "@"], :retval=>"@"
+    attach_method :initWithNibName, :args=>2, :names=>[:bundle], :types=>["@", "@"], :retval=>"@"
     attach_method :loadView, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :nibBundle, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :nibName, :args=>0, :names=>[], :types=>[], :retval=>"@"

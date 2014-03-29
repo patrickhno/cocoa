@@ -5,7 +5,7 @@ module Cocoa
     attach_method :condition, :args=>0, :names=>[], :types=>[], :retval=>"q"
     attach_method :initWithCondition, :args=>1, :names=>[], :types=>["q"], :retval=>"@"
     attach_method :lockBeforeDate, :args=>1, :names=>[], :types=>["@"], :retval=>"B"
-    attach_method :lockWhenCondition, [{:args=>1, :names=>[], :types=>["q"], :retval=>"v"}, {:args=>2, :names=>["beforeDate"], :types=>["q", "@"], :retval=>"B"}]
+    attach_method :lockWhenCondition, [{:args=>1, :names=>[], :types=>["q"], :retval=>"v"}, {:args=>2, :names=>[:beforeDate], :types=>["q", "@"], :retval=>"B"}]
     attach_method :name, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :setName, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :tryLock, :args=>0, :names=>[], :types=>[], :retval=>"B"

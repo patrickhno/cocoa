@@ -2,7 +2,7 @@
 require 'cocoa/bindings/NSTextFieldCell'
 module Cocoa
   class NSTableHeaderCell < Cocoa::NSTextFieldCell
-    attach_method :drawSortIndicatorWithFrame, :args=>4, :names=>["inView", "ascending", "priority"], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "B", "q"], :retval=>"v"
+    attach_method :drawSortIndicatorWithFrame, :args=>4, :names=>[:inView, :ascending, :priority], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "B", "q"], :retval=>"v"
     attach_method :sortIndicatorRectForBounds, :args=>1, :names=>[], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}"], :retval=>"{CGRect={CGPoint=dd}{CGSize=dd}}"
   end
 end

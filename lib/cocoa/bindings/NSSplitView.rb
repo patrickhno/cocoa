@@ -18,9 +18,9 @@ module Cocoa
     attach_method :setAutosaveName, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setDelegate, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setDividerStyle, :args=>1, :names=>[], :types=>["q"], :retval=>"v"
-    attach_method :setHoldingPriority, :args=>2, :names=>["forSubviewAtIndex"], :types=>["f", "q"], :retval=>"v"
+    attach_method :setHoldingPriority, :args=>2, :names=>[:forSubviewAtIndex], :types=>["f", "q"], :retval=>"v"
     attach_method :setIsPaneSplitter, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
-    attach_method :setPosition, :args=>2, :names=>["ofDividerAtIndex"], :types=>["d", "q"], :retval=>"v"
+    attach_method :setPosition, :args=>2, :names=>[:ofDividerAtIndex], :types=>["d", "q"], :retval=>"v"
     attach_method :setVertical, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
   end
 end

@@ -7,19 +7,19 @@ module Cocoa
     attach_method :constantValue, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :expressionBlock, :args=>0, :names=>[], :types=>[], :retval=>"@?"
     attach_singular_method :expressionForAggregate, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_singular_method :expressionForBlock, :args=>2, :names=>["arguments"], :types=>["@?", "@"], :retval=>"@"
+    attach_singular_method :expressionForBlock, :args=>2, :names=>[:arguments], :types=>["@?", "@"], :retval=>"@"
     attach_singular_method :expressionForConstantValue, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_singular_method :expressionForEvaluatedObject, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_singular_method :expressionForFunction, [{:args=>2, :names=>["arguments"], :types=>["@", "@"], :retval=>"@"}, {:args=>3, :names=>["selectorName", "arguments"], :types=>["@", "@", "@"], :retval=>"@"}]
-    attach_singular_method :expressionForIntersectSet, :args=>2, :names=>["with"], :types=>["@", "@"], :retval=>"@"
+    attach_singular_method :expressionForFunction, [{:args=>2, :names=>[:arguments], :types=>["@", "@"], :retval=>"@"}, {:args=>3, :names=>[:selectorName, :arguments], :types=>["@", "@", "@"], :retval=>"@"}]
+    attach_singular_method :expressionForIntersectSet, :args=>2, :names=>[:with], :types=>["@", "@"], :retval=>"@"
     attach_singular_method :expressionForKeyPath, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_singular_method :expressionForMinusSet, :args=>2, :names=>["with"], :types=>["@", "@"], :retval=>"@"
-    attach_singular_method :expressionForSubquery, :args=>3, :names=>["usingIteratorVariable", "predicate"], :types=>["@", "@", "@"], :retval=>"@"
-    attach_singular_method :expressionForUnionSet, :args=>2, :names=>["with"], :types=>["@", "@"], :retval=>"@"
+    attach_singular_method :expressionForMinusSet, :args=>2, :names=>[:with], :types=>["@", "@"], :retval=>"@"
+    attach_singular_method :expressionForSubquery, :args=>3, :names=>[:usingIteratorVariable, :predicate], :types=>["@", "@", "@"], :retval=>"@"
+    attach_singular_method :expressionForUnionSet, :args=>2, :names=>[:with], :types=>["@", "@"], :retval=>"@"
     attach_singular_method :expressionForVariable, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :expressionType, :args=>0, :names=>[], :types=>[], :retval=>"Q"
-    attach_method :expressionValueWithObject, :args=>2, :names=>["context"], :types=>["@", "@"], :retval=>"@"
-    attach_singular_method :expressionWithFormat, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@", :variadic=>true}, {:args=>2, :names=>["argumentArray"], :types=>["@", "@"], :retval=>"@"}, {:args=>2, :names=>["arguments"], :types=>["@", "^{__va_list_tag=II^v^v}"], :retval=>"@"}]
+    attach_method :expressionValueWithObject, :args=>2, :names=>[:context], :types=>["@", "@"], :retval=>"@"
+    attach_singular_method :expressionWithFormat, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@", :variadic=>true}, {:args=>2, :names=>[:argumentArray], :types=>["@", "@"], :retval=>"@"}, {:args=>2, :names=>[:arguments], :types=>["@", "^{__va_list_tag=II^v^v}"], :retval=>"@"}]
     attach_method :function, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :initWithExpressionType, :args=>1, :names=>[], :types=>["Q"], :retval=>"@"
     attach_method :keyPath, :args=>0, :names=>[], :types=>[], :retval=>"@"

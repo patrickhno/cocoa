@@ -2,7 +2,7 @@
 require 'cocoa/bindings/NSURLRequest'
 module Cocoa
   class NSMutableURLRequest < Cocoa::NSURLRequest
-    attach_method :addValue, :args=>2, :names=>["forHTTPHeaderField"], :types=>["@", "@"], :retval=>"v"
+    attach_method :addValue, :args=>2, :names=>[:forHTTPHeaderField], :types=>["@", "@"], :retval=>"v"
     attach_method :setAllHTTPHeaderFields, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setAllowsCellularAccess, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
     attach_method :setCachePolicy, :args=>1, :names=>[], :types=>["Q"], :retval=>"v"
@@ -15,6 +15,6 @@ module Cocoa
     attach_method :setNetworkServiceType, :args=>1, :names=>[], :types=>["Q"], :retval=>"v"
     attach_method :setTimeoutInterval, :args=>1, :names=>[], :types=>["d"], :retval=>"v"
     attach_method :setURL, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
-    attach_method :setValue, :args=>2, :names=>["forHTTPHeaderField"], :types=>["@", "@"], :retval=>"v"
+    attach_method :setValue, :args=>2, :names=>[:forHTTPHeaderField], :types=>["@", "@"], :retval=>"v"
   end
 end

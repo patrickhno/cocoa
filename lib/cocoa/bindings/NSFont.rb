@@ -15,10 +15,10 @@ module Cocoa
     attach_method :familyName, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :fontDescriptor, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :fontName, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_singular_method :fontWithDescriptor, [{:args=>2, :names=>["size"], :types=>["@", "d"], :retval=>"@"}, {:args=>2, :names=>["textTransform"], :types=>["@", "@"], :retval=>"@"}]
-    attach_singular_method :fontWithName, [{:args=>2, :names=>["matrix"], :types=>["@", "^d"], :retval=>"@"}, {:args=>2, :names=>["size"], :types=>["@", "d"], :retval=>"@"}]
-    attach_method :getAdvancements, [{:args=>3, :names=>["forGlyphs", "count"], :types=>["^{CGSize=dd}", "^I", "Q"], :retval=>"v"}, {:args=>3, :names=>["forPackedGlyphs", "length"], :types=>["^{CGSize=dd}", "^v", "Q"], :retval=>"v"}]
-    attach_method :getBoundingRects, :args=>3, :names=>["forGlyphs", "count"], :types=>["^{CGRect={CGPoint=dd}{CGSize=dd}}", "^I", "Q"], :retval=>"v"
+    attach_singular_method :fontWithDescriptor, [{:args=>2, :names=>[:size], :types=>["@", "d"], :retval=>"@"}, {:args=>2, :names=>[:textTransform], :types=>["@", "@"], :retval=>"@"}]
+    attach_singular_method :fontWithName, [{:args=>2, :names=>[:matrix], :types=>["@", "^d"], :retval=>"@"}, {:args=>2, :names=>[:size], :types=>["@", "d"], :retval=>"@"}]
+    attach_method :getAdvancements, [{:args=>3, :names=>[:forGlyphs, :count], :types=>["^{CGSize=dd}", "^I", "Q"], :retval=>"v"}, {:args=>3, :names=>[:forPackedGlyphs, :length], :types=>["^{CGSize=dd}", "^v", "Q"], :retval=>"v"}]
+    attach_method :getBoundingRects, :args=>3, :names=>[:forGlyphs, :count], :types=>["^{CGRect={CGPoint=dd}{CGSize=dd}}", "^I", "Q"], :retval=>"v"
     attach_method :glyphWithName, :args=>1, :names=>[], :types=>["@"], :retval=>"I"
     attach_method :isFixedPitch, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :isVertical, :args=>0, :names=>[], :types=>[], :retval=>"B"

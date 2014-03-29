@@ -10,7 +10,7 @@ module Cocoa
     attach_method :isRunning, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :launch, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :launchPath, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_singular_method :launchedTaskWithLaunchPath, :args=>2, :names=>["arguments"], :types=>["@", "@"], :retval=>"@"
+    attach_singular_method :launchedTaskWithLaunchPath, :args=>2, :names=>[:arguments], :types=>["@", "@"], :retval=>"@"
     attach_method :processIdentifier, :args=>0, :names=>[], :types=>[], :retval=>"i"
     attach_method :resume, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :setArguments, :args=>1, :names=>[], :types=>["@"], :retval=>"v"

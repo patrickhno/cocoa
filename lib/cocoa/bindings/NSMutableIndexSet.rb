@@ -9,6 +9,6 @@ module Cocoa
     attach_method :removeIndex, :args=>1, :names=>[], :types=>["Q"], :retval=>"v"
     attach_method :removeIndexes, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :removeIndexesInRange, :args=>1, :names=>[], :types=>["{_NSRange=QQ}"], :retval=>"v"
-    attach_method :shiftIndexesStartingAtIndex, :args=>2, :names=>["by"], :types=>["Q", "q"], :retval=>"v"
+    attach_method :shiftIndexesStartingAtIndex, :args=>2, :names=>[:by], :types=>["Q", "q"], :retval=>"v"
   end
 end

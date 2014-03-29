@@ -3,7 +3,7 @@ require 'cocoa/bindings/NSObject'
 module Cocoa
   class NSFileVersion < Cocoa::NSObject
     attach_method :URL, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_singular_method :addVersionOfItemAtURL, :args=>4, :names=>["withContentsOfURL", "options", "error"], :types=>["@", "@", "Q", "^@"], :retval=>"@"
+    attach_singular_method :addVersionOfItemAtURL, :args=>4, :names=>[:withContentsOfURL, :options, :error], :types=>["@", "@", "Q", "^@"], :retval=>"@"
     attach_singular_method :currentVersionOfItemAtURL, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :isConflict, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :isDiscardable, :args=>0, :names=>[], :types=>[], :retval=>"B"
@@ -14,12 +14,12 @@ module Cocoa
     attach_singular_method :otherVersionsOfItemAtURL, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :persistentIdentifier, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :removeAndReturnError, :args=>1, :names=>[], :types=>["^@"], :retval=>"B"
-    attach_singular_method :removeOtherVersionsOfItemAtURL, :args=>2, :names=>["error"], :types=>["@", "^@"], :retval=>"B"
-    attach_method :replaceItemAtURL, :args=>3, :names=>["options", "error"], :types=>["@", "Q", "^@"], :retval=>"@"
+    attach_singular_method :removeOtherVersionsOfItemAtURL, :args=>2, :names=>[:error], :types=>["@", "^@"], :retval=>"B"
+    attach_method :replaceItemAtURL, :args=>3, :names=>[:options, :error], :types=>["@", "Q", "^@"], :retval=>"@"
     attach_method :setDiscardable, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
     attach_method :setResolved, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
     attach_singular_method :temporaryDirectoryURLForNewVersionOfItemAtURL, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_singular_method :unresolvedConflictVersionsOfItemAtURL, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_singular_method :versionOfItemAtURL, :args=>2, :names=>["forPersistentIdentifier"], :types=>["@", "@"], :retval=>"@"
+    attach_singular_method :versionOfItemAtURL, :args=>2, :names=>[:forPersistentIdentifier], :types=>["@", "@"], :retval=>"@"
   end
 end

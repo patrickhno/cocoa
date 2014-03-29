@@ -11,7 +11,7 @@ module Cocoa
     attach_method :commandName, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :createCommandInstance, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :createCommandInstanceWithZone, :args=>1, :names=>[], :types=>["^{_NSZone=}"], :retval=>"@"
-    attach_method :initWithSuiteName, :args=>3, :names=>["commandName", "dictionary"], :types=>["@", "@", "@"], :retval=>"@"
+    attach_method :initWithSuiteName, :args=>3, :names=>[:commandName, :dictionary], :types=>["@", "@", "@"], :retval=>"@"
     attach_method :isOptionalArgumentWithName, :args=>1, :names=>[], :types=>["@"], :retval=>"B"
     attach_method :returnType, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :suiteName, :args=>0, :names=>[], :types=>[], :retval=>"@"

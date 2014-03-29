@@ -13,7 +13,7 @@ module Cocoa
     attach_method :hasReadablePropertyForKey, :args=>1, :names=>[], :types=>["@"], :retval=>"B"
     attach_method :hasWritablePropertyForKey, :args=>1, :names=>[], :types=>["@"], :retval=>"B"
     attach_method :implementationClassName, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :initWithSuiteName, :args=>3, :names=>["className", "dictionary"], :types=>["@", "@", "@"], :retval=>"@"
+    attach_method :initWithSuiteName, :args=>3, :names=>[:className, :dictionary], :types=>["@", "@", "@"], :retval=>"@"
     attach_method :isLocationRequiredToCreateForKey, :args=>1, :names=>[], :types=>["@"], :retval=>"B"
     attach_method :isReadOnlyKey, :args=>1, :names=>[], :types=>["@"], :retval=>"B"
     attach_method :keyWithAppleEventCode, :args=>1, :names=>[], :types=>["I"], :retval=>"@"

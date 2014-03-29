@@ -5,7 +5,7 @@ module Cocoa
     attach_method :comment, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :commentURL, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_singular_method :cookieWithProperties, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_singular_method :cookiesWithResponseHeaderFields, :args=>2, :names=>["forURL"], :types=>["@", "@"], :retval=>"@"
+    attach_singular_method :cookiesWithResponseHeaderFields, :args=>2, :names=>[:forURL], :types=>["@", "@"], :retval=>"@"
     attach_method :domain, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :expiresDate, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :initWithProperties, :args=>1, :names=>[], :types=>["@"], :retval=>"@"

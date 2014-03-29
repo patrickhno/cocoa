@@ -4,7 +4,7 @@ module Cocoa
   class CALayer < Cocoa::NSObject
     attach_method :actionForKey, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :actions, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :addAnimation, :args=>2, :names=>["forKey"], :types=>["@", "@"], :retval=>"v"
+    attach_method :addAnimation, :args=>2, :names=>[:forKey], :types=>["@", "@"], :retval=>"v"
     attach_method :addConstraint, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :addSublayer, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :affineTransform, :args=>0, :names=>[], :types=>[], :retval=>"{CGAffineTransform=dddddd}"
@@ -27,9 +27,9 @@ module Cocoa
     attach_method :contentsGravity, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :contentsRect, :args=>0, :names=>[], :types=>[], :retval=>"{CGRect={CGPoint=dd}{CGSize=dd}}"
     attach_method :contentsScale, :args=>0, :names=>[], :types=>[], :retval=>"d"
-    attach_method :convertPoint, [{:args=>2, :names=>["fromLayer"], :types=>["{CGPoint=dd}", "@"], :retval=>"{CGPoint=dd}"}, {:args=>2, :names=>["toLayer"], :types=>["{CGPoint=dd}", "@"], :retval=>"{CGPoint=dd}"}]
-    attach_method :convertRect, [{:args=>2, :names=>["fromLayer"], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@"], :retval=>"{CGRect={CGPoint=dd}{CGSize=dd}}"}, {:args=>2, :names=>["toLayer"], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@"], :retval=>"{CGRect={CGPoint=dd}{CGSize=dd}}"}]
-    attach_method :convertTime, [{:args=>2, :names=>["fromLayer"], :types=>["d", "@"], :retval=>"d"}, {:args=>2, :names=>["toLayer"], :types=>["d", "@"], :retval=>"d"}]
+    attach_method :convertPoint, [{:args=>2, :names=>[:fromLayer], :types=>["{CGPoint=dd}", "@"], :retval=>"{CGPoint=dd}"}, {:args=>2, :names=>[:toLayer], :types=>["{CGPoint=dd}", "@"], :retval=>"{CGPoint=dd}"}]
+    attach_method :convertRect, [{:args=>2, :names=>[:fromLayer], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@"], :retval=>"{CGRect={CGPoint=dd}{CGSize=dd}}"}, {:args=>2, :names=>[:toLayer], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@"], :retval=>"{CGRect={CGPoint=dd}{CGSize=dd}}"}]
+    attach_method :convertTime, [{:args=>2, :names=>[:fromLayer], :types=>["d", "@"], :retval=>"d"}, {:args=>2, :names=>[:toLayer], :types=>["d", "@"], :retval=>"d"}]
     attach_method :cornerRadius, :args=>0, :names=>[], :types=>[], :retval=>"d"
     attach_singular_method :defaultActionForKey, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_singular_method :defaultValueForKey, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
@@ -44,7 +44,7 @@ module Cocoa
     attach_method :hitTest, :args=>1, :names=>[], :types=>["{CGPoint=dd}"], :retval=>"@"
     attach_method :init, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :initWithLayer, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_method :insertSublayer, [{:args=>2, :names=>["above"], :types=>["@", "@"], :retval=>"v"}, {:args=>2, :names=>["atIndex"], :types=>["@", "I"], :retval=>"v"}, {:args=>2, :names=>["below"], :types=>["@", "@"], :retval=>"v"}]
+    attach_method :insertSublayer, [{:args=>2, :names=>[:above], :types=>["@", "@"], :retval=>"v"}, {:args=>2, :names=>[:atIndex], :types=>["@", "I"], :retval=>"v"}, {:args=>2, :names=>[:below], :types=>["@", "@"], :retval=>"v"}]
     attach_method :isDoubleSided, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :isGeometryFlipped, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :isHidden, :args=>0, :names=>[], :types=>[], :retval=>"B"
@@ -74,7 +74,7 @@ module Cocoa
     attach_method :removeAnimationForKey, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :removeFromSuperlayer, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :renderInContext, :args=>1, :names=>[], :types=>["^{CGContext=}"], :retval=>"v"
-    attach_method :replaceSublayer, :args=>2, :names=>["with"], :types=>["@", "@"], :retval=>"v"
+    attach_method :replaceSublayer, :args=>2, :names=>[:with], :types=>["@", "@"], :retval=>"v"
     attach_method :resizeSublayersWithOldSize, :args=>1, :names=>[], :types=>["{CGSize=dd}"], :retval=>"v"
     attach_method :resizeWithOldSuperlayerSize, :args=>1, :names=>[], :types=>["{CGSize=dd}"], :retval=>"v"
     attach_method :scrollPoint, :args=>1, :names=>[], :types=>["{CGPoint=dd}"], :retval=>"v"

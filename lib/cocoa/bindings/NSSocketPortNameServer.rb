@@ -3,8 +3,8 @@ require 'cocoa/bindings/NSPortNameServer'
 module Cocoa
   class NSSocketPortNameServer < Cocoa::NSPortNameServer
     attach_method :defaultNameServerPortNumber, :args=>0, :names=>[], :types=>[], :retval=>"S"
-    attach_method :portForName, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>2, :names=>["host"], :types=>["@", "@"], :retval=>"@"}, {:args=>3, :names=>["host", "nameServerPortNumber"], :types=>["@", "@", "S"], :retval=>"@"}]
-    attach_method :registerPort, [{:args=>2, :names=>["name"], :types=>["@", "@"], :retval=>"B"}, {:args=>3, :names=>["name", "nameServerPortNumber"], :types=>["@", "@", "S"], :retval=>"B"}]
+    attach_method :portForName, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>2, :names=>[:host], :types=>["@", "@"], :retval=>"@"}, {:args=>3, :names=>[:host, :nameServerPortNumber], :types=>["@", "@", "S"], :retval=>"@"}]
+    attach_method :registerPort, [{:args=>2, :names=>[:name], :types=>["@", "@"], :retval=>"B"}, {:args=>3, :names=>[:name, :nameServerPortNumber], :types=>["@", "@", "S"], :retval=>"B"}]
     attach_method :removePortForName, :args=>1, :names=>[], :types=>["@"], :retval=>"B"
     attach_method :setDefaultNameServerPortNumber, :args=>1, :names=>[], :types=>["S"], :retval=>"v"
     attach_singular_method :sharedInstance, :args=>0, :names=>[], :types=>[], :retval=>"@"

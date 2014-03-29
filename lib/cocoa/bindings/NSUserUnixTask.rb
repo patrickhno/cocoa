@@ -2,7 +2,7 @@
 require 'cocoa/bindings/NSUserScriptTask'
 module Cocoa
   class NSUserUnixTask < Cocoa::NSUserScriptTask
-    attach_method :executeWithArguments, :args=>2, :names=>["completionHandler"], :types=>["@", "@?"], :retval=>"v"
+    attach_method :executeWithArguments, :args=>2, :names=>[:completionHandler], :types=>["@", "@?"], :retval=>"v"
     attach_method :setStandardError, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setStandardInput, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setStandardOutput, :args=>1, :names=>[], :types=>["@"], :retval=>"v"

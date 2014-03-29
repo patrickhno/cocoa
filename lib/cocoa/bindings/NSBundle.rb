@@ -4,10 +4,10 @@ module Cocoa
   class NSBundle < Cocoa::NSObject
     attach_method :URLForAuxiliaryExecutable, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :URLForImageResource, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_method :URLForResource, [{:args=>2, :names=>["withExtension"], :types=>["@", "@"], :retval=>"@"}, {:args=>3, :names=>["withExtension", "subdirectory"], :types=>["@", "@", "@"], :retval=>"@"}, {:args=>4, :names=>["withExtension", "subdirectory", "localization"], :types=>["@", "@", "@", "@"], :retval=>"@"}]
-    attach_singular_method :URLForResource, :args=>4, :names=>["withExtension", "subdirectory", "inBundleWithURL"], :types=>["@", "@", "@", "@"], :retval=>"@"
-    attach_method :URLsForResourcesWithExtension, [{:args=>2, :names=>["subdirectory"], :types=>["@", "@"], :retval=>"@"}, {:args=>3, :names=>["subdirectory", "localization"], :types=>["@", "@", "@"], :retval=>"@"}]
-    attach_singular_method :URLsForResourcesWithExtension, :args=>3, :names=>["subdirectory", "inBundleWithURL"], :types=>["@", "@", "@"], :retval=>"@"
+    attach_method :URLForResource, [{:args=>2, :names=>[:withExtension], :types=>["@", "@"], :retval=>"@"}, {:args=>3, :names=>[:withExtension, :subdirectory], :types=>["@", "@", "@"], :retval=>"@"}, {:args=>4, :names=>[:withExtension, :subdirectory, :localization], :types=>["@", "@", "@", "@"], :retval=>"@"}]
+    attach_singular_method :URLForResource, :args=>4, :names=>[:withExtension, :subdirectory, :inBundleWithURL], :types=>["@", "@", "@", "@"], :retval=>"@"
+    attach_method :URLsForResourcesWithExtension, [{:args=>2, :names=>[:subdirectory], :types=>["@", "@"], :retval=>"@"}, {:args=>3, :names=>[:subdirectory, :localization], :types=>["@", "@", "@"], :retval=>"@"}]
+    attach_singular_method :URLsForResourcesWithExtension, :args=>3, :names=>[:subdirectory, :inBundleWithURL], :types=>["@", "@", "@"], :retval=>"@"
     attach_singular_method :allBundles, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_singular_method :allFrameworks, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :appStoreReceiptURL, :args=>0, :names=>[], :types=>[], :retval=>"@"
@@ -33,24 +33,24 @@ module Cocoa
     attach_method :isLoaded, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :load, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :loadAndReturnError, :args=>1, :names=>[], :types=>["^@"], :retval=>"B"
-    attach_singular_method :loadNibFile, :args=>3, :names=>["externalNameTable", "withZone"], :types=>["@", "@", "^{_NSZone=}"], :retval=>"B"
-    attach_method :loadNibFile, :args=>3, :names=>["externalNameTable", "withZone"], :types=>["@", "@", "^{_NSZone=}"], :retval=>"B"
-    attach_singular_method :loadNibNamed, :args=>2, :names=>["owner"], :types=>["@", "@"], :retval=>"B"
-    attach_method :loadNibNamed, :args=>3, :names=>["owner", "topLevelObjects"], :types=>["@", "@", "^@"], :retval=>"B"
+    attach_singular_method :loadNibFile, :args=>3, :names=>[:externalNameTable, :withZone], :types=>["@", "@", "^{_NSZone=}"], :retval=>"B"
+    attach_method :loadNibFile, :args=>3, :names=>[:externalNameTable, :withZone], :types=>["@", "@", "^{_NSZone=}"], :retval=>"B"
+    attach_singular_method :loadNibNamed, :args=>2, :names=>[:owner], :types=>["@", "@"], :retval=>"B"
+    attach_method :loadNibNamed, :args=>3, :names=>[:owner, :topLevelObjects], :types=>["@", "@", "^@"], :retval=>"B"
     attach_method :localizations, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :localizedInfoDictionary, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :localizedStringForKey, :args=>3, :names=>["value", "table"], :types=>["@", "@", "@"], :retval=>"@"
+    attach_method :localizedStringForKey, :args=>3, :names=>[:value, :table], :types=>["@", "@", "@"], :retval=>"@"
     attach_singular_method :mainBundle, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :objectForInfoDictionaryKey, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :pathForAuxiliaryExecutable, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :pathForImageResource, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_method :pathForResource, [{:args=>2, :names=>["ofType"], :types=>["@", "@"], :retval=>"@"}, {:args=>3, :names=>["ofType", "inDirectory"], :types=>["@", "@", "@"], :retval=>"@"}, {:args=>4, :names=>["ofType", "inDirectory", "forLocalization"], :types=>["@", "@", "@", "@"], :retval=>"@"}]
-    attach_singular_method :pathForResource, :args=>3, :names=>["ofType", "inDirectory"], :types=>["@", "@", "@"], :retval=>"@"
+    attach_method :pathForResource, [{:args=>2, :names=>[:ofType], :types=>["@", "@"], :retval=>"@"}, {:args=>3, :names=>[:ofType, :inDirectory], :types=>["@", "@", "@"], :retval=>"@"}, {:args=>4, :names=>[:ofType, :inDirectory, :forLocalization], :types=>["@", "@", "@", "@"], :retval=>"@"}]
+    attach_singular_method :pathForResource, :args=>3, :names=>[:ofType, :inDirectory], :types=>["@", "@", "@"], :retval=>"@"
     attach_method :pathForSoundResource, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_singular_method :pathsForResourcesOfType, :args=>2, :names=>["inDirectory"], :types=>["@", "@"], :retval=>"@"
-    attach_method :pathsForResourcesOfType, [{:args=>2, :names=>["inDirectory"], :types=>["@", "@"], :retval=>"@"}, {:args=>3, :names=>["inDirectory", "forLocalization"], :types=>["@", "@", "@"], :retval=>"@"}]
+    attach_singular_method :pathsForResourcesOfType, :args=>2, :names=>[:inDirectory], :types=>["@", "@"], :retval=>"@"
+    attach_method :pathsForResourcesOfType, [{:args=>2, :names=>[:inDirectory], :types=>["@", "@"], :retval=>"@"}, {:args=>3, :names=>[:inDirectory, :forLocalization], :types=>["@", "@", "@"], :retval=>"@"}]
     attach_method :preferredLocalizations, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_singular_method :preferredLocalizationsFromArray, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>2, :names=>["forPreferences"], :types=>["@", "@"], :retval=>"@"}]
+    attach_singular_method :preferredLocalizationsFromArray, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>2, :names=>[:forPreferences], :types=>["@", "@"], :retval=>"@"}]
     attach_method :preflightAndReturnError, :args=>1, :names=>[], :types=>["^@"], :retval=>"B"
     attach_method :principalClass, :args=>0, :names=>[], :types=>[], :retval=>"#"
     attach_method :privateFrameworksPath, :args=>0, :names=>[], :types=>[], :retval=>"@"

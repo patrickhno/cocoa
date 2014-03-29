@@ -7,7 +7,7 @@ module Cocoa
     attach_method :XMLString, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :XMLStringWithOptions, :args=>1, :names=>[], :types=>["Q"], :retval=>"@"
     attach_method :XPath, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_singular_method :attributeWithName, [{:args=>3, :names=>["URI", "stringValue"], :types=>["@", "@", "@"], :retval=>"@"}, {:args=>2, :names=>["stringValue"], :types=>["@", "@"], :retval=>"@"}]
+    attach_singular_method :attributeWithName, [{:args=>3, :names=>[:URI, :stringValue], :types=>["@", "@", "@"], :retval=>"@"}, {:args=>2, :names=>[:stringValue], :types=>["@", "@"], :retval=>"@"}]
     attach_method :canonicalXMLStringPreservingComments, :args=>1, :names=>[], :types=>["B"], :retval=>"@"
     attach_method :childAtIndex, :args=>1, :names=>[], :types=>["Q"], :retval=>"@"
     attach_method :childCount, :args=>0, :names=>[], :types=>[], :retval=>"Q"
@@ -17,31 +17,31 @@ module Cocoa
     attach_method :detach, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_singular_method :document, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_singular_method :documentWithRootElement, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_singular_method :elementWithName, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>2, :names=>["URI"], :types=>["@", "@"], :retval=>"@"}, {:args=>3, :names=>["children", "attributes"], :types=>["@", "@", "@"], :retval=>"@"}, {:args=>2, :names=>["stringValue"], :types=>["@", "@"], :retval=>"@"}]
+    attach_singular_method :elementWithName, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>2, :names=>[:URI], :types=>["@", "@"], :retval=>"@"}, {:args=>3, :names=>[:children, :attributes], :types=>["@", "@", "@"], :retval=>"@"}, {:args=>2, :names=>[:stringValue], :types=>["@", "@"], :retval=>"@"}]
     attach_method :index, :args=>0, :names=>[], :types=>[], :retval=>"Q"
-    attach_method :initWithKind, [{:args=>1, :names=>[], :types=>["Q"], :retval=>"@"}, {:args=>2, :names=>["options"], :types=>["Q", "Q"], :retval=>"@"}]
+    attach_method :initWithKind, [{:args=>1, :names=>[], :types=>["Q"], :retval=>"@"}, {:args=>2, :names=>[:options], :types=>["Q", "Q"], :retval=>"@"}]
     attach_method :kind, :args=>0, :names=>[], :types=>[], :retval=>"Q"
     attach_method :level, :args=>0, :names=>[], :types=>[], :retval=>"Q"
     attach_method :localName, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_singular_method :localNameForName, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :name, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_singular_method :namespaceWithName, :args=>2, :names=>["stringValue"], :types=>["@", "@"], :retval=>"@"
+    attach_singular_method :namespaceWithName, :args=>2, :names=>[:stringValue], :types=>["@", "@"], :retval=>"@"
     attach_method :nextNode, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :nextSibling, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :nodesForXPath, :args=>2, :names=>["error"], :types=>["@", "^@"], :retval=>"@"
+    attach_method :nodesForXPath, :args=>2, :names=>[:error], :types=>["@", "^@"], :retval=>"@"
     attach_method :objectValue, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :objectsForXQuery, [{:args=>3, :names=>["constants", "error"], :types=>["@", "@", "^@"], :retval=>"@"}, {:args=>2, :names=>["error"], :types=>["@", "^@"], :retval=>"@"}]
+    attach_method :objectsForXQuery, [{:args=>3, :names=>[:constants, :error], :types=>["@", "@", "^@"], :retval=>"@"}, {:args=>2, :names=>[:error], :types=>["@", "^@"], :retval=>"@"}]
     attach_method :parent, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_singular_method :predefinedNamespaceForPrefix, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :prefix, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_singular_method :prefixForName, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :previousNode, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :previousSibling, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_singular_method :processingInstructionWithName, :args=>2, :names=>["stringValue"], :types=>["@", "@"], :retval=>"@"
+    attach_singular_method :processingInstructionWithName, :args=>2, :names=>[:stringValue], :types=>["@", "@"], :retval=>"@"
     attach_method :rootDocument, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :setName, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setObjectValue, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
-    attach_method :setStringValue, [{:args=>1, :names=>[], :types=>["@"], :retval=>"v"}, {:args=>2, :names=>["resolvingEntities"], :types=>["@", "B"], :retval=>"v"}]
+    attach_method :setStringValue, [{:args=>1, :names=>[], :types=>["@"], :retval=>"v"}, {:args=>2, :names=>[:resolvingEntities], :types=>["@", "B"], :retval=>"v"}]
     attach_method :setURI, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :stringValue, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_singular_method :textWithStringValue, :args=>1, :names=>[], :types=>["@"], :retval=>"@"

@@ -11,10 +11,10 @@ module Cocoa
     attach_method :allHTTPHeaderFields, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :allowsCellularAccess, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :cachePolicy, :args=>0, :names=>[], :types=>[], :retval=>"Q"
-    attach_method :initWithURL, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>3, :names=>["cachePolicy", "timeoutInterval"], :types=>["@", "Q", "d"], :retval=>"@"}]
+    attach_method :initWithURL, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>3, :names=>[:cachePolicy, :timeoutInterval], :types=>["@", "Q", "d"], :retval=>"@"}]
     attach_method :mainDocumentURL, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :networkServiceType, :args=>0, :names=>[], :types=>[], :retval=>"Q"
-    attach_singular_method :requestWithURL, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>3, :names=>["cachePolicy", "timeoutInterval"], :types=>["@", "Q", "d"], :retval=>"@"}]
+    attach_singular_method :requestWithURL, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>3, :names=>[:cachePolicy, :timeoutInterval], :types=>["@", "Q", "d"], :retval=>"@"}]
     attach_method :timeoutInterval, :args=>0, :names=>[], :types=>[], :retval=>"d"
     attach_method :valueForHTTPHeaderField, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
   end

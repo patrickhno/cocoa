@@ -2,8 +2,8 @@
 require 'cocoa/bindings/NSObject'
 module Cocoa
   class CIImage < Cocoa::NSObject
-    attach_method :drawAtPoint, :args=>4, :names=>["fromRect", "operation", "fraction"], :types=>["{CGPoint=dd}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "Q", "d"], :retval=>"v"
-    attach_method :drawInRect, :args=>4, :names=>["fromRect", "operation", "fraction"], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "Q", "d"], :retval=>"v"
+    attach_method :drawAtPoint, :args=>4, :names=>[:fromRect, :operation, :fraction], :types=>["{CGPoint=dd}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "Q", "d"], :retval=>"v"
+    attach_method :drawInRect, :args=>4, :names=>[:fromRect, :operation, :fraction], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "Q", "d"], :retval=>"v"
     attach_method :initWithBitmapImageRep, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
   end
 end

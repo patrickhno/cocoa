@@ -2,9 +2,9 @@
 require 'cocoa/bindings/NSProxy'
 module Cocoa
   class NSProtocolChecker < Cocoa::NSProxy
-    attach_method :initWithTarget, :args=>2, :names=>["protocol"], :types=>["@", "@"], :retval=>"@"
+    attach_method :initWithTarget, :args=>2, :names=>[:protocol], :types=>["@", "@"], :retval=>"@"
     attach_method :protocol, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_singular_method :protocolCheckerWithTarget, :args=>2, :names=>["protocol"], :types=>["@", "@"], :retval=>"@"
+    attach_singular_method :protocolCheckerWithTarget, :args=>2, :names=>[:protocol], :types=>["@", "@"], :retval=>"@"
     attach_method :target, :args=>0, :names=>[], :types=>[], :retval=>"@"
   end
 end

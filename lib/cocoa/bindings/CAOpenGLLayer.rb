@@ -2,10 +2,10 @@
 require 'cocoa/bindings/CALayer'
 module Cocoa
   class CAOpenGLLayer < Cocoa::CALayer
-    attach_method :canDrawInCGLContext, :args=>4, :names=>["pixelFormat", "forLayerTime", "displayTime"], :types=>["^{_CGLContextObject=}", "^{_CGLPixelFormatObject=}", "d", "^{_CVTimeStamp=IiqQdq{CVSMPTETime=ssIIIssss}QQ}"], :retval=>"B"
+    attach_method :canDrawInCGLContext, :args=>4, :names=>[:pixelFormat, :forLayerTime, :displayTime], :types=>["^{_CGLContextObject=}", "^{_CGLPixelFormatObject=}", "d", "^{_CVTimeStamp=IiqQdq{CVSMPTETime=ssIIIssss}QQ}"], :retval=>"B"
     attach_method :copyCGLContextForPixelFormat, :args=>1, :names=>[], :types=>["^{_CGLPixelFormatObject=}"], :retval=>"^{_CGLContextObject=}"
     attach_method :copyCGLPixelFormatForDisplayMask, :args=>1, :names=>[], :types=>["I"], :retval=>"^{_CGLPixelFormatObject=}"
-    attach_method :drawInCGLContext, :args=>4, :names=>["pixelFormat", "forLayerTime", "displayTime"], :types=>["^{_CGLContextObject=}", "^{_CGLPixelFormatObject=}", "d", "^{_CVTimeStamp=IiqQdq{CVSMPTETime=ssIIIssss}QQ}"], :retval=>"v"
+    attach_method :drawInCGLContext, :args=>4, :names=>[:pixelFormat, :forLayerTime, :displayTime], :types=>["^{_CGLContextObject=}", "^{_CGLPixelFormatObject=}", "d", "^{_CVTimeStamp=IiqQdq{CVSMPTETime=ssIIIssss}QQ}"], :retval=>"v"
     attach_method :isAsynchronous, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :releaseCGLContext, :args=>1, :names=>[], :types=>["^{_CGLContextObject=}"], :retval=>"v"
     attach_method :releaseCGLPixelFormat, :args=>1, :names=>[], :types=>["^{_CGLPixelFormatObject=}"], :retval=>"v"

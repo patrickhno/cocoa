@@ -2,7 +2,7 @@
 require 'cocoa/bindings/NSPortNameServer'
 module Cocoa
   class NSMessagePortNameServer < Cocoa::NSPortNameServer
-    attach_method :portForName, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>2, :names=>["host"], :types=>["@", "@"], :retval=>"@"}]
+    attach_method :portForName, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>2, :names=>[:host], :types=>["@", "@"], :retval=>"@"}]
     attach_singular_method :sharedInstance, :args=>0, :names=>[], :types=>[], :retval=>"@"
   end
 end

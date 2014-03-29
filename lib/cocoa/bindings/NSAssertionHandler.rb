@@ -3,7 +3,7 @@ require 'cocoa/bindings/NSObject'
 module Cocoa
   class NSAssertionHandler < Cocoa::NSObject
     attach_singular_method :currentHandler, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :handleFailureInFunction, :args=>4, :names=>["file", "lineNumber", "description"], :types=>["@", "@", "q", "@"], :retval=>"v", :variadic=>true
-    attach_method :handleFailureInMethod, :args=>5, :names=>["object", "file", "lineNumber", "description"], :types=>[":", "@", "@", "q", "@"], :retval=>"v", :variadic=>true
+    attach_method :handleFailureInFunction, :args=>4, :names=>[:file, :lineNumber, :description], :types=>["@", "@", "q", "@"], :retval=>"v", :variadic=>true
+    attach_method :handleFailureInMethod, :args=>5, :names=>[:object, :file, :lineNumber, :description], :types=>[":", "@", "@", "q", "@"], :retval=>"v", :variadic=>true
   end
 end

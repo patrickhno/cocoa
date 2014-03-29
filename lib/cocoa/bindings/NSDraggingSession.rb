@@ -8,7 +8,7 @@ module Cocoa
     attach_method :draggingLocation, :args=>0, :names=>[], :types=>[], :retval=>"{CGPoint=dd}"
     attach_method :draggingPasteboard, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :draggingSequenceNumber, :args=>0, :names=>[], :types=>[], :retval=>"q"
-    attach_method :enumerateDraggingItemsWithOptions, :args=>5, :names=>["forView", "classes", "searchOptions", "usingBlock"], :types=>["Q", "@", "@", "@", "@?"], :retval=>"v"
+    attach_method :enumerateDraggingItemsWithOptions, :args=>5, :names=>[:forView, :classes, :searchOptions, :usingBlock], :types=>["Q", "@", "@", "@", "@?"], :retval=>"v"
     attach_method :setAnimatesToStartingPositionsOnCancelOrFail, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
     attach_method :setDraggingFormation, :args=>1, :names=>[], :types=>["q"], :retval=>"v"
     attach_method :setDraggingLeaderIndex, :args=>1, :names=>[], :types=>["q"], :retval=>"v"

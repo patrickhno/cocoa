@@ -9,7 +9,7 @@ module Cocoa
     attach_method :exportedInterface, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :exportedObject, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :initWithListenerEndpoint, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_method :initWithMachServiceName, :args=>2, :names=>["options"], :types=>["@", "Q"], :retval=>"@"
+    attach_method :initWithMachServiceName, :args=>2, :names=>[:options], :types=>["@", "Q"], :retval=>"@"
     attach_method :initWithServiceName, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :interruptionHandler, :args=>0, :names=>[], :types=>[], :retval=>"@?"
     attach_method :invalidate, :args=>0, :names=>[], :types=>[], :retval=>"v"

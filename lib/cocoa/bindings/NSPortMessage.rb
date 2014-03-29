@@ -3,7 +3,7 @@ require 'cocoa/bindings/NSObject'
 module Cocoa
   class NSPortMessage < Cocoa::NSObject
     attach_method :components, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :initWithSendPort, :args=>3, :names=>["receivePort", "components"], :types=>["@", "@", "@"], :retval=>"@"
+    attach_method :initWithSendPort, :args=>3, :names=>[:receivePort, :components], :types=>["@", "@", "@"], :retval=>"@"
     attach_method :msgid, :args=>0, :names=>[], :types=>[], :retval=>"I"
     attach_method :receivePort, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :sendBeforeDate, :args=>1, :names=>[], :types=>["@"], :retval=>"B"

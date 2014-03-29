@@ -10,7 +10,7 @@ module Cocoa
     attach_method :removeObjectForKey, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :removeObjectsForKeys, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setDictionary, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
-    attach_method :setObject, [{:args=>2, :names=>["forKey"], :types=>["@", "@"], :retval=>"v"}, {:args=>2, :names=>["forKeyedSubscript"], :types=>["@", "@"], :retval=>"v"}]
-    attach_method :setValue, :args=>2, :names=>["forKey"], :types=>["@", "@"], :retval=>"v"
+    attach_method :setObject, [{:args=>2, :names=>[:forKey], :types=>["@", "@"], :retval=>"v"}, {:args=>2, :names=>[:forKeyedSubscript], :types=>["@", "@"], :retval=>"v"}]
+    attach_method :setValue, :args=>2, :names=>[:forKey], :types=>["@", "@"], :retval=>"v"
   end
 end

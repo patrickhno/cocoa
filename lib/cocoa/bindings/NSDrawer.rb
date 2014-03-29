@@ -7,7 +7,7 @@ module Cocoa
     attach_method :contentView, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :delegate, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :edge, :args=>0, :names=>[], :types=>[], :retval=>"Q"
-    attach_method :initWithContentSize, :args=>2, :names=>["preferredEdge"], :types=>["{CGSize=dd}", "Q"], :retval=>"@"
+    attach_method :initWithContentSize, :args=>2, :names=>[:preferredEdge], :types=>["{CGSize=dd}", "Q"], :retval=>"@"
     attach_method :leadingOffset, :args=>0, :names=>[], :types=>[], :retval=>"d"
     attach_method :maxContentSize, :args=>0, :names=>[], :types=>[], :retval=>"{CGSize=dd}"
     attach_method :minContentSize, :args=>0, :names=>[], :types=>[], :retval=>"{CGSize=dd}"

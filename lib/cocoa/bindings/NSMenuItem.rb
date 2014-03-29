@@ -7,7 +7,7 @@ module Cocoa
     attach_method :hasSubmenu, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :image, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :indentationLevel, :args=>0, :names=>[], :types=>[], :retval=>"q"
-    attach_method :initWithTitle, :args=>3, :names=>["action", "keyEquivalent"], :types=>["@", ":", "@"], :retval=>"@"
+    attach_method :initWithTitle, :args=>3, :names=>[:action, :keyEquivalent], :types=>["@", ":", "@"], :retval=>"@"
     attach_method :isAlternate, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :isEnabled, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :isHidden, :args=>0, :names=>[], :types=>[], :retval=>"B"

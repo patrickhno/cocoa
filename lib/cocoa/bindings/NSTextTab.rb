@@ -3,8 +3,8 @@ require 'cocoa/bindings/NSObject'
 module Cocoa
   class NSTextTab < Cocoa::NSObject
     attach_method :alignment, :args=>0, :names=>[], :types=>[], :retval=>"Q"
-    attach_method :initWithTextAlignment, :args=>3, :names=>["location", "options"], :types=>["Q", "d", "@"], :retval=>"@"
-    attach_method :initWithType, :args=>2, :names=>["location"], :types=>["Q", "d"], :retval=>"@"
+    attach_method :initWithTextAlignment, :args=>3, :names=>[:location, :options], :types=>["Q", "d", "@"], :retval=>"@"
+    attach_method :initWithType, :args=>2, :names=>[:location], :types=>["Q", "d"], :retval=>"@"
     attach_method :location, :args=>0, :names=>[], :types=>[], :retval=>"d"
     attach_method :options, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :tabStopType, :args=>0, :names=>[], :types=>[], :retval=>"Q"

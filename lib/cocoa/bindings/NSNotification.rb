@@ -3,7 +3,7 @@ require 'cocoa/bindings/NSObject'
 module Cocoa
   class NSNotification < Cocoa::NSObject
     attach_method :name, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_singular_method :notificationWithName, [{:args=>2, :names=>["object"], :types=>["@", "@"], :retval=>"@"}, {:args=>3, :names=>["object", "userInfo"], :types=>["@", "@", "@"], :retval=>"@"}]
+    attach_singular_method :notificationWithName, [{:args=>2, :names=>[:object], :types=>["@", "@"], :retval=>"@"}, {:args=>3, :names=>[:object, :userInfo], :types=>["@", "@", "@"], :retval=>"@"}]
     attach_method :object, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :userInfo, :args=>0, :names=>[], :types=>[], :retval=>"@"
   end

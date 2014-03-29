@@ -5,6 +5,6 @@ module Cocoa
     attach_method :delegate, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :initWithItems, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :setDelegate, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
-    attach_method :showRelativeToRect, :args=>3, :names=>["ofView", "preferredEdge"], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "Q"], :retval=>"v"
+    attach_method :showRelativeToRect, :args=>3, :names=>[:ofView, :preferredEdge], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "Q"], :retval=>"v"
   end
 end

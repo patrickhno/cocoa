@@ -16,7 +16,7 @@ module Cocoa
     attach_singular_method :hide, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :hotSpot, :args=>0, :names=>[], :types=>[], :retval=>"{CGPoint=dd}"
     attach_method :image, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :initWithImage, [{:args=>4, :names=>["foregroundColorHint", "backgroundColorHint", "hotSpot"], :types=>["@", "@", "@", "{CGPoint=dd}"], :retval=>"@"}, {:args=>2, :names=>["hotSpot"], :types=>["@", "{CGPoint=dd}"], :retval=>"@"}]
+    attach_method :initWithImage, [{:args=>4, :names=>[:foregroundColorHint, :backgroundColorHint, :hotSpot], :types=>["@", "@", "@", "{CGPoint=dd}"], :retval=>"@"}, {:args=>2, :names=>[:hotSpot], :types=>["@", "{CGPoint=dd}"], :retval=>"@"}]
     attach_method :isSetOnMouseEntered, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :isSetOnMouseExited, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :mouseEntered, :args=>1, :names=>[], :types=>["@"], :retval=>"v"

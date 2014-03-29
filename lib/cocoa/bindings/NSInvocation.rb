@@ -3,7 +3,7 @@ require 'cocoa/bindings/NSObject'
 module Cocoa
   class NSInvocation < Cocoa::NSObject
     attach_method :argumentsRetained, :args=>0, :names=>[], :types=>[], :retval=>"B"
-    attach_method :getArgument, :args=>2, :names=>["atIndex"], :types=>["^v", "q"], :retval=>"v"
+    attach_method :getArgument, :args=>2, :names=>[:atIndex], :types=>["^v", "q"], :retval=>"v"
     attach_method :getReturnValue, :args=>1, :names=>[], :types=>["^v"], :retval=>"v"
     attach_singular_method :invocationWithMethodSignature, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :invoke, :args=>0, :names=>[], :types=>[], :retval=>"v"
@@ -11,7 +11,7 @@ module Cocoa
     attach_method :methodSignature, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :retainArguments, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :selector, :args=>0, :names=>[], :types=>[], :retval=>":"
-    attach_method :setArgument, :args=>2, :names=>["atIndex"], :types=>["^v", "q"], :retval=>"v"
+    attach_method :setArgument, :args=>2, :names=>[:atIndex], :types=>["^v", "q"], :retval=>"v"
     attach_method :setReturnValue, :args=>1, :names=>[], :types=>["^v"], :retval=>"v"
     attach_method :setSelector, :args=>1, :names=>[], :types=>[":"], :retval=>"v"
     attach_method :setTarget, :args=>1, :names=>[], :types=>["@"], :retval=>"v"

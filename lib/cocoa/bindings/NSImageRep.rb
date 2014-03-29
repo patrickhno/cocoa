@@ -2,14 +2,14 @@
 require 'cocoa/bindings/NSObject'
 module Cocoa
   class NSImageRep < Cocoa::NSObject
-    attach_method :CGImageForProposedRect, :args=>3, :names=>["context", "hints"], :types=>["^{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "@"], :retval=>"^{CGImage=}"
+    attach_method :CGImageForProposedRect, :args=>3, :names=>[:context, :hints], :types=>["^{CGRect={CGPoint=dd}{CGSize=dd}}", "@", "@"], :retval=>"^{CGImage=}"
     attach_method :bitsPerSample, :args=>0, :names=>[], :types=>[], :retval=>"q"
     attach_singular_method :canInitWithData, :args=>1, :names=>[], :types=>["@"], :retval=>"B"
     attach_singular_method :canInitWithPasteboard, :args=>1, :names=>[], :types=>["@"], :retval=>"B"
     attach_method :colorSpaceName, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :draw, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :drawAtPoint, :args=>1, :names=>[], :types=>["{CGPoint=dd}"], :retval=>"B"
-    attach_method :drawInRect, [{:args=>1, :names=>[], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}"], :retval=>"B"}, {:args=>6, :names=>["fromRect", "operation", "fraction", "respectFlipped", "hints"], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "Q", "d", "B", "@"], :retval=>"B"}]
+    attach_method :drawInRect, [{:args=>1, :names=>[], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}"], :retval=>"B"}, {:args=>6, :names=>[:fromRect, :operation, :fraction, :respectFlipped, :hints], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "Q", "d", "B", "@"], :retval=>"B"}]
     attach_method :hasAlpha, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_singular_method :imageFileTypes, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_singular_method :imagePasteboardTypes, :args=>0, :names=>[], :types=>[], :retval=>"@"

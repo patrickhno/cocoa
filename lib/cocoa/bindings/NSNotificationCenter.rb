@@ -2,11 +2,11 @@
 require 'cocoa/bindings/NSObject'
 module Cocoa
   class NSNotificationCenter < Cocoa::NSObject
-    attach_method :addObserver, :args=>4, :names=>["selector", "name", "object"], :types=>["@", ":", "@", "@"], :retval=>"v"
-    attach_method :addObserverForName, :args=>4, :names=>["object", "queue", "usingBlock"], :types=>["@", "@", "@", "@?"], :retval=>"@"
+    attach_method :addObserver, :args=>4, :names=>[:selector, :name, :object], :types=>["@", ":", "@", "@"], :retval=>"v"
+    attach_method :addObserverForName, :args=>4, :names=>[:object, :queue, :usingBlock], :types=>["@", "@", "@", "@?"], :retval=>"@"
     attach_singular_method :defaultCenter, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :postNotification, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
-    attach_method :postNotificationName, [{:args=>2, :names=>["object"], :types=>["@", "@"], :retval=>"v"}, {:args=>3, :names=>["object", "userInfo"], :types=>["@", "@", "@"], :retval=>"v"}]
-    attach_method :removeObserver, [{:args=>1, :names=>[], :types=>["@"], :retval=>"v"}, {:args=>3, :names=>["name", "object"], :types=>["@", "@", "@"], :retval=>"v"}]
+    attach_method :postNotificationName, [{:args=>2, :names=>[:object], :types=>["@", "@"], :retval=>"v"}, {:args=>3, :names=>[:object, :userInfo], :types=>["@", "@", "@"], :retval=>"v"}]
+    attach_method :removeObserver, [{:args=>1, :names=>[], :types=>["@"], :retval=>"v"}, {:args=>3, :names=>[:name, :object], :types=>["@", "@", "@"], :retval=>"v"}]
   end
 end

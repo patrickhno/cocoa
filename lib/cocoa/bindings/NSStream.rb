@@ -4,13 +4,13 @@ module Cocoa
   class NSStream < Cocoa::NSObject
     attach_method :close, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :delegate, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_singular_method :getStreamsToHost, :args=>4, :names=>["port", "inputStream", "outputStream"], :types=>["@", "q", "^@", "^@"], :retval=>"v"
+    attach_singular_method :getStreamsToHost, :args=>4, :names=>[:port, :inputStream, :outputStream], :types=>["@", "q", "^@", "^@"], :retval=>"v"
     attach_method :open, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :propertyForKey, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_method :removeFromRunLoop, :args=>2, :names=>["forMode"], :types=>["@", "@"], :retval=>"v"
-    attach_method :scheduleInRunLoop, :args=>2, :names=>["forMode"], :types=>["@", "@"], :retval=>"v"
+    attach_method :removeFromRunLoop, :args=>2, :names=>[:forMode], :types=>["@", "@"], :retval=>"v"
+    attach_method :scheduleInRunLoop, :args=>2, :names=>[:forMode], :types=>["@", "@"], :retval=>"v"
     attach_method :setDelegate, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
-    attach_method :setProperty, :args=>2, :names=>["forKey"], :types=>["@", "@"], :retval=>"B"
+    attach_method :setProperty, :args=>2, :names=>[:forKey], :types=>["@", "@"], :retval=>"B"
     attach_method :streamError, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :streamStatus, :args=>0, :names=>[], :types=>[], :retval=>"Q"
   end

@@ -10,7 +10,7 @@ module Cocoa
     attach_method :mutableChildNodes, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :parentNode, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :representedObject, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :sortWithSortDescriptors, :args=>2, :names=>["recursively"], :types=>["@", "B"], :retval=>"v"
+    attach_method :sortWithSortDescriptors, :args=>2, :names=>[:recursively], :types=>["@", "B"], :retval=>"v"
     attach_singular_method :treeNodeWithRepresentedObject, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
   end
 end

@@ -2,12 +2,12 @@
 require 'cocoa/bindings/NSObject'
 module Cocoa
   class NSXPCInterface < Cocoa::NSObject
-    attach_method :classesForSelector, :args=>3, :names=>["argumentIndex", "ofReply"], :types=>[":", "Q", "B"], :retval=>"@"
-    attach_method :interfaceForSelector, :args=>3, :names=>["argumentIndex", "ofReply"], :types=>[":", "Q", "B"], :retval=>"@"
+    attach_method :classesForSelector, :args=>3, :names=>[:argumentIndex, :ofReply], :types=>[":", "Q", "B"], :retval=>"@"
+    attach_method :interfaceForSelector, :args=>3, :names=>[:argumentIndex, :ofReply], :types=>[":", "Q", "B"], :retval=>"@"
     attach_singular_method :interfaceWithProtocol, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :protocol, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :setClasses, :args=>4, :names=>["forSelector", "argumentIndex", "ofReply"], :types=>["@", ":", "Q", "B"], :retval=>"v"
-    attach_method :setInterface, :args=>4, :names=>["forSelector", "argumentIndex", "ofReply"], :types=>["@", ":", "Q", "B"], :retval=>"v"
+    attach_method :setClasses, :args=>4, :names=>[:forSelector, :argumentIndex, :ofReply], :types=>["@", ":", "Q", "B"], :retval=>"v"
+    attach_method :setInterface, :args=>4, :names=>[:forSelector, :argumentIndex, :ofReply], :types=>["@", ":", "Q", "B"], :retval=>"v"
     attach_method :setProtocol, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
   end
 end

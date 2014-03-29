@@ -8,7 +8,7 @@ module Cocoa
     attach_singular_method :currentContext, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :duration, :args=>0, :names=>[], :types=>[], :retval=>"d"
     attach_singular_method :endGrouping, :args=>0, :names=>[], :types=>[], :retval=>"v"
-    attach_singular_method :runAnimationGroup, :args=>2, :names=>["completionHandler"], :types=>["@?", "@?"], :retval=>"v"
+    attach_singular_method :runAnimationGroup, :args=>2, :names=>[:completionHandler], :types=>["@?", "@?"], :retval=>"v"
     attach_method :setAllowsImplicitAnimation, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
     attach_method :setCompletionHandler, :args=>1, :names=>[], :types=>["@?"], :retval=>"v"
     attach_method :setDuration, :args=>1, :names=>[], :types=>["d"], :retval=>"v"

@@ -4,8 +4,8 @@ module Cocoa
   class NSFileWrapper < Cocoa::NSObject
     attach_method :addFileWithPath, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :addFileWrapper, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_method :addRegularFileWithContents, :args=>2, :names=>["preferredFilename"], :types=>["@", "@"], :retval=>"@"
-    attach_method :addSymbolicLinkWithDestination, :args=>2, :names=>["preferredFilename"], :types=>["@", "@"], :retval=>"@"
+    attach_method :addRegularFileWithContents, :args=>2, :names=>[:preferredFilename], :types=>["@", "@"], :retval=>"@"
+    attach_method :addSymbolicLinkWithDestination, :args=>2, :names=>[:preferredFilename], :types=>["@", "@"], :retval=>"@"
     attach_method :fileAttributes, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :fileWrappers, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :filename, :args=>0, :names=>[], :types=>[], :retval=>"@"
@@ -16,7 +16,7 @@ module Cocoa
     attach_method :initSymbolicLinkWithDestinationURL, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :initWithPath, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :initWithSerializedRepresentation, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_method :initWithURL, :args=>3, :names=>["options", "error"], :types=>["@", "Q", "^@"], :retval=>"@"
+    attach_method :initWithURL, :args=>3, :names=>[:options, :error], :types=>["@", "Q", "^@"], :retval=>"@"
     attach_method :isDirectory, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :isRegularFile, :args=>0, :names=>[], :types=>[], :retval=>"B"
     attach_method :isSymbolicLink, :args=>0, :names=>[], :types=>[], :retval=>"B"
@@ -24,7 +24,7 @@ module Cocoa
     attach_method :matchesContentsOfURL, :args=>1, :names=>[], :types=>["@"], :retval=>"B"
     attach_method :needsToBeUpdatedFromPath, :args=>1, :names=>[], :types=>["@"], :retval=>"B"
     attach_method :preferredFilename, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :readFromURL, :args=>3, :names=>["options", "error"], :types=>["@", "Q", "^@"], :retval=>"B"
+    attach_method :readFromURL, :args=>3, :names=>[:options, :error], :types=>["@", "Q", "^@"], :retval=>"B"
     attach_method :regularFileContents, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :removeFileWrapper, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :serializedRepresentation, :args=>0, :names=>[], :types=>[], :retval=>"@"
@@ -35,7 +35,7 @@ module Cocoa
     attach_method :symbolicLinkDestination, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :symbolicLinkDestinationURL, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :updateFromPath, :args=>1, :names=>[], :types=>["@"], :retval=>"B"
-    attach_method :writeToFile, :args=>3, :names=>["atomically", "updateFilenames"], :types=>["@", "B", "B"], :retval=>"B"
-    attach_method :writeToURL, :args=>4, :names=>["options", "originalContentsURL", "error"], :types=>["@", "Q", "@", "^@"], :retval=>"B"
+    attach_method :writeToFile, :args=>3, :names=>[:atomically, :updateFilenames], :types=>["@", "B", "B"], :retval=>"B"
+    attach_method :writeToURL, :args=>4, :names=>[:options, :originalContentsURL, :error], :types=>["@", "Q", "@", "^@"], :retval=>"B"
   end
 end

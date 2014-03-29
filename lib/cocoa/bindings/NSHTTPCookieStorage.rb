@@ -8,7 +8,7 @@ module Cocoa
     attach_method :deleteCookie, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setCookie, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setCookieAcceptPolicy, :args=>1, :names=>[], :types=>["Q"], :retval=>"v"
-    attach_method :setCookies, :args=>3, :names=>["forURL", "mainDocumentURL"], :types=>["@", "@", "@"], :retval=>"v"
+    attach_method :setCookies, :args=>3, :names=>[:forURL, :mainDocumentURL], :types=>["@", "@", "@"], :retval=>"v"
     attach_singular_method :sharedHTTPCookieStorage, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :sortedCookiesUsingDescriptors, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
   end

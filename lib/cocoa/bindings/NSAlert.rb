@@ -6,8 +6,8 @@ module Cocoa
     attach_method :addButtonWithTitle, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :alertStyle, :args=>0, :names=>[], :types=>[], :retval=>"Q"
     attach_singular_method :alertWithError, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_singular_method :alertWithMessageText, :args=>5, :names=>["defaultButton", "alternateButton", "otherButton", "informativeTextWithFormat"], :types=>["@", "@", "@", "@", "@"], :retval=>"@", :variadic=>true
-    attach_method :beginSheetModalForWindow, :args=>4, :names=>["modalDelegate", "didEndSelector", "contextInfo"], :types=>["@", "@", ":", "^v"], :retval=>"v"
+    attach_singular_method :alertWithMessageText, :args=>5, :names=>[:defaultButton, :alternateButton, :otherButton, :informativeTextWithFormat], :types=>["@", "@", "@", "@", "@"], :retval=>"@", :variadic=>true
+    attach_method :beginSheetModalForWindow, :args=>4, :names=>[:modalDelegate, :didEndSelector, :contextInfo], :types=>["@", "@", ":", "^v"], :retval=>"v"
     attach_method :buttons, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :delegate, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :helpAnchor, :args=>0, :names=>[], :types=>[], :retval=>"@"

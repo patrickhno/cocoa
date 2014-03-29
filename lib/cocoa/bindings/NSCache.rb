@@ -13,7 +13,7 @@ module Cocoa
     attach_method :setDelegate, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :setEvictsObjectsWithDiscardedContent, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
     attach_method :setName, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
-    attach_method :setObject, [{:args=>2, :names=>["forKey"], :types=>["@", "@"], :retval=>"v"}, {:args=>3, :names=>["forKey", "cost"], :types=>["@", "@", "Q"], :retval=>"v"}]
+    attach_method :setObject, [{:args=>2, :names=>[:forKey], :types=>["@", "@"], :retval=>"v"}, {:args=>3, :names=>[:forKey, :cost], :types=>["@", "@", "Q"], :retval=>"v"}]
     attach_method :setTotalCostLimit, :args=>1, :names=>[], :types=>["Q"], :retval=>"v"
     attach_method :totalCostLimit, :args=>0, :names=>[], :types=>[], :retval=>"Q"
   end

@@ -10,12 +10,12 @@ module Cocoa
     attach_singular_method :cachedHandleForURL, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_singular_method :canInitWithURL, :args=>1, :names=>[], :types=>["@"], :retval=>"B"
     attach_method :cancelLoadInBackground, :args=>0, :names=>[], :types=>[], :retval=>"v"
-    attach_method :didLoadBytes, :args=>2, :names=>["loadComplete"], :types=>["@", "B"], :retval=>"v"
+    attach_method :didLoadBytes, :args=>2, :names=>[:loadComplete], :types=>["@", "B"], :retval=>"v"
     attach_method :endLoadInBackground, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :expectedResourceDataSize, :args=>0, :names=>[], :types=>[], :retval=>"q"
     attach_method :failureReason, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :flushCachedData, :args=>0, :names=>[], :types=>[], :retval=>"v"
-    attach_method :initWithURL, :args=>2, :names=>["cached"], :types=>["@", "B"], :retval=>"@"
+    attach_method :initWithURL, :args=>2, :names=>[:cached], :types=>["@", "B"], :retval=>"@"
     attach_method :loadInBackground, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :loadInForeground, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :propertyForKey, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
@@ -25,6 +25,6 @@ module Cocoa
     attach_method :resourceData, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :status, :args=>0, :names=>[], :types=>[], :retval=>"Q"
     attach_method :writeData, :args=>1, :names=>[], :types=>["@"], :retval=>"B"
-    attach_method :writeProperty, :args=>2, :names=>["forKey"], :types=>["@", "@"], :retval=>"B"
+    attach_method :writeProperty, :args=>2, :names=>[:forKey], :types=>["@", "@"], :retval=>"B"
   end
 end

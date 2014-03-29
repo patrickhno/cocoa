@@ -4,8 +4,8 @@ module Cocoa
   class NSURLAuthenticationChallenge < Cocoa::NSObject
     attach_method :error, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :failureResponse, :args=>0, :names=>[], :types=>[], :retval=>"@"
-    attach_method :initWithAuthenticationChallenge, :args=>2, :names=>["sender"], :types=>["@", "@"], :retval=>"@"
-    attach_method :initWithProtectionSpace, :args=>6, :names=>["proposedCredential", "previousFailureCount", "failureResponse", "error", "sender"], :types=>["@", "@", "q", "@", "@", "@"], :retval=>"@"
+    attach_method :initWithAuthenticationChallenge, :args=>2, :names=>[:sender], :types=>["@", "@"], :retval=>"@"
+    attach_method :initWithProtectionSpace, :args=>6, :names=>[:proposedCredential, :previousFailureCount, :failureResponse, :error, :sender], :types=>["@", "@", "q", "@", "@", "@"], :retval=>"@"
     attach_method :previousFailureCount, :args=>0, :names=>[], :types=>[], :retval=>"q"
     attach_method :proposedCredential, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :protectionSpace, :args=>0, :names=>[], :types=>[], :retval=>"@"

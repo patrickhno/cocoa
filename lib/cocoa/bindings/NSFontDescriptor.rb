@@ -8,7 +8,7 @@ module Cocoa
     attach_method :fontDescriptorWithFamily, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_singular_method :fontDescriptorWithFontAttributes, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :fontDescriptorWithMatrix, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
-    attach_singular_method :fontDescriptorWithName, [{:args=>2, :names=>["matrix"], :types=>["@", "@"], :retval=>"@"}, {:args=>2, :names=>["size"], :types=>["@", "d"], :retval=>"@"}]
+    attach_singular_method :fontDescriptorWithName, [{:args=>2, :names=>[:matrix], :types=>["@", "@"], :retval=>"@"}, {:args=>2, :names=>[:size], :types=>["@", "d"], :retval=>"@"}]
     attach_method :fontDescriptorWithSize, :args=>1, :names=>[], :types=>["d"], :retval=>"@"
     attach_method :fontDescriptorWithSymbolicTraits, :args=>1, :names=>[], :types=>["I"], :retval=>"@"
     attach_method :initWithFontAttributes, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
