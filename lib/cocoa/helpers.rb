@@ -202,7 +202,7 @@ module Cocoa
       end
 
       m = method_def name
-      m ||= ObjC::MethodDef.new(name, :names => [], :types => ['@'], :retval => 'v')  # TODO: search up a matching selector to override
+      m ||= ObjC::MethodDef.new(name, :names => [], :types => ['@'], :retval => 'v')  # TODO: generate from method arguments!
 
       ObjC.callback method_definition, [:pointer, :pointer]+m.ffi_types, m.ffi_return_type
       ObjC.attach_function add_method, :class_addMethod, [:pointer,:pointer,method_definition,:string], :void
