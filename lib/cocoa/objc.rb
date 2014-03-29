@@ -1,3 +1,6 @@
+
+require 'cocoa/objc/method_def'
+
 module ObjC
   extend FFI::Library
  
@@ -85,49 +88,6 @@ module ObjC
     end
   end
 
-  def self.fixed_args args,params={},types=[],options={}
-    if options[:variadic]
-      _types = (types.dup*args.size)
-      args
-    else
-      _types = types.dup
-      ([args.first]+params.values)
-    end.map do |arg|
-      type = _types.shift
-      case arg
-      when TrueClass, FalseClass
-        [:bool,arg]
-      when Fixnum, Bignum
-        case type
-        when 'q'
-          [:long_long,arg]
-        when 'Q'
-          [:ulong_long,arg]
-        when 'd'
-          [:double,arg]
-        else
-          raise type.inspect
-        end
-      when Float
-        [:double,arg]
-      when String
-        [:pointer,ObjC.String_to_NSString(arg)]
-      when NilClass
-        [:pointer,nil]
-      when Symbol
-        [:pointer,ObjC.sel_registerName("#{arg}:")]
-      when Cocoa::NSObject
-        [:pointer,arg.object]
-      when FFI::Struct
-        [arg.class.by_value,arg]
-      when FFI::Pointer
-        [:pointer,arg]
-      else
-        raise ArgumentError.new("#{arg.class.name}: #{arg.inspect}")
-      end
-    end.flatten
-  end
-
   def self.apple_type_to_ffi type
     # TODO: These are just stubbed on guess - check'em'all
     case type
@@ -212,9 +172,7 @@ module ObjC
     case type
     when nil
       default
-    when '@'
-      type
-    when 'v'
+    when '@', 'v', 'q', '^v'
       type
     when /^{([^=]*)=.*}$/
       type
@@ -239,11 +197,8 @@ module ObjC
       when 'I'
         raise ArgumentError unless arg.is_a?(Fixnum)
         fixed_args << arg
-      when 'Q'
+      when 'Q', 'q'
         raise ArgumentError.new(arg.inspect) unless arg.is_a?(Fixnum)
-        fixed_args << arg
-      when 'q'
-        raise ArgumentError unless arg.is_a?(Fixnum)
         fixed_args << arg
       when '#'
         raise ArgumentError unless arg.is_a?(FFI::Pointer)

@@ -137,76 +137,30 @@ module Cocoa
     def self.attach_method method,*_params
       return if method==:class
       @@method_specs ||= {}
-      if _params.first.is_a? Array
-        _params = [_params].flatten
-        _params.freeze
-        define_method method do |*args|
-          if args.last.is_a? Hash
-            params = _params.select{ |par| par[:args] == args.last.size+1 && par[:names].map(&:to_sym).sort == args.last.keys.sort }
-            raise ArgumentError unless params.size == 1
-            params = params.extract_options!
-            @@method_specs[method] = params
-
-            options = args.extract_options!
-            fixed_args = ObjC.fixed_args(args,options,params[:types])
-            # puts "ObjC.msgSend(@object,\"#{method}:#{params[:names].join(':')}:\",#{fixed_args.inspect})"
-            ObjC.msgSend(@object,"#{method}#{(['']+params[:names]).join(':')}:",*fixed_args)
-            self
-          else
-            params = _params.select{ |par| par[:args] == 1 }
-            raise ArgumentError unless params.size == 1
-            @@method_specs[method] = params
-
-            fixed_args = ObjC.fixed_args(args)
-            # puts "ObjC.msgSend(#{@object.inspect},#{method},#{fixed_args.inspect})"
-            ObjC.msgSend(@object,"#{method}:",*fixed_args)
-            self
-          end
-        end
-      else
-        params = _params.extract_options!
-        @@method_specs[method] = params
-        if params[:args] == 0
-          params.freeze
-          define_method method do
-            case params[:retval]
-            when '@'
-              ObjC.translate_retval(method,ObjC.msgSend(@object,method.to_s),params[:retval])
-            when 'v'
-              ObjC.msgSend(@object,method.to_s)
-              self
-            when '^v'
-              ObjC.msgSend(@object,method.to_s)
-            when 'Q', 'q'
-              ObjC.msgSend(@object,method.to_s).address
-            when 'B'
-              ret = ObjC.msgSend(@object,method.to_s)
-              ret.address ? true : false
-            when /^{([^=]*)=.*}$/
-              ObjC.msgSend_stret($1.constantize,@object,method.to_s)
-            when /^\^{([^=]*)=.*}$/
-              ret = ObjC.msgSend(@object,method.to_s)
-              ObjC.object_to_instance(ret)
-            when '*'
-              ObjC.msgSend(@object,method.to_s).read_string
-            else
-              puts params.inspect
-              raise params[:retval]
-            end
+      @@method_specs[method] = []
+      [_params].flatten.each do |spec|
+        @@method_specs[method] << ObjC::MethodDef.new(method,spec)
+      end
+      define_method method do |*args|
+        matching = if args.size <= 1
+          matching = @@method_specs[method].select do |m|
+            m.types.size == args.size
           end
         else
-          define_method method do |*args|
-            options = args.extract_options!
-            fixed_args = ObjC.fixed_args(args,options,params[:types])
-            case params[:retval]
-            when '@'
-              ObjC.translate_retval(method,ObjC.msgSend(@object,"#{method}#{(['']+params[:names]).join(':')}:",*fixed_args),params[:retval])
-            else
-              ObjC.msgSend(@object,"#{method}#{(['']+params[:names]).join(':')}:",*fixed_args)
-              self
+          matching = if args.last.is_a? Hash
+            @@method_specs[method].select do |m|
+              args.last.keys == m.names
+            end
+          else
+            raise "hell" unless args.size == 1
+            @@method_specs[method].select do |m|
+              m.types.size == 1
             end
           end
         end
+        raise "hell" unless matching.size == 1
+        m = matching.first
+        m.call(self,@object,*args)
       end
     end
 
@@ -215,38 +169,18 @@ module Cocoa
       @object = obj
     end
 
-    def self.ffi_argument_types method
-      return [:pointer] unless @@method_specs[method] # own method probably TODO: return argument count * pointers
-      @@method_specs[method][:types].map do |type|
-        case type
-        when '@'
-          :pointer
-        when /^{([^=]*)=.*}$/
-          Cocoa::const_get($1).by_value
-        else
-          raise type
-        end
+    def self.method_def method
+      return nil unless @@method_specs[method]
+      keys = instance_method(method).parameters.select{ |param| param.first == :key }.map{ |param| param.last }
+      filtered = @@method_specs[method].select do |m|
+        m.types.size == keys.size+1 &&
+        m.names == keys
       end
-    end
-
-    def self.ffi_return_type method
-      return :void unless @@method_specs[method] # own method probably
-      case @@method_specs[method][:retval]
-      when nil
-        :void
-      when 'v'
-        :void
-      when '@'
-        :pointer
-      else
-        raise @@method_specs[method][:retval].inspect
+      return nil if filtered.size == 0
+      unless filtered.size == 1
+        raise filtered.inspect
       end
-    end
-
-    def self.objc_argument_types method
-      #"@:^{CGRect={CGPoint=dd}{CGSize=dd}}@"
-      return 'v@:@' unless @@method_specs[method] # own method probably TODO: @v: + @ times argument count
-      ObjC.objc_type(@@method_specs[method][:retval],'v')+'@:'+@@method_specs[method][:types].map{ |type| ObjC.objc_type(type) }.join
+      filtered.first
     end
 
     def self.method_added(name)
@@ -267,10 +201,13 @@ module Cocoa
         end
       end
 
-      ObjC.callback method_definition, [:pointer, :pointer]+ffi_argument_types(name), ffi_return_type(name)
+      m = method_def name
+      m ||= ObjC::MethodDef.new(name, :names => [], :types => ['@'], :retval => 'v')  # TODO: search up a matching selector to override
+
+      ObjC.callback method_definition, [:pointer, :pointer]+m.ffi_types, m.ffi_return_type
       ObjC.attach_function add_method, :class_addMethod, [:pointer,:pointer,method_definition,:string], :void
 
-      ObjC.send(add_method,ObjC.objc_getClass(self.name.split('::').last),ObjC.sel_registerName("#{name}:"),@method_callers[method_definition],objc_argument_types(name))
+      ObjC.send(add_method,ObjC.objc_getClass(self.name.split('::').last),ObjC.sel_registerName("#{name}:"),@method_callers[method_definition],m.objc_types)
     end
   end
 end
