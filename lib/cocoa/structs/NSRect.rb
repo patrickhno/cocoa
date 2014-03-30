@@ -20,6 +20,9 @@ module Cocoa
   def CGRectMake x,y,width,height
     CGRect.new(x: x, y: y, width: width, height: height)
   end
+  def NSMakeRect x,y,width,height
+    CGRect.new(x: x, y: y, width: width, height: height)
+  end
 
   NSZeroRect = CGRect.new(x: 0, y: 0, width: 0, height: 0)
 end
