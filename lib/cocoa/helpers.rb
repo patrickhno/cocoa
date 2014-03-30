@@ -189,15 +189,13 @@ module Cocoa
       return if name == :== # TODO: define as equals or something?
       return if caller.first.split('`').last[0..-2] == 'define_method'  # MRI
       return if caller.first.split('`').last[0..-2] == 'attach_method'  # Rubinius
-      method_definition = "#{self.name.gsub('::','__')}_#{name}".to_sym
-      add_method = "add_#{method_definition}".to_sym
 
       defs = method_defs name
       defs ||= ObjC::MethodDef.new(name, :names => [], :types => ['@'], :retval => 'v')  # TODO: generate from method arguments!
 
       [defs].flatten.each do |m|
-        @method_callers ||= []
-        @method_callers << Proc.new do |this,cmd,*args|
+        @method_callbacks ||= []
+        @method_callbacks << Proc.new do |this,cmd,*args|
           begin
             instance = Cocoa.instances[this.address]
             params = instance_method(name).parameters
@@ -208,10 +206,13 @@ module Cocoa
           end
         end
 
-        ObjC.callback method_definition, [:pointer, :pointer]+m.ffi_types, m.ffi_return_type
-        ObjC.attach_function add_method, :class_addMethod, [:pointer,:pointer,method_definition,:string], :void
+        callback_name = "#{self.name.gsub('::','__')}_#{m.selector.gsub(/:/,'_')}".to_sym
+        add_method = "add_#{callback_name}".to_sym
 
-        ObjC.send(add_method,ObjC.objc_getClass(self.name.split('::').last),ObjC.sel_registerName(m.selector),@method_callers.last,m.objc_types)
+        ObjC.callback callback_name, [:pointer, :pointer]+m.ffi_types, m.ffi_return_type
+        ObjC.attach_function add_method, :class_addMethod, [:pointer,:pointer,callback_name,:string], :void
+
+        ObjC.send(add_method,ObjC.objc_getClass(self.name.split('::').last),ObjC.sel_registerName(m.selector),@method_callbacks.last,m.objc_types)
       end
     end
   end
