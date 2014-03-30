@@ -108,7 +108,7 @@ module ObjC
       end
     end
 
-    def call this,object,*args
+    def call this, object, *args
       values = if @types.size == 0
         []
       elsif @types.size == 1
@@ -121,10 +121,6 @@ module ObjC
       if return_type =~ /^{([^=]*)=.*}$/ && name != :cascadeTopLeftFromPoint
         ObjC.msgSend_stret(Cocoa.const_get($1),object,selector,*ffi_casted(values))
       else
-# puts args.inspect
-# puts values.inspect
-# puts ffi_casted(values).inspect
-# puts selector
         ret = ObjC.msgSend(object,selector,*ffi_casted(values))
         return if name == :cascadeTopLeftFromPoint
         case return_type
@@ -149,5 +145,41 @@ module ObjC
         end
       end
     end
+
+    def callback instance, params, args
+      keys = params.select{ |param| param.first == :key }.map{ |param| param.last }
+
+      ret = if params.size > 0 && params.last.first == :rest
+        args = args.map{ |arg| Cocoa::instance_for(arg) }
+        instance.send(name, args.first, Hash[*names.zip(args[1..-1]).flatten])
+      elsif keys.size > 0
+        args = args.map{ |arg| Cocoa::instance_for(arg) }
+        instance.send(name, args.first, Hash[*keys.zip(args[1..-1]).flatten])
+      else
+        instance.send(name, *args.map{ |arg| Cocoa::instance_for(arg) })
+      end
+      ffi_return_value(ret)
+    end
+
+    def ffi_return_value value
+      case return_type
+      when '@'
+        case value
+        when NilClass
+          nil
+        when String
+          Cocoa::NSString.stringWithString(value).object
+        else
+          raise value.inspect
+        end
+      when 'q', 'Q', 'd'
+        value
+      when 'v'
+        nil
+      else
+        raise inspect
+      end
+    end
+
   end
 end

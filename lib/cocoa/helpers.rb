@@ -201,33 +201,7 @@ module Cocoa
           begin
             instance = Cocoa.instances[this.address]
             params = instance_method(name).parameters
-            keys = params.select{ |param| param.first == :key }.map{ |param| param.last }
-            ret = if params.size > 0 && params.last.first == :rest
-              args = args.map{ |arg| Cocoa::instance_for(arg) }
-              instance.send(name,args.first, Hash[*m.names.zip(args[1..-1]).flatten])
-            elsif keys.size > 0
-              args = args.map{ |arg| Cocoa::instance_for(arg) }
-              instance.send(name,args.first, Hash[*keys.zip(args[1..-1]).flatten])
-            else
-              instance.send(name,*args.map{ |arg| Cocoa::instance_for(arg) })
-            end
-            case m.return_type
-            when '@'
-              case ret
-              when NilClass
-                nil
-              when String
-                Cocoa::NSString.stringWithString(ret).object
-              else
-                raise ret.inspect
-              end
-            when 'q'
-              ret
-            when 'v'
-              nil
-            else
-              raise m.inspect
-            end
+            m.callback(instance,params,args)
           rescue => e
             puts e.message
             puts e.backtrace
