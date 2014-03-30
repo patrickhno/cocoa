@@ -40,30 +40,39 @@ module ObjC
     end
   end
 
+  def self.smart_constantize ret,klass_name
+    begin
+      Cocoa.const_get(klass_name)
+    rescue
+      _superclass = ObjC.msgSend(ret,'superclass')
+      superclass_name = ObjC::NSString_to_String(Cocoa::NSStringFromClass(_superclass))
+      superclass = Cocoa::const_get(superclass_name) rescue smart_constantize(_superclass,superclass_name)
+      proxy = Class.new(superclass)
+      Cocoa.const_set(klass_name, proxy)
+      klass = Cocoa.const_get(klass_name)
+      superclass.inherited(klass)
+      klass
+    end
+  end
+
   def self.object_to_instance ret
     klass_name = NSString_to_String(Cocoa::NSStringFromClass(ObjC.msgSend(ret,"class")))
     return self if klass_name == '(NULL)'
     instance = begin
-      ("Cocoa::"+klass_name).constantize.new(true)
+      Cocoa::const_get(klass_name).new(true)
     rescue
       klass_name = if klass_name =~ /^__NSCF/
         "NS#{klass_name[6..-1]}" 
       elsif klass_name[0]=='_'
-        "FIX_#{klass_name}" 
+        if superklass = Cocoa::const_get(NSString_to_String(Cocoa::NSStringFromClass(ObjC.msgSend(ret,"superclass"))))
+          superklass.name.split('::').last
+        else
+          "FIX_#{klass_name}" 
+        end
       else
         klass_name
       end
-      klass = begin
-        Cocoa.const_get(klass_name)
-      rescue => e
-        superclass_name = NSString_to_String(Cocoa::NSStringFromClass(ObjC.msgSend(ret,'superclass')))
-        superclass = "Cocoa::#{superclass_name}".constantize
-        proxy = Class.new(superclass)
-        Cocoa.const_set(klass_name, proxy)
-        klass = ("Cocoa::"+klass_name).constantize
-        superclass.inherited(klass)
-        klass
-      end
+      klass = smart_constantize(ret,klass_name)
       klass.new(true)
     end
     instance.object = ret
@@ -172,9 +181,11 @@ module ObjC
     case type
     when nil
       default
-    when '@', 'v', 'q', '^v'
+    when '@', 'v', 'q', 'Q', '^v'
       type
     when /^{([^=]*)=.*}$/
+      type
+    when /^\^{([^=]*)=.*}$/
       type
     else
       raise type.inspect

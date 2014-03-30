@@ -7,6 +7,11 @@ module ObjC
       @names = options[:names].map(&:to_sym)
       @types = options[:types]
       @return_type = options[:retval]
+      @variadic = options[:variadic]
+    end
+
+    def variadic?
+      @variadic
     end
 
     def ffi_types
@@ -16,10 +21,14 @@ module ObjC
           :pointer
         when 'q'
           :long_long
+        when 'Q'
+          :ulong_long
         when '^v'
           :pointer
         when /^{([^=]*)=.*}$/
           Cocoa::const_get($1).by_value
+        when /^\^{([^=]*)=.*}$/
+          :pointer
         else
           raise type
         end
@@ -32,10 +41,16 @@ module ObjC
         :void
       when 'v'
         :void
+      when 'B'
+        :bool
+      when 'd'
+        :double
       when '@'
         :pointer
       when 'q'
         :long_long
+      when 'Q'
+        :ulong_long
       else
         raise self.inspect
       end

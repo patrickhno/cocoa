@@ -34,4 +34,72 @@ describe 'Cocoa' do
     array.addObject "tail"
     array.description.to_s.should == "(\n    head,\n    tail\n)"
   end
+
+  it 'should call singular methods' do
+    Cocoa::NSString.stringWithString('a string').should == 'a string'
+  end
+  # TODO: known bug
+  # it 'should call variadic singular methods' do
+  #   Cocoa::NSSet.setWithObjects "A", "B", "and C"
+  # end
+
+#  context 'callbacks' do
+    it 'should call methods with a argument' do
+      class Derived < Cocoa::NSObject
+        def foobar foo; end
+      end
+      derived = Derived.new
+      derived.expects(:foobar).with(Cocoa::NSString.stringWithString("a argument"))
+      ObjC.msgSend(derived.object,"foobar:",:pointer,ObjC.String_to_NSString("a argument"))
+    end
+
+    it 'should call overridden methods with no arguments' do
+      class Derived < Cocoa::NSObject
+        def accessibilityActionNames; end
+      end
+      derived = Derived.new
+      derived.expects(:accessibilityActionNames)
+      ret = ObjC.msgSend(derived.object,"accessibilityActionNames")
+    end
+
+    it 'should call overridden methods with keword arguments' do
+      # fake ruby 2
+      unbound_method = mock('UnboundMethod')
+      Cocoa::NSObject.expects(:instance_method).with(:tableView).at_least_once.returns(unbound_method)
+      unbound_method.expects(:parameters).at_least_once.returns([[:req, :table_view], [:key, :objectValueForTableColumn], [:key, :row]])
+      class Derived < Cocoa::NSObject
+        #def tableView(table_view, objectValueForTableColumn: column, row: i); end
+        def tableView; end
+      end
+
+      derived = Derived.new
+      derived.expects(:tableView).with(
+        Cocoa::NSString.stringWithString("arg1"),
+        objectValueForTableColumn: Cocoa::NSString.stringWithString("arg2"),
+        row: 123
+      )
+      ret = ObjC.msgSend(derived.object,"tableView:objectValueForTableColumn:row:",
+        :pointer,ObjC.String_to_NSString("arg1"),
+        :pointer,ObjC.String_to_NSString("arg2"),
+        :int,123)
+    end
+
+    it 'should call overridden methods covered by splat' do
+      class Derived < Cocoa::NSObject
+        def tableView *args; end
+      end
+
+      derived = Derived.new
+      derived.expects(:tableView).with(
+        Cocoa::NSString.stringWithString("arg1"),
+        objectValueForTableColumn: Cocoa::NSString.stringWithString("arg2"),
+        row: 123
+      )
+      ret = ObjC.msgSend(derived.object,"tableView:objectValueForTableColumn:row:",
+        :pointer,ObjC.String_to_NSString("arg1"),
+        :pointer,ObjC.String_to_NSString("arg2"),
+        :int,123)
+    end
+
+#  end
 end

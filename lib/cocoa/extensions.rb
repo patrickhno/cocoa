@@ -2,6 +2,9 @@ class Cocoa::NSString < Cocoa::NSObject
   def to_s
     ObjC.NSString_to_String(object)
   end
+  def == other
+    to_s == other.to_s
+  end
 end
 
 class String

@@ -3,6 +3,7 @@ gem 'activesupport'
 gem 'ffi'
 group :development do
   gem 'bacon'
+  gem 'mocha-on-bacon'
   # gem "shoulda", ">= 0"
   gem "rdoc", "~> 3.12"
   gem "bundler", "~> 1.0"

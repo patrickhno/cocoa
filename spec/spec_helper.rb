@@ -36,3 +36,4 @@ $: << File.expand_path(File.join(File.dirname(__FILE__), '/../lib'))
 # end
 
 require 'bacon'
+require 'mocha-on-bacon'
