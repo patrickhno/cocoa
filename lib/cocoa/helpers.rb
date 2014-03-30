@@ -194,8 +194,8 @@ module Cocoa
       defs ||= ObjC::MethodDef.new(name, :names => [], :types => ['@'], :retval => 'v')  # TODO: generate from method arguments!
 
       [defs].flatten.each do |m|
-        @method_callbacks ||= []
-        @method_callbacks << Proc.new do |this,cmd,*args|
+        @callbacks ||= []
+        @callbacks << Proc.new do |this,cmd,*args|
           begin
             instance = Cocoa.instances[this.address]
             params = instance_method(name).parameters
@@ -212,7 +212,7 @@ module Cocoa
         ObjC.callback callback_name, [:pointer, :pointer]+m.ffi_types, m.ffi_return_type
         ObjC.attach_function add_method, :class_addMethod, [:pointer,:pointer,callback_name,:string], :void
 
-        ObjC.send(add_method,ObjC.objc_getClass(self.name.split('::').last),ObjC.sel_registerName(m.selector),@method_callbacks.last,m.objc_types)
+        ObjC.send(add_method,ObjC.objc_getClass(self.name.split('::').last),ObjC.sel_registerName(m.selector),@callbacks.last,m.objc_types)
       end
     end
   end
