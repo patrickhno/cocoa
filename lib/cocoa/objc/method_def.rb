@@ -2,6 +2,33 @@ module ObjC
   class MethodDef
     attr_accessor :name,:names,:types,:return_type
 
+    TYPES = {
+      'c' => :char,
+      'i' => :int,
+      's' => :short,
+      'l' => :long,
+      'q' => :long_long,
+      'C' => :uchar,
+      'I' => :uint,
+      'S' => :ushort,
+      'L' => :ulong,
+      'Q' => :ulong_long,
+      'f' => :float,
+      'd' => :double,
+      'B' => :bool,
+      'v' => :void,
+      '*' => :pointer, # :string?
+      '@' => :pointer,
+      '#' => :pointer,
+      ':' => :pointer,
+      # [array type]   - An array
+      # {name=type...} - A structure
+      # (name=type...) - A union
+      # bnum           - A bit field of num bits
+      # ^type          - A pointer to type
+      # ?              - An unknown type (among other things, this code is used for function pointers)
+    }
+
     def initialize name,options
       @name = name.to_sym
       @names = options[:names].map(&:to_sym)
@@ -16,41 +43,97 @@ module ObjC
 
     def ffi_types
       @ffi_types ||= types.map do |type|
-        case type
-        when '@'
+        TYPES[type] || case type
+        when '@?'
           :pointer
-        when 'q'
-          :long_long
-        when 'Q'
-          :ulong_long
-        when '^v'
+        when '^v', /^\^/, '^?', '^I'
           :pointer
-        when /^{([^=]*)=.*}$/
-          Cocoa::const_get($1).by_value
+        when /^{([^=]*)=(.*)}$/
+          begin
+            Cocoa::const_get($1).by_value
+          rescue
+            # this stuff doesnt work with jruby
+            attribs = $2
+            klass_name = /^{_*([^=]*)=.*}$/.match(type)[1]
+            klass = begin
+              Cocoa.const_get(klass_name)
+            rescue
+              klass = Class.new(FFI::Struct)
+              Cocoa.const_set($1, klass)
+              name = 'a'
+              layout = []
+              attribs.each_char do |c|
+                layout << name.to_sym
+                name = name.next
+                layout << case c
+                when '^', '?'
+                  :pointer
+                when 'v'
+                  :pointer
+                else
+                  TYPES[c]
+                end
+              end
+              klass = Cocoa::const_get($1)
+              klass.layout *layout
+              klass
+            end
+            klass.by_ref
+          end
         when /^\^{([^=]*)=.*}$/
           :pointer
         else
-          raise type
+          raise type.inspect
         end
       end
     end
 
     def ffi_return_type
-      @ffi_return_type ||= case return_type
+      @ffi_return_type ||= TYPES[return_type] || case return_type
       when nil
         :void
       when 'v'
         :void
-      when 'B'
-        :bool
-      when 'd'
-        :double
-      when '@'
+      when /^\^/
         :pointer
-      when 'q'
-        :long_long
-      when 'Q'
-        :ulong_long
+      when '[5*]'
+        :void
+      when /^{[^=]*=.*}$/
+        begin
+          /^{_*([^=]*)=.*}$/.match(return_type)[1].constantize.by_value
+        rescue => e
+          begin
+            "Cocoa::#{/^{_*([^=]*)=.*}$/.match(return_type)[1]}".constantize.by_value
+          rescue => e
+            match = /^{_*([^=]*)=(.*)}$/.match(return_type)
+            klass = begin
+              Cocoa.const_get(match[1])
+            rescue
+              # puts "defining struct Cocoa::#{match[1]} as #{match[2]}"
+              # this stuff doesnt work with jruby
+              klass = Class.new(FFI::Struct)
+              Cocoa.const_set(match[1], klass)
+              name = 'a'
+              layout = []
+              match[2].each_char do |c|
+                case c
+                when 'd'
+                  layout << name.to_sym
+                  name = name.next
+                  layout << :double
+                end
+              end
+              klass = "Cocoa::#{match[1]}".constantize
+              klass.layout *layout
+              klass
+            end
+            klass.by_ref
+          end
+        end
+      when nil
+        :void
+      when '@?'
+        :pointer
       else
         raise self.inspect
       end
@@ -68,16 +151,7 @@ module ObjC
         when TrueClass, FalseClass
           [:bool,value]
         when Fixnum, Bignum
-          case types[i]
-          when 'q'
-            [:long_long,value]
-          when 'Q'
-            [:ulong_long,value]
-          when 'd'
-            [:double,value]
-          else
-            raise types[i].inspect
-          end
+          [TYPES[types[i]],value]
         when Float
           [:double,value]
         when String
@@ -98,6 +172,65 @@ module ObjC
       end.flatten
     end
 
+    def call_arguments args
+      fixed_args = []
+      args.each_with_index do |arg,i|
+        case types[i]
+        when '@'
+          fixed_args << arg
+        when 'd'
+          if arg.is_a?(Fixnum)
+            fixed_args << arg.to_f
+          else
+            raise ArgumentError.new("float expected, got #{arg.class.name}") unless arg.is_a?(Float)
+            fixed_args << arg
+          end
+        when 'I'
+          raise ArgumentError unless arg.is_a?(Fixnum)
+          fixed_args << arg
+        when 'Q', 'q'
+          raise ArgumentError.new(arg.inspect) unless arg.is_a?(Fixnum)
+          fixed_args << arg
+        when '#'
+          raise ArgumentError unless arg.is_a?(FFI::Pointer)
+          fixed_args << arg
+        when /^{[^=]*=.*}$/
+          raise ArgumentError.new(arg.inspect) unless arg.kind_of?(FFI::Struct)
+          fixed_args << arg
+        when /^\^{([^=]*)=.*}$/
+          case arg
+          when FFI::Pointer
+            fixed_args << arg
+          when Array
+            raise ArgumentError unless $1 == '__CFArray'
+            fixed_args << NSArray.arrayWithObjects(arg).object
+          else
+            match = $1
+            if arg.class.name =~ /^Cocoa::/ # "Cocoa::#{$1}".constantize
+              fixed_args << arg.object
+            elsif arg.is_a?(NilClass)
+              fixed_args << FFI::MemoryPointer::NULL
+            elsif arg.is_a?(String) && match == '__CFString'
+              fixed_args << Cocoa::String_to_NSString(arg)
+            else
+              raise ArgumentError.new("expected #{params[:types][i]} got #{arg.class.name} (#{match})")
+            end
+          end
+        when '^d'
+          raise ArgumentError unless arg.is_a?(Array)
+          arr = FFI::MemoryPointer.new(:double,arg.size)
+          arr.write_array_of_double(arg)
+          fixed_args << arr
+        when '^v'
+          raise ArgumentError unless arg.is_a?(NilClass)
+          fixed_args << FFI::MemoryPointer::NULL
+        else
+          raise types[i]
+        end
+      end
+      fixed_args
+    end
+
     def selector
       @selector ||= begin
         if types.size > 0
@@ -105,6 +238,15 @@ module ObjC
         else
           name.to_s
         end
+      end
+    end
+
+    def ruby_return_value this,ffi_value
+      case return_type
+      when 'v'
+        this
+      else
+        ObjC.ffi_to_ruby_value name,ffi_value,return_type
       end
     end
 
@@ -123,26 +265,8 @@ module ObjC
       else
         ret = ObjC.msgSend(object,selector,*ffi_casted(values))
         return if name == :cascadeTopLeftFromPoint
-        case return_type
-        when '@'
-          return nil if ret.address == 0
-          return ret if name == :NSStringFromClass
-          ObjC.object_to_instance(ret)
-        when 'v'
-          this
-        when '^v'
-          ret
-        when 'Q', 'q'
-          ret.address
-        when 'B'
-          ret.address ? true : false
-        when /^\^{([^=]*)=.*}$/
-          ObjC.object_to_instance(ret)
-        when '*'
-          ret.read_string
-        else
-          raise return_type
-        end
+        return ret if name == :NSStringFromClass
+        ruby_return_value(this,ret)
       end
     end
 

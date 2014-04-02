@@ -16,7 +16,7 @@ module Cocoa
   end
   def instance_for data
     if data.is_a?(FFI::Pointer)
-      @@instances[data.address] ||= ObjC.translate_retval nil,data,'@'
+      @@instances[data.address] ||= ObjC.ffi_to_ruby_value(nil, data, '@')
     else
       data
     end
@@ -55,34 +55,27 @@ module Cocoa
       params = params.last
     end
 
+    m = ObjC::MethodDef.new(method,params.first)
+
     params = params.extract_options!
     params.freeze
     begin
       if params[:args] == 0
-        attach_function "call_#{method}".to_sym, method, [], ObjC.apple_type_to_ffi(params[:retval])
+        attach_function "call_#{method}".to_sym, method, m.ffi_types, m.ffi_return_type
         define_method method do
-          case params[:retval]
-          when /^\^{[^=]*=.*}$/
-            Cocoa::translate_retval(method,send("call_#{method}".to_sym),params[:retval])
-          else
-            raise params.inspect
-          end
+          m.ruby_return_value(send("call_#{method}".to_sym))
         end
       else
-        attach_function "call_#{method}".to_sym, method, params[:types].map{ |arg| ObjC.apple_type_to_ffi(arg) }, ObjC.apple_type_to_ffi(params[:retval])
+        attach_function "call_#{method}".to_sym, method, m.ffi_types, m.ffi_return_type
         define_method method do |*args|
           raise ArgumentError.new("#{method} requires #{params[:args]} argument(s)") unless params[:args] == args.size
-          ret = send("call_#{method}".to_sym,*ObjC.call_arguments(params,args))
-          if params[:retval]=='v'
-            self
-          else
-            ObjC.translate_retval(method,ret,params[:retval])
-          end
+          m.ruby_return_value(self,send("call_#{method}".to_sym,*m.call_arguments(args)))
         end
       end
     rescue FFI::NotFoundError => e
     end
   end
+
   extend self
 
   class NSObject

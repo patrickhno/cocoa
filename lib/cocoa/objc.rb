@@ -79,99 +79,27 @@ module ObjC
     instance
   end
 
-  def self.translate_retval method,ret,type
+  def self.ffi_to_ruby_value method,ffi_value,type
     case type
     when '@'
-      return nil if ret.address == 0
-      return ret if method == :NSStringFromClass
-      object_to_instance ret
+      return nil if ffi_value.address == 0
+      return ffi_value if method == :NSStringFromClass
+      ObjC.object_to_instance(ffi_value)
+    when '^v'
+      ffi_value
+    when 'Q', 'q'
+      ffi_value.address
+    when 'B'
+      ffi_value.address ? true : false
+    when /^\^{([^=]*)=.*}$/
+      return nil if ffi_value.address == 0
+      ObjC.object_to_instance(ffi_value)
+    when '*'
+      ffi_value.read_string
     when '#'
       ret
     when /^{([^=]*)=.*}$/
       ret
-    when /^\^{[^=]*=.*}$/
-      return nil if ret.address == 0
-      object_to_instance ret
-    else
-      raise type
-    end
-  end
-
-  def self.apple_type_to_ffi type
-    # TODO: These are just stubbed on guess - check'em'all
-    case type
-    when 'C'
-      :uchar
-    when '@'
-      :pointer
-    when '#'
-      :pointer
-    when 'Q'
-      :int
-    when ':'
-      :pointer
-    when 'I'
-      :int
-    when 'L'
-      :int
-    when 'd'
-      :double
-    when 'f'
-      :float
-    when 'i'
-      :int
-    when 's'
-      :int
-    when 'q'
-      :long_long
-    when 'S'
-      :int
-    when /^\^/
-      :pointer
-    when 'B'
-      :bool
-    when 'v'
-      :void
-    when '[5*]'
-      :void
-    when /^{[^=]*=.*}$/
-      begin
-        /^{_*([^=]*)=.*}$/.match(type)[1].constantize.by_value
-      rescue => e
-        begin
-          "Cocoa::#{/^{_*([^=]*)=.*}$/.match(type)[1]}".constantize.by_value
-        rescue => e
-          match = /^{_*([^=]*)=(.*)}$/.match(type)
-          klass = begin
-            Cocoa.const_get(match[1])
-          rescue
-            # puts "defining struct Cocoa::#{match[1]} as #{match[2]}"
-            # this stuff doesnt work with jruby
-            klass = Class.new(FFI::Struct)
-            Cocoa.const_set(match[1], klass)
-            name = 'a'
-            layout = []
-            match[2].each_char do |c|
-              case c
-              when 'd'
-                layout << name.to_sym
-                name = name.next
-                layout << :double
-              end
-            end
-            klass = "Cocoa::#{match[1]}".constantize
-            klass.layout *layout
-            klass
-          end
-          klass.by_ref
-        end
-      end
-    when nil
-      :void
-    when '*' # character string
-      :pointer
-    when '@?'
-      :pointer
     else
       raise type.inspect
     end
@@ -192,62 +120,4 @@ module ObjC
     end
   end
 
-  def self.call_arguments params,args
-    fixed_args = []
-    args.each_with_index do |arg,i|
-      case params[:types][i]
-      when '@'
-        fixed_args << arg
-      when 'd'
-        if arg.is_a?(Fixnum)
-          fixed_args << arg.to_f
-        else
-          raise ArgumentError.new("float expected, got #{arg.class.name}") unless arg.is_a?(Float)
-          fixed_args << arg
-        end
-      when 'I'
-        raise ArgumentError unless arg.is_a?(Fixnum)
-        fixed_args << arg
-      when 'Q', 'q'
-        raise ArgumentError.new(arg.inspect) unless arg.is_a?(Fixnum)
-        fixed_args << arg
-      when '#'
-        raise ArgumentError unless arg.is_a?(FFI::Pointer)
-        fixed_args << arg
-      when /^{[^=]*=.*}$/
-        raise ArgumentError.new(arg.inspect) unless arg.kind_of?(FFI::Struct)
-        fixed_args << arg
-      when /^\^{([^=]*)=.*}$/
-        case arg
-        when FFI::Pointer
-          fixed_args << arg
-        when Array
-          raise ArgumentError unless $1 == '__CFArray'
-          fixed_args << NSArray.arrayWithObjects(arg).object
-        else
-          match = $1
-          if arg.class.name =~ /^Cocoa::/ # "Cocoa::#{$1}".constantize
-            fixed_args << arg.object
-          elsif arg.is_a?(NilClass)
-            fixed_args << FFI::MemoryPointer::NULL
-          elsif arg.is_a?(String) && match == '__CFString'
-            fixed_args << Cocoa::String_to_NSString(arg)
-          else
-            raise ArgumentError.new("expected #{params[:types][i]} got #{arg.class.name} (#{match})")
-          end
-        end
-      when '^d'
-        raise ArgumentError unless arg.is_a?(Array)
-        arr = FFI::MemoryPointer.new(:double,arg.size)
-        arr.write_array_of_double(arg)
-        fixed_args << arr
-      when '^v'
-        raise ArgumentError unless arg.is_a?(NilClass)
-        fixed_args << FFI::MemoryPointer::NULL
-      else
-        raise params[:types][i]
-      end
-    end
-    fixed_args
-  end
 end
