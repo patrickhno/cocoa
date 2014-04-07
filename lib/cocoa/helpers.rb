@@ -180,6 +180,7 @@ module Cocoa
 
     def self.method_added(name)
       return if name == :== # TODO: define as equals or something?
+      return if name.to_s[-1] == '='
       return if caller.first.split('`').last[0..-2] == 'define_method'  # MRI
       return if caller.first.split('`').last[0..-2] == 'attach_method'  # Rubinius
 
