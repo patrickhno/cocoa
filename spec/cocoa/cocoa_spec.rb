@@ -58,7 +58,7 @@ describe 'Cocoa' do
       end
       derived = Derived.new
       derived.expects(:foobar).with(Cocoa::NSString.stringWithString("a argument"))
-      ObjC.msgSend(derived.object,"foobar:",:pointer,ObjC.String_to_NSString("a argument"))
+      ObjC.msgSend_pointer(derived.object,"foobar:",:pointer,ObjC.String_to_NSString("a argument"))
     end
 
     it 'should call overridden methods with no arguments' do
@@ -67,7 +67,7 @@ describe 'Cocoa' do
       end
       derived = Derived.new
       derived.expects(:accessibilityActionNames)
-      ObjC.msgSend(derived.object,"accessibilityActionNames")
+      ObjC.msgSend_pointer(derived.object,"accessibilityActionNames")
     end
 
     it 'should call overridden methods with keword arguments' do
@@ -86,7 +86,7 @@ describe 'Cocoa' do
         objectValueForTableColumn: Cocoa::NSString.stringWithString("arg2"),
         row: 123
       )
-      ObjC.msgSend(derived.object,"tableView:objectValueForTableColumn:row:",
+      ObjC.msgSend_pointer(derived.object,"tableView:objectValueForTableColumn:row:",
         :pointer,ObjC.String_to_NSString("arg1"),
         :pointer,ObjC.String_to_NSString("arg2"),
         :int,123)
@@ -103,7 +103,7 @@ describe 'Cocoa' do
       end
 
       derived = Derived.new
-      ret = ObjC.msgSend(derived.object,"tableView:objectValueForTableColumn:row:",
+      ret = ObjC.msgSend_pointer(derived.object,"tableView:objectValueForTableColumn:row:",
         :pointer,ObjC.String_to_NSString("arg1"),
         :pointer,ObjC.String_to_NSString("arg2"),
         :int,123)
@@ -121,7 +121,7 @@ describe 'Cocoa' do
         objectValueForTableColumn: Cocoa::NSString.stringWithString("arg2"),
         row: 123
       )
-      ret = ObjC.msgSend(derived.object,"tableView:objectValueForTableColumn:row:",
+      ret = ObjC.msgSend_pointer(derived.object,"tableView:objectValueForTableColumn:row:",
         :pointer,ObjC.String_to_NSString("arg1"),
         :pointer,ObjC.String_to_NSString("arg2"),
         :int,123)

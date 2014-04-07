@@ -49,22 +49,22 @@ class Cocoa::NSObject
   end
 
   def alloc
-    self.object = ObjC.msgSend(ObjC.objc_getClass(self.native_name),"alloc")
+    self.object = ObjC.msgSend_pointer(ObjC.objc_getClass(self.native_name),"alloc")
     self
   end
 
   def init
-    self.object = ObjC.msgSend(@object,"init")
+    self.object = ObjC.msgSend_pointer(@object,"init")
     self
   end
 
   def new
-    self.object = ObjC.msgSend(@object,"new")
+    self.object = ObjC.msgSend_pointer(@object,"new")
     self
   end
 
   def autorelease
-    self.object = ObjC.msgSend(@object,"autorelease")
+    self.object = ObjC.msgSend_pointer(@object,"autorelease")
     self
   end
 

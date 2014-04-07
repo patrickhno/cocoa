@@ -264,7 +264,11 @@ module ObjC
         struct = Cocoa.const_get($1.sub(/^_NS/,'NS'))
         ObjC.msgSend_stret(struct,object,selector,*ffi_casted(values))
       else
-        ret = ObjC.msgSend(object,selector,*ffi_casted(values))
+        ret = if ffi_return_type.is_a?(FFI::StructByValue)
+          ObjC.send(:msgSend_pointer,object,selector,*ffi_casted(values))
+        else
+          ObjC.send("msgSend_#{ffi_return_type}".to_sym,object,selector,*ffi_casted(values))
+        end
         return if name == :cascadeTopLeftFromPoint
         return ret if name == :NSStringFromClass
         ruby_return_value(this,ret)

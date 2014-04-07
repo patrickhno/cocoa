@@ -7,14 +7,17 @@ module ObjC
   ffi_lib 'objc'
  
   attach_function :sel_registerName, [:string], :pointer
-  attach_function :objc_msgSend, [:pointer, :pointer, :varargs], :pointer
   attach_function :objc_getClass, [:string], :pointer
   attach_function :objc_allocateClassPair, [:pointer, :string, :int], :pointer
   attach_function :objc_registerClassPair, [:pointer], :void
 
-  def self.msgSend( id, selector, *args )
-    selector = sel_registerName(selector) if selector.is_a? String
-    objc_msgSend( id, selector, *args )
+  MethodDef::TYPES.values.uniq.each do |type|
+    name = "objc_msgSend_#{type}".to_sym
+    attach_function name, :objc_msgSend, [:pointer, :pointer, :varargs], type
+    define_singleton_method "msgSend_#{type}".to_sym do |id, selector, *args|
+      selector = sel_registerName(selector) if selector.is_a? String
+      send(name, id, selector, *args )
+    end
   end
 
   def self.msgSend_stret( return_type, id, selector, *args )
@@ -28,11 +31,11 @@ module ObjC
 
   def self.String_to_NSString( string )
     nsstring_class = objc_getClass("NSString")
-    msgSend(nsstring_class, "stringWithUTF8String:", :string, string )
+    msgSend_pointer(nsstring_class, "stringWithUTF8String:", :string, string )
   end
  
   def self.NSString_to_String( nsstring_pointer )
-    c_string = msgSend( nsstring_pointer, "UTF8String")
+    c_string = msgSend_pointer( nsstring_pointer, "UTF8String")
     if c_string.null?
       return "(NULL)"
     else
@@ -44,12 +47,12 @@ module ObjC
     begin
       Cocoa.const_get(klass_name)
     rescue
-      _superclass = ObjC.msgSend(ret,'superclass')
+      _superclass = ObjC.msgSend_pointer(ret,'superclass')
       superclass_name = ObjC::NSString_to_String(Cocoa::NSStringFromClass(_superclass))
       superclass_name = if superclass_name =~ /^__NSCF/
         "NS#{klass_name[6..-1]}" 
       elsif superclass_name[0]=='_'
-        if superklass = Cocoa::const_get(NSString_to_String(Cocoa::NSStringFromClass(ObjC.msgSend(ret,"superclass"))))
+        if superklass = Cocoa::const_get(NSString_to_String(Cocoa::NSStringFromClass(ObjC.msgSend_pointer(ret,"superclass"))))
           superklass.name.split('::').last
         else
           "FIX_#{superclass_name}" 
@@ -67,7 +70,7 @@ module ObjC
   end
 
   def self.object_to_instance ret
-    klass_name = NSString_to_String(Cocoa::NSStringFromClass(ObjC.msgSend(ret,"class")))
+    klass_name = NSString_to_String(Cocoa::NSStringFromClass(ObjC.msgSend_pointer(ret,"class")))
     return self if klass_name == '(NULL)'
     instance = begin
       Cocoa::const_get(klass_name).new(true)
@@ -75,7 +78,7 @@ module ObjC
       klass_name = if klass_name =~ /^__NSCF/
         "NS#{klass_name[6..-1]}" 
       elsif klass_name[0]=='_'
-        if superklass = Cocoa::const_get(NSString_to_String(Cocoa::NSStringFromClass(ObjC.msgSend(ret,"superclass"))))
+        if superklass = Cocoa::const_get(NSString_to_String(Cocoa::NSStringFromClass(ObjC.msgSend_pointer(ret,"superclass"))))
           superklass.name.split('::').last
         else
           "FIX_#{klass_name}" 
@@ -96,21 +99,17 @@ module ObjC
       return nil if ffi_value.address == 0
       return ffi_value if method == :NSStringFromClass
       ObjC.object_to_instance(ffi_value)
-    when '^v'
+    when '^v', 'Q', 'q', 'D', 'd', 'B', 'I', 'i'
       ffi_value
-    when 'Q', 'q'
-      ffi_value.address
-    when 'B'
-      ffi_value.address ? true : false
     when /^\^{([^=]*)=.*}$/
       return nil if ffi_value.address == 0
       ObjC.object_to_instance(ffi_value)
     when '*'
       ffi_value.read_string
     when '#'
-      ret
+      ffi_value
     when /^{([^=]*)=.*}$/
-      ret
+      ffi_value
     else
       raise type.inspect
     end

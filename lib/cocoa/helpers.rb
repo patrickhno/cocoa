@@ -40,7 +40,7 @@ module Cocoa
     if params[:args] == 0
       define_singleton_method method do
         instance = new(true)
-        instance.object = ObjC.msgSend(instance.klass,method.to_s)
+        instance.object = ObjC.msgSend_pointer(instance.klass,method.to_s)
         instance
       end
     else
