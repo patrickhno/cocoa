@@ -261,7 +261,8 @@ module ObjC
 
       # TODO: BUG: cascadeTopLeftFromPoint struggles with msgSend_stret
       if return_type =~ /^{([^=]*)=.*}$/ && name != :cascadeTopLeftFromPoint
-        ObjC.msgSend_stret(Cocoa.const_get($1),object,selector,*ffi_casted(values))
+        struct = Cocoa.const_get($1.sub(/^_NS/,'NS'))
+        ObjC.msgSend_stret(struct,object,selector,*ffi_casted(values))
       else
         ret = ObjC.msgSend(object,selector,*ffi_casted(values))
         return if name == :cascadeTopLeftFromPoint

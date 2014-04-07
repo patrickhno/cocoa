@@ -43,6 +43,14 @@ describe 'Cocoa' do
   #   Cocoa::NSSet.setWithObjects "A", "B", "and C"
   # end
 
+  it 'should return structs' do
+    rect = Cocoa::NSView.alloc.initWithFrame(Cocoa::NSMakeRect(12,34,56,78))
+    rect.frame[:origin][:x].should == 12.0
+    rect.frame[:origin][:y].should == 34.0
+    rect.frame[:size][:width].should == 56.0
+    rect.frame[:size][:height].should == 78.0
+  end
+
 #  context 'callbacks' do
     it 'should call methods with a argument' do
       class Derived < Cocoa::NSObject

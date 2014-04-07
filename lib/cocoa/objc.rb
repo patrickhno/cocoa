@@ -19,7 +19,7 @@ module ObjC
 
   def self.msgSend_stret( return_type, id, selector, *args )
     selector = sel_registerName(selector) if selector.is_a? String
-    method = "objc_msgSend_stret_for_#{return_type.name.underscore}".to_sym
+    method = "objc_msgSend_stret_for_#{return_type.name.underscore.gsub('/','_')}".to_sym
     unless respond_to? method
       attach_function method, :objc_msgSend_stret, [:pointer, :pointer, :varargs], return_type.by_value
     end
@@ -46,6 +46,17 @@ module ObjC
     rescue
       _superclass = ObjC.msgSend(ret,'superclass')
       superclass_name = ObjC::NSString_to_String(Cocoa::NSStringFromClass(_superclass))
+      superclass_name = if superclass_name =~ /^__NSCF/
+        "NS#{klass_name[6..-1]}" 
+      elsif superclass_name[0]=='_'
+        if superklass = Cocoa::const_get(NSString_to_String(Cocoa::NSStringFromClass(ObjC.msgSend(ret,"superclass"))))
+          superklass.name.split('::').last
+        else
+          "FIX_#{superclass_name}" 
+        end
+      else
+        superclass_name
+      end
       superclass = Cocoa::const_get(superclass_name) rescue smart_constantize(_superclass,superclass_name)
       proxy = Class.new(superclass)
       Cocoa.const_set(klass_name, proxy)

@@ -20,4 +20,7 @@ module Cocoa
   def CFRangeMake loc,len
     CFRange.new(location: loc, length: len)
   end
+  def NSMakeRange loc,len
+    NSRange.new(location: loc, length: len)
+  end
 end
