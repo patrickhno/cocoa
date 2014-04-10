@@ -301,7 +301,7 @@ module ObjC
         else
           raise value.inspect
         end
-      when 'q', 'Q', 'd'
+      when 'q', 'Q', 'd', 'B'
         value
       when 'v'
         nil
