@@ -10,24 +10,29 @@ describe 'Cocoa' do
     end
     Derived.new.get_lazy.class.name.should == 'Cocoa::NSMenu'
   end
+
   it 'should provide ruby superclass' do
     class Derived < Cocoa::NSObject
     end
     Derived.superclass.name.should == 'Cocoa::NSObject'
   end
+
   it 'should provide correct return types for class methods' do
     Cocoa::NSMutableArray.array.class.name.should == 'Cocoa::NSMutableArray'
   end
+
   it 'should provide correct return types for instance methods' do
     array = Cocoa::NSMutableArray.array
     Cocoa::NSMutableArray.array.description.class.name.should == 'Cocoa::NSString'
   end
+
   it 'should convert NSString to ruby strings' do
     array = Cocoa::NSMutableArray.array
     array.addObject "head"
     array.addObject "tail"
     ObjC.NSString_to_String(array.description.object).should == "(\n    head,\n    tail\n)"
   end
+
   it 'should return stringifyable strings' do
     array = Cocoa::NSMutableArray.array
     array.addObject "head"
@@ -38,6 +43,42 @@ describe 'Cocoa' do
   it 'should call singular methods' do
     Cocoa::NSString.stringWithString('a string').should == 'a string'
   end
+
+  it 'should allocate' do
+    instance = Cocoa::NSString.alloc
+    instance.class.should == Cocoa::NSString
+    instance.className.should == "NSPlaceholderString"
+  end
+
+  it 'should allocate derived' do
+    class Derived < Cocoa::NSObject
+    end
+    instance = Derived.alloc
+    instance.class.should == Derived
+    instance.className.should == "Derived"
+  end
+
+  it 'should allocate namespaced derived' do
+    class Cocoa::NamespacedDerived < Cocoa::NSObject
+    end
+    instance = Cocoa::NamespacedDerived.alloc
+    instance.class.should == Cocoa::NamespacedDerived
+    instance.className.should == "NamespacedDerived"
+  end
+
+  it 'should allocate derived inside class' do
+    class Cocoa::Foobar
+      class InsideDerived < Cocoa::NSObject
+      end
+      def initialize
+        instance = InsideDerived.alloc
+        instance.class.should == InsideDerived
+        instance.className.should == "InsideDerived"
+      end
+    end
+    Cocoa::Foobar.new
+  end
+
   # TODO: known bug
   # it 'should call variadic singular methods' do
   #   Cocoa::NSSet.setWithObjects "A", "B", "and C"

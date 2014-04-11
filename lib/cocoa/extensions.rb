@@ -20,37 +20,45 @@ class String
 end
 
 class Cocoa::NSObject
+
   def self.const_missing name
     Cocoa.const_get name
   end
 
+  def self.native_name
+    name.split('::').last
+  end
+
   def self.alloc
-    new(true).alloc
+    instance = new(true)
+    instance.object = ObjC.msgSend_pointer(get_class,"alloc")
+    instance
   end
 
   def self.inherited(parent)
-    include ClassMethods
     if parent.name
-      klass = ObjC.objc_allocateClassPair(ObjC.objc_getClass(name.split('::').last),parent.name,0)
-      ObjC.objc_registerClassPair(klass)
+      klass = begin
+        Cocoa::const_get(parent.native_name)
+        ObjC.objc_getClass(parent.native_name)
+      rescue
+      end
+      unless klass && klass.address != 0
+        klass = ObjC.objc_allocateClassPair(ObjC.objc_getClass(native_name),parent.native_name,0)
+        ObjC.objc_registerClassPair(klass)
+      end
     end
   end
 
+  def self.get_class
+    ObjC.objc_getClass(native_name)
+  end
+
   def initialize allocated=false
-    @klass = ObjC.objc_getClass(self.native_name)
+    @klass = ObjC.objc_getClass(self.class.native_name)
     unless allocated
       self.object = @klass
       new
     end
-  end
-
-  def get_class
-    ObjC.objc_getClass(self.native_name)
-  end
-
-  def alloc
-    self.object = ObjC.msgSend_pointer(ObjC.objc_getClass(self.native_name),"alloc")
-    self
   end
 
   def init
@@ -66,11 +74,5 @@ class Cocoa::NSObject
   def autorelease
     self.object = ObjC.msgSend_pointer(@object,"autorelease")
     self
-  end
-
-  module ClassMethods
-    def native_name
-      self.class.name.split('::').last
-    end
   end
 end
