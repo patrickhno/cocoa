@@ -26,7 +26,13 @@ class Cocoa::NSObject
   end
 
   def self.native_name
-    name.split('::').last
+    arr = name.split('::')
+    native = if arr.first == 'Cocoa'
+      arr.last
+    else
+      name.gsub(/::/,'__')
+    end
+    native
   end
 
   def self.alloc

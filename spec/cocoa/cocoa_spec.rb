@@ -17,6 +17,17 @@ describe 'Cocoa' do
     Derived.superclass.name.should == 'Cocoa::NSObject'
   end
 
+  it 'should provide native names' do
+    class Derived < Cocoa::NSObject
+    end
+    module Scoped; end
+    class Scoped::Derived < Cocoa::NSObject
+    end
+    Cocoa::NSObject.native_name.should == 'NSObject'
+    Derived.native_name.should == 'Derived'
+    Scoped::Derived.native_name.should == 'Scoped__Derived'
+  end
+
   it 'should provide correct return types for class methods' do
     Cocoa::NSMutableArray.array.class.name.should == 'Cocoa::NSMutableArray'
   end

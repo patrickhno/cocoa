@@ -203,10 +203,20 @@ module Cocoa
         callback_name = "#{self.name.gsub('::','__')}_#{m.selector.gsub(/:/,'_')}".to_sym
         add_method = "add_#{callback_name}".to_sym
 
+        native_name = begin
+          arr = self.name.split('::')
+          native = if arr.first == 'Cocoa'
+            arr.last
+          else
+            self.name.gsub(/::/,'__')
+          end
+          native
+        end
+
         ObjC.callback callback_name, [:pointer, :pointer]+m.ffi_types, m.ffi_return_type
         ObjC.attach_function add_method, :class_addMethod, [:pointer,:pointer,callback_name,:string], :void
 
-        ObjC.send(add_method,ObjC.objc_getClass(self.name.split('::').last),ObjC.sel_registerName(m.selector),@callbacks.last,m.objc_types)
+        ObjC.send(add_method,ObjC.objc_getClass(native_name),ObjC.sel_registerName(m.selector),@callbacks.last,m.objc_types)
       end
     end
   end

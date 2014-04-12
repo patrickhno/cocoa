@@ -75,19 +75,23 @@ module ObjC
     instance = begin
       Cocoa::const_get(klass_name).new(true)
     rescue
-      klass_name = if klass_name =~ /^__NSCF/
-        "NS#{klass_name[6..-1]}" 
-      elsif klass_name[0]=='_'
-        if superklass = Cocoa::const_get(NSString_to_String(Cocoa::NSStringFromClass(ObjC.msgSend_pointer(ret,"superclass"))))
-          superklass.name.split('::').last
+      begin
+        Object.const_get(klass_name.gsub(/__/,'::')).new(true)
+      rescue
+        klass_name = if klass_name =~ /^__NSCF/
+          "NS#{klass_name[6..-1]}" 
+        elsif klass_name[0]=='_'
+          if superklass = Cocoa::const_get(NSString_to_String(Cocoa::NSStringFromClass(ObjC.msgSend_pointer(ret,"superclass"))))
+            superklass.name.split('::').last
+          else
+            "FIX_#{klass_name}" 
+          end
         else
-          "FIX_#{klass_name}" 
+          klass_name
         end
-      else
-        klass_name
+        klass = smart_constantize(ret,klass_name)
+        klass.new(true)
       end
-      klass = smart_constantize(ret,klass_name)
-      klass.new(true)
     end
     instance.object = ret
     instance
