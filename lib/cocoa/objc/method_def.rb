@@ -1,6 +1,6 @@
 module ObjC
   class MethodDef
-    attr_accessor :name,:names,:types,:return_type
+    attr_accessor :name,:names,:types,:return_type,:ruby_name
 
     TYPES = {
       'c' => :char,
@@ -31,6 +31,7 @@ module ObjC
 
     def initialize name,options
       @name = name.to_sym
+      @ruby_name = name.to_sym
       @names = options[:names].map(&:to_sym)
       @types = options[:types]
       @return_type = options[:retval]
@@ -280,12 +281,12 @@ module ObjC
 
       ret = if params.size > 0 && params.last.first == :rest
         args = args.map{ |arg| Cocoa::instance_for(arg) }
-        instance.send(name, args.first, Hash[*names.zip(args[1..-1]).flatten])
+        instance.send(ruby_name, args.first, Hash[*names.zip(args[1..-1]).flatten])
       elsif keys.size > 0
         args = args.map{ |arg| Cocoa::instance_for(arg) }
-        instance.send(name, args.first, Hash[*keys.zip(args[1..-1]).flatten])
+        instance.send(ruby_name, args.first, Hash[*keys.zip(args[1..-1]).flatten])
       else
-        instance.send(name, *args.map{ |arg| Cocoa::instance_for(arg) })
+        instance.send(ruby_name, *args.map{ |arg| Cocoa::instance_for(arg) })
       end
       ffi_return_value(ret)
     end

@@ -126,6 +126,7 @@ describe 'Cocoa' do
       # fake ruby 2
       unbound_method = mock('UnboundMethod')
       Cocoa::NSObject.expects(:instance_method).with(:tableView).at_least_once.returns(unbound_method)
+      Cocoa::NSObject.expects(:instance_method).with(:_tableView_with_objectValueForTableColumn_and_row).at_least_once.returns(unbound_method)
       unbound_method.expects(:parameters).at_least_once.returns([[:req, :table_view], [:key, :objectValueForTableColumn], [:key, :row]])
       class Derived < Cocoa::NSObject
         #def tableView(table_view, objectValueForTableColumn: column, row: i); end
@@ -133,7 +134,7 @@ describe 'Cocoa' do
       end
 
       derived = Derived.new
-      derived.expects(:tableView).with(
+      derived.expects(:_tableView_with_objectValueForTableColumn_and_row).with(
         Cocoa::NSString.stringWithString("arg1"),
         objectValueForTableColumn: Cocoa::NSString.stringWithString("arg2"),
         row: 123
@@ -148,6 +149,7 @@ describe 'Cocoa' do
       # fake ruby 2
       unbound_method = mock('UnboundMethod')
       Cocoa::NSObject.expects(:instance_method).with(:tableView).at_least_once.returns(unbound_method)
+      Cocoa::NSObject.expects(:instance_method).with(:_tableView_with_objectValueForTableColumn_and_row).at_least_once.returns(unbound_method)
       unbound_method.expects(:parameters).at_least_once.returns([[:req, :table_view], [:key, :objectValueForTableColumn], [:key, :row]])
       class Derived < Cocoa::NSObject
         #def tableView(table_view, objectValueForTableColumn: column, row: i); end
@@ -168,7 +170,7 @@ describe 'Cocoa' do
       end
 
       derived = Derived.new
-      derived.expects(:tableView).with(
+      derived.expects(:_tableView_with_objectValueForTableColumn_and_row).with(
         Cocoa::NSString.stringWithString("arg1"),
         objectValueForTableColumn: Cocoa::NSString.stringWithString("arg2"),
         row: 123

@@ -192,8 +192,31 @@ module Cocoa
     def self.method_added(name)
       return if name == :== # TODO: define as equals or something?
       return if name.to_s[-1] == '='
+      return if caller[1].split('`').last[0..-2] == 'method_added'      # self
       return if caller.first.split('`').last[0..-2] == 'define_method'  # MRI
       return if caller.first.split('`').last[0..-2] == 'attach_method'  # Rubinius
+
+      # define an alias for keyword argument methods such that:
+      # class Foo
+      #   def bar whatever, alpha: nil
+      #     puts "alpha is: #{alpha}"
+      #   end
+      #   def bar whatever, omega: nil
+      #     puts "omega is: #{omega}"
+      #   end
+      # end
+      # Foo.new.bar "hello", omega: "is omega"
+      # Foo.new.bar "hello", alpha: "is alpha"
+      #=>
+      # omega is: is omega
+      # alpha is: is alpha
+      keys = instance_method(name).parameters.select{ |param| param.first == :key }.map{ |param| param.last }
+      ruby_name = name
+      if keys.size > 0
+        ruby_name = "_#{name}_with_#{keys.join('_and_')}".to_sym
+        alias_method ruby_name, name
+      end
+
 
       defs = method_defs name
       defs ||= ObjC::MethodDef.new(name, :names => [], :types => ['@'], :retval => 'v')  # TODO: generate from method arguments!
@@ -201,9 +224,10 @@ module Cocoa
       [defs].flatten.each do |m|
         @callbacks ||= []
         @callbacks << Proc.new do |this,cmd,*args|
+          m.ruby_name = ruby_name
           begin
             instance = Cocoa.instances[this.address]
-            params = instance_method(name).parameters
+            params = instance_method(ruby_name).parameters
             m.callback(instance,params,args)
           rescue => e
             puts e.message

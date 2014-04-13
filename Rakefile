@@ -1,6 +1,10 @@
 # encoding: utf-8
 
-PROJECT_SPECS = FileList['spec/**/*_spec.rb']
+PROJECT_SPECS = if RUBY_VERSION.split.first.to_i >= 2
+  FileList['spec/**/*_spec.rb'] + FileList['spec/**/*_spec_r2.rb']
+else
+  FileList['spec/**/*_spec.rb']
+end
 
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
