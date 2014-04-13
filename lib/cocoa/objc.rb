@@ -123,7 +123,7 @@ module ObjC
     case type
     when nil
       default
-    when '@', 'v', 'q', 'Q', '^v'
+    when '@', 'v', 'q', 'Q', '^v', 'B'
       type
     when /^{([^=]*)=.*}$/
       type

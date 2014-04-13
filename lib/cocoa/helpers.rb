@@ -123,24 +123,27 @@ module Cocoa
 
     def self.attach_method method,*_params
       return if method==:class
-      @@method_specs ||= {}
-      @@method_specs[method] = []
+      @method_specs ||= {}
+      @method_specs[method] = []
       [_params].flatten.each do |spec|
-        @@method_specs[method] << ObjC::MethodDef.new(method,spec)
+        @method_specs[method] << ObjC::MethodDef.new(method,spec)
       end
       define_method method do |*args|
+        klass = self.class; klass = klass.superclass while !klass.instance_methods(false).include?(method)
+        spec = klass.instance_variable_get(:@method_specs)[method]
+
         matching = if args.size <= 1
-          matching = @@method_specs[method].select do |m|
+          matching = spec.select do |m|
             m.types.size == args.size
           end
         else
           matching = if args.last.is_a? Hash
-            @@method_specs[method].select do |m|
+            spec.select do |m|
               args.last.keys == m.names
             end
           else
             raise "hell" unless args.size == 1
-            @@method_specs[method].select do |m|
+            spec.select do |m|
               m.types.size == 1
             end
           end
@@ -157,18 +160,26 @@ module Cocoa
     end
 
     def self.method_defs method
-      return nil unless @@method_specs[method]
+      klass = self
+      method_specs = klass.instance_variable_get(:@method_specs)
+      while klass && (!method_specs || !method_specs[method])
+        klass = klass.superclass
+        method_specs = klass.instance_variable_get(:@method_specs)
+      end
+      return nil unless method_specs
+
+      spec = method_specs[method]
       params = instance_method(method).parameters
       keys = params.select{ |param| param.first == :key }.map{ |param| param.last }
       if params.size > 0 && params.last.first == :rest
-        filtered = @@method_specs[method].select do |m|
+        filtered = spec.select do |m|
           ((m.types.size == 0 && keys.size == 0) || (m.types.size > keys.size)) &&
           (m.names[0,keys.size-1] || []) == keys
         end
         return nil if filtered.size == 0
         filtered
       else
-        filtered = @@method_specs[method].select do |m|
+        filtered = spec.select do |m|
           ((m.types.size == 0 && keys.size == 0) || (m.types.size == keys.size+1)) &&
           m.names == keys
         end
