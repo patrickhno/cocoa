@@ -14,6 +14,7 @@ class MyApplication < Cocoa::NSObject
     ).autorelease
     app_menu.addItem quit_menu_item
     app_menu_item.setSubmenu app_menu
+    app_menu.setTitle 'Opine'
 
     window = NSWindow.alloc.initWithContentRect(NSRect.new(x: 0, y: 0, width: 200, height: 200),
       styleMask: NSTitledWindowMask | NSResizableWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask,
