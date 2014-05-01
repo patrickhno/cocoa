@@ -35,6 +35,7 @@ module Cocoa
   NSAWTEventType = 16
   NSAboveBottom = 4
   NSAboveTop = 1
+  NSAddEntityMappingType = 2
   NSAddTraitFontAction = 2
   NSAdminApplicationDirectory = 4
   NSAdobeCNS1CharacterCollection = 1
@@ -190,12 +191,14 @@ module Cocoa
   NSBetweenPredicateOperatorType = 100
   NSBevelLineJoinStyle = 2
   NSBezelBorder = 2
+  NSBinaryDataAttributeType = 1000
   NSBinarySearchingFirstEqual = 256
   NSBinarySearchingInsertionIndex = 1024
   NSBinarySearchingLastEqual = 512
   NSBlockExpressionType = 19
   NSBlueControlTint = 1
   NSBoldFontMask = 2
+  NSBooleanAttributeType = 800
   NSBorderlessWindowMask = 0
   NSBottomTabsBezelBorder = 2
   NSBoxCustom = 4
@@ -242,6 +245,7 @@ module Cocoa
   NSCancelTextMovement = 23
   NSCannotCreateScriptCommandError = 10
   NSCarriageReturnCharacter = 13
+  NSCascadeDeleteRule = 2
   NSCaseInsensitivePredicateOption = 1
   NSCaseInsensitiveSearch = 1
   NSCellAllowsMixedState = 16
@@ -319,6 +323,7 @@ module Cocoa
   NSCompositeXOR = 10
   NSCompressedFontMask = 512
   NSCondensedFontMask = 64
+  NSConfinementConcurrencyType = 0
   NSConstantValueExpressionType = 0
   NSContainerSpecifierError = 2
   NSContainsComparison = 7
@@ -327,6 +332,27 @@ module Cocoa
   NSContinuousCapacityLevelIndicatorStyle = 1
   NSControlGlyph = 16777215
   NSControlKeyMask = 262144
+  NSCopyEntityMappingType = 4
+  NSCoreDataError = 134060
+  NSCoreDataVersionNumber10_4 = 46.0
+  NSCoreDataVersionNumber10_4_3 = 77.0
+  NSCoreDataVersionNumber10_5 = 185.0
+  NSCoreDataVersionNumber10_5_3 = 186.0
+  NSCoreDataVersionNumber10_6 = 246.0
+  NSCoreDataVersionNumber10_6_2 = 250.0
+  NSCoreDataVersionNumber10_6_3 = 251.0
+  NSCoreDataVersionNumber10_7 = 358.4
+  NSCoreDataVersionNumber10_7_2 = 358.12
+  NSCoreDataVersionNumber10_7_3 = 358.13
+  NSCoreDataVersionNumber_iPhoneOS_3_0 = 241.0
+  NSCoreDataVersionNumber_iPhoneOS_3_1 = 248.0
+  NSCoreDataVersionNumber_iPhoneOS_3_2 = 310.2
+  NSCoreDataVersionNumber_iPhoneOS_4_0 = 320.5
+  NSCoreDataVersionNumber_iPhoneOS_4_1 = 320.11
+  NSCoreDataVersionNumber_iPhoneOS_4_2 = 320.15
+  NSCoreDataVersionNumber_iPhoneOS_4_3 = 320.17
+  NSCoreDataVersionNumber_iPhoneOS_5_0 = 386.1
+  NSCoreDataVersionNumber_iPhoneOS_5_1 = 386.5
   NSCoreServiceDirectory = 10
   NSCorrectionIndicatorTypeDefault = 0
   NSCorrectionIndicatorTypeGuesses = 2
@@ -337,6 +363,7 @@ module Cocoa
   NSCorrectionResponseNone = 0
   NSCorrectionResponseRejected = 2
   NSCorrectionResponseReverted = 5
+  NSCountResultType = 4
   NSCrayonModeColorPanel = 7
   NSCriticalAlertStyle = 2
   NSCriticalRequest = 0
@@ -344,6 +371,7 @@ module Cocoa
   NSCursorUpdate = 17
   NSCursorUpdateMask = 131072
   NSCurveToBezierPathElement = 2
+  NSCustomEntityMappingType = 1
   NSCustomPaletteModeColorPanel = 4
   NSCustomSelectorPredicateOperatorType = 11
   NSDataReadingMapped = 1
@@ -359,6 +387,7 @@ module Cocoa
   NSDataWritingFileProtectionMask = 4026531840
   NSDataWritingFileProtectionNone = 268435456
   NSDataWritingWithoutOverwriting = 2
+  NSDateAttributeType = 900
   NSDateFormatterBehavior10_0 = 1000
   NSDateFormatterBehavior10_4 = 1040
   NSDateFormatterBehaviorDefault = 0
@@ -368,6 +397,7 @@ module Cocoa
   NSDateFormatterNoStyle = 0
   NSDateFormatterShortStyle = 1
   NSDayCalendarUnit = 16
+  NSDecimalAttributeType = 400
   NSDecimalMaxSize = 8
   NSDecimalNoScale = 32767
   NSDecimalTabStopType = 3
@@ -378,6 +408,7 @@ module Cocoa
   NSDeleteFunctionKey = 63272
   NSDeleteLineFunctionKey = 63292
   NSDemoApplicationDirectory = 2
+  NSDenyDeleteRule = 3
   NSDescendingPageOrder = -1
   NSDesktopDirectory = 12
   NSDeveloperApplicationDirectory = 3
@@ -386,6 +417,7 @@ module Cocoa
   NSDeviceNColorSpaceModel = 4
   NSDiacriticInsensitivePredicateOption = 2
   NSDiacriticInsensitiveSearch = 128
+  NSDictionaryResultType = 2
   NSDirectPredicateModifier = 0
   NSDirectSelection = 0
   NSDirectoryEnumerationSkipsHiddenFiles = 4
@@ -397,6 +429,7 @@ module Cocoa
   NSDocModalWindowMask = 64
   NSDocumentDirectory = 9
   NSDocumentationDirectory = 8
+  NSDoubleAttributeType = 500
   NSDoubleType = 6
   NSDownArrowFunctionKey = 63233
   NSDownTextMovement = 22
@@ -428,6 +461,7 @@ module Cocoa
   NSEndsWithComparison = 6
   NSEndsWithPredicateOperatorType = 9
   NSEnterCharacter = 3
+  NSEntityMigrationPolicyError = 134170
   NSEnumerationConcurrent = 1
   NSEnumerationReverse = 2
   NSEqualToComparison = 0
@@ -435,6 +469,7 @@ module Cocoa
   NSEraCalendarUnit = 2
   NSEraDatePickerElementFlag = 256
   NSEraserPointingDevice = 3
+  NSErrorMergePolicyType = 0
   NSEvaluatedObjectExpressionType = 1
   NSEvenOddWindingRule = 1
   NSEventGestureAxisHorizontal = 1
@@ -476,6 +511,7 @@ module Cocoa
   NSExecutableRuntimeMismatchError = 3586
   NSExecuteFunctionKey = 63298
   NSExpandedFontMask = 32
+  NSExternalRecordImportError = 134200
   NSF10FunctionKey = 63245
   NSF11FunctionKey = 63246
   NSF12FunctionKey = 63247
@@ -519,6 +555,8 @@ module Cocoa
   NSFPSizeField = 129
   NSFPSizeTitle = 133
   NSFeatureUnsupportedError = 3328
+  NSFetchRequestExpressionType = 50
+  NSFetchRequestType = 1
   NSFileCoordinatorReadingResolvesSymbolicLink = 2
   NSFileCoordinatorReadingWithoutChanges = 1
   NSFileCoordinatorWritingForDeleting = 1
@@ -575,6 +613,7 @@ module Cocoa
   NSFixedPitchFontMask = 1024
   NSFlagsChanged = 12
   NSFlagsChangedMask = 4096
+  NSFloatAttributeType = 600
   NSFloatType = 3
   NSFloatingPointSamplesBitmapFormat = 4
   NSFocusRingAbove = 2
@@ -793,6 +832,7 @@ module Cocoa
   NSInPredicateOperatorType = 10
   NSIndexSubelement = 0
   NSIndexedColorSpaceModel = 5
+  NSInferredMappingModelError = 134190
   NSInformationalAlertStyle = 1
   NSInformationalRequest = 10
   NSInlineBezelStyle = 15
@@ -801,6 +841,9 @@ module Cocoa
   NSInsertFunctionKey = 63271
   NSInsertLineFunctionKey = 63291
   NSIntType = 1
+  NSInteger16AttributeType = 100
+  NSInteger32AttributeType = 200
+  NSInteger64AttributeType = 300
   NSIntegerMax = 9223372036854775807
   NSIntegerMin = -9223372036854775808
   NSInternalScriptError = 8
@@ -932,6 +975,14 @@ module Cocoa
   NSMachPortDeallocateReceiveRight = 2
   NSMachPortDeallocateSendRight = 1
   NSMacintoshInterfaceStyle = 3
+  NSMainQueueConcurrencyType = 2
+  NSManagedObjectContextLockingError = 132000
+  NSManagedObjectExternalRelationshipError = 133010
+  NSManagedObjectIDResultType = 1
+  NSManagedObjectMergeError = 133020
+  NSManagedObjectReferentialIntegrityError = 133000
+  NSManagedObjectResultType = 0
+  NSManagedObjectValidationError = 1550
   NSMapTableCopyIn = 65536
   NSMapTableObjectPointerPersonality = 512
   NSMapTableStrongMemory = 0
@@ -959,7 +1010,15 @@ module Cocoa
   NSMenuPropertyItemImage = 8
   NSMenuPropertyItemKeyEquivalent = 4
   NSMenuPropertyItemTitle = 1
+  NSMergeByPropertyObjectTrumpMergePolicyType = 2
+  NSMergeByPropertyStoreTrumpMergePolicyType = 1
   NSMiddleSubelement = 2
+  NSMigrationCancelledError = 134120
+  NSMigrationError = 134110
+  NSMigrationManagerDestinationStoreError = 134160
+  NSMigrationManagerSourceStoreError = 134150
+  NSMigrationMissingMappingModelError = 134140
+  NSMigrationMissingSourceModelError = 134130
   NSMinXEdge = 0
   NSMinYEdge = 1
   NSMiniControlSize = 2
@@ -1002,6 +1061,7 @@ module Cocoa
   NSNewlineCharacter = 10
   NSNextFunctionKey = 63296
   NSNextStepInterfaceStyle = 1
+  NSNoActionDeleteRule = 0
   NSNoBorder = 0
   NSNoCellMask = 0
   NSNoFontChangeAction = 0
@@ -1037,6 +1097,7 @@ module Cocoa
   NSNotificationSuspensionBehaviorHold = 3
   NSNullCellType = 0
   NSNullGlyph = 0
+  NSNullifyDeleteRule = 1
   NSNumberFormatterBehavior10_0 = 1000
   NSNumberFormatterBehavior10_4 = 1040
   NSNumberFormatterBehaviorDefault = 0
@@ -1065,6 +1126,7 @@ module Cocoa
   NSObjectAutoreleasedEvent = 3
   NSObjectExtraRefDecrementedEvent = 5
   NSObjectExtraRefIncrementedEvent = 4
+  NSObjectIDAttributeType = 2000
   NSObjectInternalRefDecrementedEvent = 7
   NSObjectInternalRefIncrementedEvent = 6
   NSOffState = 0
@@ -1153,6 +1215,7 @@ module Cocoa
   NSOtherMouseUpMask = 67108864
   NSOtherTextMovement = 0
   NSOutlineViewDropOnItemIndex = -1
+  NSOverwriteMergePolicyType = 3
   NSPNGFileType = 4
   NSPageControllerTransitionStyleHorizontalStrip = 2
   NSPageControllerTransitionStyleStackBook = 1
@@ -1176,6 +1239,18 @@ module Cocoa
   NSPenUpperSideMask = 4
   NSPeriodic = 16
   NSPeriodicMask = 65536
+  NSPersistentStoreCoordinatorLockingError = 132010
+  NSPersistentStoreIncompatibleSchemaError = 134020
+  NSPersistentStoreIncompatibleVersionHashError = 134100
+  NSPersistentStoreIncompleteSaveError = 134040
+  NSPersistentStoreInvalidTypeError = 134000
+  NSPersistentStoreOpenError = 134080
+  NSPersistentStoreOperationError = 134070
+  NSPersistentStoreSaveConflictsError = 134050
+  NSPersistentStoreSaveError = 134030
+  NSPersistentStoreTimeoutError = 134090
+  NSPersistentStoreTypeMismatchError = 134010
+  NSPersistentStoreUnsupportedRequestTypeError = 134091
   NSPicturesDirectory = 19
   NSPlainTextTokenStyle = 1
   NSPointerFunctionsCStringPersonality = 768
@@ -1236,6 +1311,7 @@ module Cocoa
   NSPrintingFailure = 3
   NSPrintingReplyLater = 2
   NSPrintingSuccess = 1
+  NSPrivateQueueConcurrencyType = 1
   NSProgressIndicatorBarStyle = 0
   NSProgressIndicatorPreferredAquaThickness = 12
   NSProgressIndicatorPreferredLargeThickness = 18
@@ -1287,6 +1363,7 @@ module Cocoa
   NSRemoteNotificationTypeBadge = 1
   NSRemoteNotificationTypeNone = 0
   NSRemoteNotificationTypeSound = 2
+  NSRemoveEntityMappingType = 3
   NSRemoveTraitFontAction = 7
   NSRequiredArgumentsMissingScriptError = 5
   NSResetCursorRectsRunLoopOrdering = 700000
@@ -1304,6 +1381,7 @@ module Cocoa
   NSRightTabsBezelBorder = 3
   NSRightTextAlignment = 1
   NSRightTextMovement = 20
+  NSRollbackMergePolicyType = 4
   NSRoundBankers = 3
   NSRoundDown = 1
   NSRoundLineCapStyle = 1
@@ -1323,11 +1401,13 @@ module Cocoa
   NSRunAbortedResponse = -1001
   NSRunContinuesResponse = -1002
   NSRunStoppedResponse = -1000
+  NSSQLiteError = 134180
   NSSaveAsOperation = 1
   NSSaveOperation = 0
   NSSaveOptionsAsk = 2
   NSSaveOptionsNo = 1
   NSSaveOptionsYes = 0
+  NSSaveRequestType = 2
   NSSaveToOperation = 2
   NSScaleNone = 2
   NSScaleProportionally = 0
@@ -1410,6 +1490,12 @@ module Cocoa
   NSSmallControlSize = 1
   NSSmallIconButtonBezelStyle = 2
   NSSmallSquareBezelStyle = 10
+  NSSnapshotEventMergePolicy = 64
+  NSSnapshotEventRefresh = 32
+  NSSnapshotEventRollback = 16
+  NSSnapshotEventUndoDeletion = 4
+  NSSnapshotEventUndoInsertion = 2
+  NSSnapshotEventUndoUpdate = 8
   NSSolarisOperatingSystem = 3
   NSSortConcurrent = 1
   NSSortStable = 16
@@ -1439,6 +1525,7 @@ module Cocoa
   NSStreamStatusOpening = 1
   NSStreamStatusReading = 3
   NSStreamStatusWriting = 4
+  NSStringAttributeType = 700
   NSStringDrawingDisableScreenFontSubstitution = 4
   NSStringDrawingOneShot = 16
   NSStringDrawingTruncatesLastVisibleLine = 32
@@ -1636,6 +1723,8 @@ module Cocoa
   NSTrackingInVisibleRect = 512
   NSTrackingMouseEnteredAndExited = 1
   NSTrackingMouseMoved = 2
+  NSTransformEntityMappingType = 5
+  NSTransformableAttributeType = 1800
   NSTrashDirectory = 102
   NSTypesetterBehavior_10_2 = 2
   NSTypesetterBehavior_10_2_WithCompatibility = 1
@@ -1738,7 +1827,9 @@ module Cocoa
   NSUbiquitousKeyValueStoreServerChange = 0
   NSUnboldFontMask = 4
   NSUncachedRead = 2
+  NSUndefinedAttributeType = 0
   NSUndefinedDateComponent = 9223372036854775807
+  NSUndefinedEntityMappingType = 0
   NSUnderlinePatternDash = 512
   NSUnderlinePatternDashDot = 768
   NSUnderlinePatternDashDotDot = 1024
@@ -1773,8 +1864,21 @@ module Cocoa
   NSUserNotificationActivationTypeContentsClicked = 1
   NSUserNotificationActivationTypeNone = 0
   NSUtilityWindowMask = 16
+  NSValidationDateTooLateError = 1630
+  NSValidationDateTooSoonError = 1640
   NSValidationErrorMaximum = 2047
   NSValidationErrorMinimum = 1024
+  NSValidationInvalidDateError = 1650
+  NSValidationMissingMandatoryPropertyError = 1570
+  NSValidationMultipleErrorsError = 1560
+  NSValidationNumberTooLargeError = 1610
+  NSValidationNumberTooSmallError = 1620
+  NSValidationRelationshipDeniedDeleteError = 1600
+  NSValidationRelationshipExceedsMaximumCountError = 1590
+  NSValidationRelationshipLacksMinimumCountError = 1580
+  NSValidationStringPatternMatchingError = 1680
+  NSValidationStringTooLongError = 1660
+  NSValidationStringTooShortError = 1670
   NSVariableExpressionType = 2
   NSVariableStatusItemLength = -1
   NSVerticalRuler = 1
@@ -3469,6 +3573,9 @@ module Cocoa
   attach_nsstring_getter :NSAccessibilityWindowsAttribute
   attach_nsstring_getter :NSAccessibilityZoomButtonAttribute
   attach_nsstring_getter :NSAccessibilityZoomButtonSubrole
+  attach_nsstring_getter :NSAddedPersistentStoresKey
+  attach_nsstring_getter :NSAffectedObjectsErrorKey
+  attach_nsstring_getter :NSAffectedStoresErrorKey
   attach_nsstring_getter :NSAlignmentBinding
   attach_nsstring_getter :NSAllRomanInputSourcesLocaleIdentifier
   attach_nsstring_getter :NSAllowsEditingMultipleValuesSelectionBindingOption
@@ -3529,6 +3636,8 @@ module Cocoa
   attach_nsstring_getter :NSBadRTFStyleSheetException
   attach_nsstring_getter :NSBaseURLDocumentOption
   attach_nsstring_getter :NSBaselineOffsetAttributeName
+  attach_nsstring_getter :NSBinaryExternalRecordType
+  attach_nsstring_getter :NSBinaryStoreType
   attach_nsstring_getter :NSBottomMarginDocumentAttribute
   attach_nsstring_getter :NSBrowserColumnConfigurationDidChangeNotification
   attach_nsstring_getter :NSBrowserIllegalDelegateException
@@ -3606,8 +3715,10 @@ module Cocoa
   attach_nsstring_getter :NSDefinitionPresentationTypeDictionaryApplication
   attach_nsstring_getter :NSDefinitionPresentationTypeKey
   attach_nsstring_getter :NSDefinitionPresentationTypeOverlay
+  attach_nsstring_getter :NSDeletedObjectsKey
   attach_nsstring_getter :NSDeletesObjectsOnRemoveBindingsOption
   attach_nsstring_getter :NSDestinationInvalidException
+  attach_nsstring_getter :NSDetailedErrorsKey
   attach_nsstring_getter :NSDeviceBitsPerSample
   attach_nsstring_getter :NSDeviceBlackColorSpace
   attach_nsstring_getter :NSDeviceCMYKColorSpace
@@ -3645,11 +3756,15 @@ module Cocoa
   attach_nsstring_getter :NSEditableBinding
   attach_nsstring_getter :NSEditorDocumentAttribute
   attach_nsstring_getter :NSEnabledBinding
+  attach_nsstring_getter :NSEntityNameInPathKey
   attach_nsstring_getter :NSErrorFailingURLStringKey
   attach_nsstring_getter :NSEventTrackingRunLoopMode
   attach_nsstring_getter :NSExcludedElementsDocumentAttribute
   attach_nsstring_getter :NSExcludedKeysBinding
   attach_nsstring_getter :NSExpansionAttributeName
+  attach_nsstring_getter :NSExternalRecordExtensionOption
+  attach_nsstring_getter :NSExternalRecordsDirectoryOption
+  attach_nsstring_getter :NSExternalRecordsFileFormatOption
   attach_nsstring_getter :NSFTPPropertyActiveTransferModeKey
   attach_nsstring_getter :NSFTPPropertyFTPProxy
   attach_nsstring_getter :NSFTPPropertyFileOffsetKey
@@ -3804,6 +3919,7 @@ module Cocoa
   attach_nsstring_getter :NSHourNameDesignations
   attach_nsstring_getter :NSHyphenationFactorDocumentAttribute
   attach_nsstring_getter :NSISO8601Calendar
+  attach_nsstring_getter :NSIgnorePersistentStoreVersioningOption
   attach_nsstring_getter :NSIllegalSelectorException
   attach_nsstring_getter :NSImageBinding
   attach_nsstring_getter :NSImageCacheException
@@ -3884,12 +4000,15 @@ module Cocoa
   attach_nsstring_getter :NSImageProgressive
   attach_nsstring_getter :NSImageRGBColorTable
   attach_nsstring_getter :NSImageRepRegistryDidChangeNotification
+  attach_nsstring_getter :NSInMemoryStoreType
   attach_nsstring_getter :NSIncludedKeysBinding
   attach_nsstring_getter :NSInconsistentArchiveException
   attach_nsstring_getter :NSIndianCalendar
+  attach_nsstring_getter :NSInferMappingModelAutomaticallyOption
   attach_nsstring_getter :NSInitialKeyBinding
   attach_nsstring_getter :NSInitialValueBinding
   attach_nsstring_getter :NSInkTextPboardType
+  attach_nsstring_getter :NSInsertedObjectsKey
   attach_nsstring_getter :NSInsertsNullPlaceholderBindingOption
   attach_nsstring_getter :NSInterfaceStyleDefault
   attach_nsstring_getter :NSInternalInconsistencyException
@@ -3899,6 +4018,8 @@ module Cocoa
   attach_nsstring_getter :NSInvalidReceivePortException
   attach_nsstring_getter :NSInvalidSendPortException
   attach_nsstring_getter :NSInvalidUnarchiveOperationException
+  attach_nsstring_getter :NSInvalidatedAllObjectsKey
+  attach_nsstring_getter :NSInvalidatedObjectsKey
   attach_nsstring_getter :NSInvocationOperationCancelledException
   attach_nsstring_getter :NSInvocationOperationVoidResultException
   attach_nsstring_getter :NSInvokesSeparatelyWithArrayObjectsBindingOption
@@ -3989,6 +4110,9 @@ module Cocoa
   attach_nsstring_getter :NSMachErrorDomain
   attach_nsstring_getter :NSMallocException
   attach_nsstring_getter :NSManagedObjectContextBinding
+  attach_nsstring_getter :NSManagedObjectContextDidSaveNotification
+  attach_nsstring_getter :NSManagedObjectContextObjectsDidChangeNotification
+  attach_nsstring_getter :NSManagedObjectContextWillSaveNotification
   attach_nsstring_getter :NSManagerDocumentAttribute
   attach_nsstring_getter :NSMarkedClauseSegmentAttributeName
   attach_nsstring_getter :NSMaxValueBinding
@@ -4027,11 +4151,19 @@ module Cocoa
   attach_nsstring_getter :NSMetadataUbiquitousItemIsUploadingKey
   attach_nsstring_getter :NSMetadataUbiquitousItemPercentDownloadedKey
   attach_nsstring_getter :NSMetadataUbiquitousItemPercentUploadedKey
+  attach_nsstring_getter :NSMigratePersistentStoresAutomaticallyOption
+  attach_nsstring_getter :NSMigrationDestinationObjectKey
+  attach_nsstring_getter :NSMigrationEntityMappingKey
+  attach_nsstring_getter :NSMigrationEntityPolicyKey
+  attach_nsstring_getter :NSMigrationManagerKey
+  attach_nsstring_getter :NSMigrationPropertyMappingKey
+  attach_nsstring_getter :NSMigrationSourceObjectKey
   attach_nsstring_getter :NSMinValueBinding
   attach_nsstring_getter :NSMinWidthBinding
   attach_nsstring_getter :NSMinimumKeyValueOperator
   attach_nsstring_getter :NSMixedStateImageBinding
   attach_nsstring_getter :NSModalPanelRunLoopMode
+  attach_nsstring_getter :NSModelPathKey
   attach_nsstring_getter :NSModificationTimeDocumentAttribute
   attach_nsstring_getter :NSMonthNameArray
   attach_nsstring_getter :NSMultipleTextSelectionPboardType
@@ -4052,6 +4184,7 @@ module Cocoa
   attach_nsstring_getter :NSOSStatusErrorDomain
   attach_nsstring_getter :NSObjectInaccessibleException
   attach_nsstring_getter :NSObjectNotAvailableException
+  attach_nsstring_getter :NSObjectURIKey
   attach_nsstring_getter :NSObliquenessAttributeName
   attach_nsstring_getter :NSObservedKeyPathKey
   attach_nsstring_getter :NSObservedObjectKey
@@ -4100,6 +4233,14 @@ module Cocoa
   attach_nsstring_getter :NSPasteboardURLReadingFileURLsOnlyKey
   attach_nsstring_getter :NSPatternColorSpace
   attach_nsstring_getter :NSPersianCalendar
+  attach_nsstring_getter :NSPersistentStoreCoordinatorStoresDidChangeNotification
+  attach_nsstring_getter :NSPersistentStoreCoordinatorWillRemoveStoreNotification
+  attach_nsstring_getter :NSPersistentStoreDidImportUbiquitousContentChangesNotification
+  attach_nsstring_getter :NSPersistentStoreOSCompatibility
+  attach_nsstring_getter :NSPersistentStoreSaveConflictsErrorKey
+  attach_nsstring_getter :NSPersistentStoreTimeoutOption
+  attach_nsstring_getter :NSPersistentStoreUbiquitousContentNameKey
+  attach_nsstring_getter :NSPersistentStoreUbiquitousContentURLKey
   attach_nsstring_getter :NSPlainFileType
   attach_nsstring_getter :NSPlainTextDocumentType
   attach_nsstring_getter :NSPopUpButtonCellWillPopUpNotification
@@ -4179,9 +4320,12 @@ module Cocoa
   attach_nsstring_getter :NSRaisesForNotApplicableKeysBindingOption
   attach_nsstring_getter :NSRangeException
   attach_nsstring_getter :NSReadOnlyDocumentAttribute
+  attach_nsstring_getter :NSReadOnlyPersistentStoreOption
   attach_nsstring_getter :NSRecentSearchesBinding
   attach_nsstring_getter :NSRecoveryAttempterErrorKey
+  attach_nsstring_getter :NSRefreshedObjectsKey
   attach_nsstring_getter :NSRegistrationDomain
+  attach_nsstring_getter :NSRemovedPersistentStoresKey
   attach_nsstring_getter :NSRepresentedFilenameBinding
   attach_nsstring_getter :NSRepublicOfChinaCalendar
   attach_nsstring_getter :NSRightMarginDocumentAttribute
@@ -4197,6 +4341,11 @@ module Cocoa
   attach_nsstring_getter :NSRulerPboard
   attach_nsstring_getter :NSRulerPboardType
   attach_nsstring_getter :NSRunLoopCommonModes
+  attach_nsstring_getter :NSSQLiteAnalyzeOption
+  attach_nsstring_getter :NSSQLiteErrorDomain
+  attach_nsstring_getter :NSSQLiteManualVacuumOption
+  attach_nsstring_getter :NSSQLitePragmasOption
+  attach_nsstring_getter :NSSQLiteStoreType
   attach_nsstring_getter :NSScreenColorSpaceDidChangeNotification
   attach_nsstring_getter :NSScrollViewDidEndLiveMagnifyNotification
   attach_nsstring_getter :NSScrollViewWillStartLiveMagnifyNotification
@@ -4284,6 +4433,12 @@ module Cocoa
   attach_nsstring_getter :NSSpellingStateAttributeName
   attach_nsstring_getter :NSSplitViewDidResizeSubviewsNotification
   attach_nsstring_getter :NSSplitViewWillResizeSubviewsNotification
+  attach_nsstring_getter :NSStoreModelVersionHashesKey
+  attach_nsstring_getter :NSStoreModelVersionIdentifiersKey
+  attach_nsstring_getter :NSStorePathKey
+  attach_nsstring_getter :NSStoreTypeKey
+  attach_nsstring_getter :NSStoreUUIDInPathKey
+  attach_nsstring_getter :NSStoreUUIDKey
   attach_nsstring_getter :NSStreamDataWrittenToMemoryStreamKey
   attach_nsstring_getter :NSStreamFileCurrentOffsetKey
   attach_nsstring_getter :NSStreamNetworkServiceType
@@ -4508,6 +4663,7 @@ module Cocoa
   attach_nsstring_getter :NSURLVolumeURLForRemountingKey
   attach_nsstring_getter :NSURLVolumeURLKey
   attach_nsstring_getter :NSURLVolumeUUIDStringKey
+  attach_nsstring_getter :NSUUIDChangedPersistentStoresKey
   attach_nsstring_getter :NSUbiquitousKeyValueStoreChangeReasonKey
   attach_nsstring_getter :NSUbiquitousKeyValueStoreChangedKeysKey
   attach_nsstring_getter :NSUbiquitousKeyValueStoreDidChangeExternallyNotification
@@ -4529,11 +4685,17 @@ module Cocoa
   attach_nsstring_getter :NSUnionOfArraysKeyValueOperator
   attach_nsstring_getter :NSUnionOfObjectsKeyValueOperator
   attach_nsstring_getter :NSUnionOfSetsKeyValueOperator
+  attach_nsstring_getter :NSUpdatedObjectsKey
   attach_nsstring_getter :NSUserDefaultsDidChangeNotification
   attach_nsstring_getter :NSUserNotificationDefaultSoundName
   attach_nsstring_getter :NSUsesScreenFontsDocumentAttribute
   attach_nsstring_getter :NSVCardPboardType
+  attach_nsstring_getter :NSValidateXMLStoreOption
   attach_nsstring_getter :NSValidatesImmediatelyBindingOption
+  attach_nsstring_getter :NSValidationKeyErrorKey
+  attach_nsstring_getter :NSValidationObjectErrorKey
+  attach_nsstring_getter :NSValidationPredicateErrorKey
+  attach_nsstring_getter :NSValidationValueErrorKey
   attach_nsstring_getter :NSValueBinding
   attach_nsstring_getter :NSValuePathBinding
   attach_nsstring_getter :NSValueTransformerBindingOption
@@ -4650,7 +4812,9 @@ module Cocoa
   attach_nsstring_getter :NSWorkspaceWillSleepNotification
   attach_nsstring_getter :NSWorkspaceWillUnmountNotification
   attach_nsstring_getter :NSWritingDirectionAttributeName
+  attach_nsstring_getter :NSXMLExternalRecordType
   attach_nsstring_getter :NSXMLParserErrorDomain
+  attach_nsstring_getter :NSXMLStoreType
   attach_nsstring_getter :NSYearMonthWeekDesignations
   attach_nsstring_getter :kCAAlignmentCenter
   attach_nsstring_getter :kCAAlignmentJustified

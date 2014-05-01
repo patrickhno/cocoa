@@ -6,7 +6,7 @@ require 'cocoa'
 desc "Generate module from framework"
 task :generate do
   sdkroot = '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk'
-  frameworks = ['AppKit','Foundation','QuartzCore','CoreGraphics','CoreText','CoreFoundation']
+  frameworks = ['AppKit','Foundation','CoreData','QuartzCore','CoreGraphics','CoreText','CoreFoundation']
   FileUtils.mkdir_p('tmp')
   Bundler.with_clean_env do
     `/usr/bin/gen_bridge_metadata --no-32-bit -F complete #{frameworks.map{ |fw| "-f #{sdkroot}/System/Library/Frameworks/#{fw}.framework" }.join(' ')} -c "-isysroot #{sdkroot} #{frameworks.map{ |fw| "-framework #{fw}" }.join(' ')} -O0 -g" -o tmp/Foundation.bridgesupport`
