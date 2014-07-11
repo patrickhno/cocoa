@@ -2,8 +2,23 @@
 require 'cocoa/bindings/NSObject'
 module Cocoa
   class CIFilter < Cocoa::NSObject
+    attach_method :apply, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@", :variadic=>true}, {:args=>3, :names=>[:arguments, :options], :types=>["@", "@", "@"], :retval=>"@"}]
+    attach_method :attributes, :args=>0, :names=>[], :types=>[], :retval=>"@"
+    attach_singular_method :filterNamesInCategories, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
+    attach_singular_method :filterNamesInCategory, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
+    attach_singular_method :filterWithImageData, :args=>2, :names=>[:options], :types=>["@", "@"], :retval=>"@"
+    attach_singular_method :filterWithImageURL, :args=>2, :names=>[:options], :types=>["@", "@"], :retval=>"@"
+    attach_singular_method :filterWithName, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>2, :names=>[:keysAndValues], :types=>["@", "@"], :retval=>"@", :variadic=>true}]
+    attach_method :inputKeys, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :isEnabled, :args=>0, :names=>[], :types=>[], :retval=>"B"
+    attach_singular_method :localizedDescriptionForFilterName, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
+    attach_singular_method :localizedNameForCategory, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
+    attach_singular_method :localizedNameForFilterName, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
+    attach_singular_method :localizedReferenceDocumentationForFilterName, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :name, :args=>0, :names=>[], :types=>[], :retval=>"@"
+    attach_method :outputKeys, :args=>0, :names=>[], :types=>[], :retval=>"@"
+    attach_singular_method :registerFilterName, :args=>3, :names=>[:constructor, :classAttributes], :types=>["@", "@", "@"], :retval=>"v"
+    attach_method :setDefaults, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :setEnabled, :args=>1, :names=>[], :types=>["B"], :retval=>"v"
     attach_method :setName, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
   end

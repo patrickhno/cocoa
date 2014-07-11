@@ -13,12 +13,18 @@ module Cocoa
   NSApplicationLoad()
 
   def const_missing name
+    return CONSTANTS[name] if CONSTANTS[name]
     if File.exists?(File.dirname(__FILE__) + "/cocoa/bindings/#{name}.rb")
       require "cocoa/bindings/#{name}"
       "Cocoa::#{name}".constantize
     else
       super
     end
+  end
+
+  def method_missing name
+    return CONSTANTS[name] if CONSTANTS[name]
+    super
   end
 end
 

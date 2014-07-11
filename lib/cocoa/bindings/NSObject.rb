@@ -214,6 +214,7 @@ module Cocoa
     attach_method :exposedBindings, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :fileManager, [{:args=>3, :names=>[:shouldCopyItemAtPath, :toPath], :types=>["@", "@", "@"], :retval=>"B"}, {:args=>3, :names=>[:shouldCopyItemAtURL, :toURL], :types=>["@", "@", "@"], :retval=>"B"}, {:args=>3, :names=>[:shouldLinkItemAtPath, :toPath], :types=>["@", "@", "@"], :retval=>"B"}, {:args=>3, :names=>[:shouldLinkItemAtURL, :toURL], :types=>["@", "@", "@"], :retval=>"B"}, {:args=>3, :names=>[:shouldMoveItemAtPath, :toPath], :types=>["@", "@", "@"], :retval=>"B"}, {:args=>3, :names=>[:shouldMoveItemAtURL, :toURL], :types=>["@", "@", "@"], :retval=>"B"}, {:args=>2, :names=>[:shouldProceedAfterError], :types=>["@", "@"], :retval=>"B"}, {:args=>4, :names=>[:shouldProceedAfterError, :copyingItemAtPath, :toPath], :types=>["@", "@", "@", "@"], :retval=>"B"}, {:args=>4, :names=>[:shouldProceedAfterError, :copyingItemAtURL, :toURL], :types=>["@", "@", "@", "@"], :retval=>"B"}, {:args=>4, :names=>[:shouldProceedAfterError, :linkingItemAtPath, :toPath], :types=>["@", "@", "@", "@"], :retval=>"B"}, {:args=>4, :names=>[:shouldProceedAfterError, :linkingItemAtURL, :toURL], :types=>["@", "@", "@", "@"], :retval=>"B"}, {:args=>4, :names=>[:shouldProceedAfterError, :movingItemAtPath, :toPath], :types=>["@", "@", "@", "@"], :retval=>"B"}, {:args=>4, :names=>[:shouldProceedAfterError, :movingItemAtURL, :toURL], :types=>["@", "@", "@", "@"], :retval=>"B"}, {:args=>3, :names=>[:shouldProceedAfterError, :removingItemAtPath], :types=>["@", "@", "@"], :retval=>"B"}, {:args=>3, :names=>[:shouldProceedAfterError, :removingItemAtURL], :types=>["@", "@", "@"], :retval=>"B"}, {:args=>2, :names=>[:shouldRemoveItemAtPath], :types=>["@", "@"], :retval=>"B"}, {:args=>2, :names=>[:shouldRemoveItemAtURL], :types=>["@", "@"], :retval=>"B"}, {:args=>2, :names=>[:willProcessPath], :types=>["@", "@"], :retval=>"v"}]
     attach_method :fillMode, :args=>0, :names=>[], :types=>[], :retval=>"@"
+    attach_method :filterWithName, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
     attach_method :finalize, :args=>0, :names=>[], :types=>[], :retval=>"v"
     attach_method :findBarView, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :findBarViewDidChangeHeight, :args=>0, :names=>[], :types=>[], :retval=>"v"
@@ -285,6 +286,7 @@ module Cocoa
     attach_method :layoutSublayersOfLayer, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :listener, :args=>2, :names=>[:shouldAcceptNewConnection], :types=>["@", "@"], :retval=>"B"
     attach_singular_method :load, :args=>0, :names=>[], :types=>[], :retval=>"v"
+    attach_method :load, :args=>1, :names=>[], :types=>["^v"], :retval=>"B"
     attach_method :localizedKey, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :localizedSummaryItems, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :localizedTitlesForItem, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
@@ -384,6 +386,7 @@ module Cocoa
     attach_method :presentedSubitemDidAppearAtURL, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :presentedSubitemDidChangeAtURL, :args=>1, :names=>[], :types=>["@"], :retval=>"v"
     attach_method :primaryPresentedItemURL, :args=>0, :names=>[], :types=>[], :retval=>"@"
+    attach_method :provideImageData, :args=>7, :names=>[:bytesPerRow, :origin, :"", :size, :"", :userInfo], :types=>["^v", "Q", "Q", "Q", "Q", "Q", "@"], :retval=>"v"
     attach_method :provideNewButtonImage, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :provideNewView, :args=>1, :names=>[], :types=>["B"], :retval=>"@"
     attach_method :readSelectionFromPasteboard, :args=>1, :names=>[], :types=>["@"], :retval=>"B"

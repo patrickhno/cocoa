@@ -2,8 +2,38 @@
 require 'cocoa/bindings/NSObject'
 module Cocoa
   class CIImage < Cocoa::NSObject
+    attach_method :autoAdjustmentFilters, :args=>0, :names=>[], :types=>[], :retval=>"@"
+    attach_method :autoAdjustmentFiltersWithOptions, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
+    attach_method :colorSpace, :args=>0, :names=>[], :types=>[], :retval=>"^{CGColorSpace=}"
+    attach_method :definition, :args=>0, :names=>[], :types=>[], :retval=>"@"
     attach_method :drawAtPoint, :args=>4, :names=>[:fromRect, :operation, :fraction], :types=>["{CGPoint=dd}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "Q", "d"], :retval=>"v"
     attach_method :drawInRect, :args=>4, :names=>[:fromRect, :operation, :fraction], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}", "{CGRect={CGPoint=dd}{CGSize=dd}}", "Q", "d"], :retval=>"v"
+    attach_singular_method :emptyImage, :args=>0, :names=>[], :types=>[], :retval=>"@"
+    attach_method :extent, :args=>0, :names=>[], :types=>[], :retval=>"{CGRect={CGPoint=dd}{CGSize=dd}}"
+    attach_method :imageByApplyingTransform, :args=>1, :names=>[], :types=>["{CGAffineTransform=dddddd}"], :retval=>"@"
+    attach_method :imageByCroppingToRect, :args=>1, :names=>[], :types=>["{CGRect={CGPoint=dd}{CGSize=dd}}"], :retval=>"@"
+    attach_singular_method :imageWithBitmapData, :args=>5, :names=>[:bytesPerRow, :size, :format, :colorSpace], :types=>["@", "Q", "{CGSize=dd}", "i", "^{CGColorSpace=}"], :retval=>"@"
+    attach_singular_method :imageWithCGImage, [{:args=>1, :names=>[], :types=>["^{CGImage=}"], :retval=>"@"}, {:args=>2, :names=>[:options], :types=>["^{CGImage=}", "@"], :retval=>"@"}]
+    attach_singular_method :imageWithCGLayer, [{:args=>1, :names=>[], :types=>["^{CGLayer=}"], :retval=>"@"}, {:args=>2, :names=>[:options], :types=>["^{CGLayer=}", "@"], :retval=>"@"}]
+    attach_singular_method :imageWithCVImageBuffer, [{:args=>1, :names=>[], :types=>["^{__CVBuffer=}"], :retval=>"@"}, {:args=>2, :names=>[:options], :types=>["^{__CVBuffer=}", "@"], :retval=>"@"}]
+    attach_singular_method :imageWithColor, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
+    attach_singular_method :imageWithContentsOfURL, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>2, :names=>[:options], :types=>["@", "@"], :retval=>"@"}]
+    attach_singular_method :imageWithData, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>2, :names=>[:options], :types=>["@", "@"], :retval=>"@"}]
+    attach_singular_method :imageWithIOSurface, [{:args=>1, :names=>[], :types=>["^{__IOSurface=}"], :retval=>"@"}, {:args=>2, :names=>[:options], :types=>["^{__IOSurface=}", "@"], :retval=>"@"}]
+    attach_singular_method :imageWithImageProvider, :args=>6, :names=>[:size, :"", :format, :colorSpace, :options], :types=>["@", "Q", "Q", "i", "^{CGColorSpace=}", "@"], :retval=>"@"
+    attach_singular_method :imageWithTexture, :args=>4, :names=>[:size, :flipped, :colorSpace], :types=>["I", "{CGSize=dd}", "B", "^{CGColorSpace=}"], :retval=>"@"
+    attach_method :initWithBitmapData, :args=>5, :names=>[:bytesPerRow, :size, :format, :colorSpace], :types=>["@", "Q", "{CGSize=dd}", "i", "^{CGColorSpace=}"], :retval=>"@"
     attach_method :initWithBitmapImageRep, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
+    attach_method :initWithCGImage, [{:args=>1, :names=>[], :types=>["^{CGImage=}"], :retval=>"@"}, {:args=>2, :names=>[:options], :types=>["^{CGImage=}", "@"], :retval=>"@"}]
+    attach_method :initWithCGLayer, [{:args=>1, :names=>[], :types=>["^{CGLayer=}"], :retval=>"@"}, {:args=>2, :names=>[:options], :types=>["^{CGLayer=}", "@"], :retval=>"@"}]
+    attach_method :initWithCVImageBuffer, [{:args=>1, :names=>[], :types=>["^{__CVBuffer=}"], :retval=>"@"}, {:args=>2, :names=>[:options], :types=>["^{__CVBuffer=}", "@"], :retval=>"@"}]
+    attach_method :initWithColor, :args=>1, :names=>[], :types=>["@"], :retval=>"@"
+    attach_method :initWithContentsOfURL, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>2, :names=>[:options], :types=>["@", "@"], :retval=>"@"}]
+    attach_method :initWithData, [{:args=>1, :names=>[], :types=>["@"], :retval=>"@"}, {:args=>2, :names=>[:options], :types=>["@", "@"], :retval=>"@"}]
+    attach_method :initWithIOSurface, [{:args=>1, :names=>[], :types=>["^{__IOSurface=}"], :retval=>"@"}, {:args=>2, :names=>[:options], :types=>["^{__IOSurface=}", "@"], :retval=>"@"}]
+    attach_method :initWithImageProvider, :args=>6, :names=>[:size, :"", :format, :colorSpace, :options], :types=>["@", "Q", "Q", "i", "^{CGColorSpace=}", "@"], :retval=>"@"
+    attach_method :initWithTexture, :args=>4, :names=>[:size, :flipped, :colorSpace], :types=>["I", "{CGSize=dd}", "B", "^{CGColorSpace=}"], :retval=>"@"
+    attach_method :properties, :args=>0, :names=>[], :types=>[], :retval=>"@"
+    attach_method :url, :args=>0, :names=>[], :types=>[], :retval=>"@"
   end
 end
