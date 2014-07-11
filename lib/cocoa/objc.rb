@@ -7,9 +7,11 @@ module ObjC
   ffi_lib 'objc'
  
   attach_function :sel_registerName, [:string], :pointer
+  attach_function :sel_getName, [:pointer], :string
   attach_function :objc_getClass, [:string], :pointer
   attach_function :objc_allocateClassPair, [:pointer, :string, :int], :pointer
   attach_function :objc_registerClassPair, [:pointer], :void
+  attach_function :class_getName, [:pointer], :string
 
   MethodDef::TYPES.values.uniq.each do |type|
     name = "objc_msgSend_#{type}".to_sym
@@ -36,11 +38,7 @@ module ObjC
  
   def self.NSString_to_String( nsstring_pointer )
     c_string = msgSend_pointer( nsstring_pointer, "UTF8String")
-    if c_string.null?
-      return "(NULL)"
-    else
-      return c_string.read_string()
-    end
+    return c_string.read_string()
   end
 
   def self.smart_constantize ret,klass_name
@@ -133,5 +131,5 @@ module ObjC
       raise type.inspect
     end
   end
-
 end
+

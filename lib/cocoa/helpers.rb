@@ -57,13 +57,12 @@ module Cocoa
 
     m = ObjC::MethodDef.new(method,params.first)
 
-    params = params.extract_options!
-    params.freeze
+    params = params.last
     begin
       if params[:args] == 0
         attach_function "call_#{method}".to_sym, method, m.ffi_types, m.ffi_return_type
         define_method method do
-          m.ruby_return_value(send("call_#{method}".to_sym))
+          m.ruby_return_value(Lib.send(method))
         end
       else
         attach_function "call_#{method}".to_sym, method, m.ffi_types, m.ffi_return_type
