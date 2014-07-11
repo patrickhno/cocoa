@@ -7,7 +7,7 @@ module ObjC
       'i' => :int,
       's' => :short,
       'l' => :long,
-      'q' => :long_long,
+      'q' => :int64,
       'C' => :uchar,
       'I' => :uint,
       'S' => :ushort,
@@ -32,7 +32,7 @@ module ObjC
     def initialize name,options
       @name = name.to_sym
       @ruby_name = name.to_sym
-      @names = options[:names].map(&:to_sym)
+      @names = options[:names]
       @types = options[:types]
       @return_type = options[:retval]
       @variadic = options[:variadic]
@@ -42,8 +42,7 @@ module ObjC
       @variadic
     end
 
-    def ffi_types
-      @ffi_types ||= types.map do |type|
+    def compile_type type
         TYPES[type] || case type
         when '@?'
           :pointer
@@ -63,16 +62,36 @@ module ObjC
               Cocoa.const_set($1, klass)
               name = 'a'
               layout = []
+              mode = :scan
+              struct = ''
               attribs.each_char do |c|
-                layout << name.to_sym
-                name = name.next
-                layout << case c
-                when '^', '?'
-                  :pointer
-                when 'v'
-                  :pointer
-                else
-                  TYPES[c]
+                case mode
+                when :struct
+                  struct << c
+                  if c == '}'
+                    mode = :scan
+                    layout << name.to_sym
+                    name = name.next
+                    layout << compile_type(struct)
+                  end
+                when :scan
+                  case c
+                  when '{'
+                    mode = :struct
+                    struct = c
+                  when '^', '?'
+                    layout << name.to_sym
+                    name = name.next
+                    layout << :pointer
+                  when 'v'
+                    layout << name.to_sym
+                    name = name.next
+                    layout << :pointer
+                  else
+                    layout << name.to_sym
+                    name = name.next
+                    layout << TYPES[c]
+                  end
                 end
               end
               klass = Cocoa::const_get($1)
@@ -86,6 +105,11 @@ module ObjC
         else
           raise type.inspect
         end
+    end
+
+    def ffi_types
+      @ffi_types ||= types.map do |type|
+        compile_type(type)
       end
     end
 
@@ -95,16 +119,18 @@ module ObjC
         :void
       when 'v'
         :void
+      when 'B'
+        :bool
       when /^\^/
         :pointer
       when '[5*]'
         :void
       when /^{[^=]*=.*}$/
         begin
-          /^{_*([^=]*)=.*}$/.match(return_type)[1].constantize.by_value
+          const_get(/^{_*([^=]*)=.*}$/.match(return_type)[1]).by_value
         rescue => e
           begin
-            "Cocoa::#{/^{_*([^=]*)=.*}$/.match(return_type)[1]}".constantize.by_value
+            Cocoa.const_get(/^{_*([^=]*)=.*}$/.match(return_type)[1]).by_value
           rescue => e
             match = /^{_*([^=]*)=(.*)}$/.match(return_type)
             klass = begin
@@ -124,7 +150,7 @@ module ObjC
                   layout << :double
                 end
               end
-              klass = "Cocoa::#{match[1]}".constantize
+              klass = Cocoa.const_get(match[1])
               klass.layout *layout
               klass
             end
