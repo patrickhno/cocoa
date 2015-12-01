@@ -14,6 +14,7 @@ module Cocoa
   def instances
     @@instances ||= {}
   end
+
   def instance_for data
     if data.is_a?(FFI::Pointer)
       @@instances[data.address] ||= ObjC.ffi_to_ruby_value(nil, data, '@')
@@ -82,9 +83,9 @@ module Cocoa
     attr_reader :object
 
     def self.attach_singular_method method,*__params
-      return if method == :superclass
-      return if method == :class
-      return if method == :new
+      return if method == :superclass ||
+                method == :class ||
+                method == :new
 
       @@singular_specs ||= {}
       @@singular_specs[method] = []
@@ -121,7 +122,7 @@ module Cocoa
     end
 
     def self.attach_method method,*_params
-      return if method==:class
+      return if method == :class
       @method_specs ||= {}
       @method_specs[method] = []
       [_params].flatten.each do |spec|
@@ -165,7 +166,7 @@ module Cocoa
         klass = klass.superclass
         method_specs = klass.instance_variable_get(:@method_specs)
       end
-      return nil unless method_specs
+      return unless method_specs
 
       spec = method_specs[method]
       params = instance_method(method).parameters
@@ -175,25 +176,25 @@ module Cocoa
           ((m.types.size == 0 && keys.size == 0) || (m.types.size > keys.size)) &&
           (m.names[0,keys.size-1] || []) == keys
         end
-        return nil if filtered.size == 0
+        return if filtered.size == 0
         filtered
       else
         filtered = spec.select do |m|
           ((m.types.size == 0 && keys.size == 0) || (m.types.size == keys.size+1)) &&
           m.names == keys
         end
-        return nil if filtered.size == 0
+        return if filtered.size == 0
         raise filtered.inspect unless filtered.size == 1
         filtered.first
       end
     end
 
     def self.method_added(name)
-      return if name == :== # TODO: define as equals or something?
-      return if name.to_s[-1] == '='
-      return if caller[1].split('`').last[0..-2] == 'method_added'      # self
-      return if caller.first.split('`').last[0..-2] == 'define_method'  # MRI
-      return if caller.first.split('`').last[0..-2] == 'attach_method'  # Rubinius
+      return if name == :== || # TODO: define as equals or something?
+                name.to_s[-1] == '=' ||
+                caller[1].split('`').last[0..-2] == 'method_added' || # self
+                caller.first.split('`').last[0..-2] == 'define_method' || # MRI
+                caller.first.split('`').last[0..-2] == 'attach_method' # Rubinius
 
       # define an alias for keyword argument methods such that:
       # class Foo
