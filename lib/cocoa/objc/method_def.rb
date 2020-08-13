@@ -177,7 +177,7 @@ module ObjC
         case value
         when TrueClass, FalseClass
           [:bool,value]
-        when Fixnum, Bignum
+        when Integer
           [TYPES[types[i]],value]
         when Float
           [:double,value]
